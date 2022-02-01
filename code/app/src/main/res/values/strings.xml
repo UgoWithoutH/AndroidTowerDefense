@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">AndroidTowerDefense</string>
+    <string name="readyMenu">GET READY :</string>
+    <string name="nicknameMenu">NICKNAME :</string>
+    <string name="gameTitle">Tower Defense</string>
+    <string name="scoreBoard"> SCOREBOARD</string>
+    <string name="nbScoreMenu">Maximum number of scores :</string>
+
+    <string name="score">Score :</string>
+    <string name="coins">Coins :</string>
+    <string name="level">Level :</string>
+
+
+    <!-- String pour boutons-->
+    <string name="newGame">New Game</string>
+    <string name="exit">Exit</string>
+    <string name="giveUp">GiveUp</string>
+    <string name="stop">Stop</string>
+    <string name="x2">X2</string>
 </resources>
