@@ -1,10 +1,12 @@
 package com.androidtowerdefense.model;
 
 
+import java.io.Serializable;
+
 /**
  * Coordonnées
  */
-public class Coordinate {
+public class Coordinate implements Serializable {
     private int x;
     private int y;
 

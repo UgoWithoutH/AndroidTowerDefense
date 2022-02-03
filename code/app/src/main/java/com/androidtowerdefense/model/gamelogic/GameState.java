@@ -3,6 +3,7 @@ package com.androidtowerdefense.model.gamelogic;
 import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.characters.tower.Tower;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +11,7 @@ import java.util.Objects;
 /**
  * States relatifs à la partie
  */
-public class GameState implements Comparable<GameState>{
+public class GameState implements Comparable<GameState>, Serializable {
 
     private final List<Tower> playerTowers;
     private final List<Character> charactersAlive;

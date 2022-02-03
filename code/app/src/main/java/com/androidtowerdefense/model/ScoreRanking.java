@@ -2,6 +2,7 @@ package com.androidtowerdefense.model;
 
 import com.androidtowerdefense.model.gamelogic.GameState;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Classe Score et Ranking permettant de classer le resultat en fonction du score obtenu
  */
-public class ScoreRanking {
+public class ScoreRanking implements Serializable {
     private final List<GameState> ranking;
     private int numberScores;
 
@@ -20,6 +21,8 @@ public class ScoreRanking {
         ranking = new ArrayList<>();
         numberScores = 10;
     }
+
+    public void setNumberScores(int numberScores) {this.numberScores = numberScores;}
 
     /**
      * Met a jour le Classement une fois que la partie est terminée

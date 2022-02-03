@@ -5,10 +5,12 @@ import com.androidtowerdefense.model.Coordinate;
 import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.characters.Projectile;
 
+import java.io.Serializable;
+
 /**
  * Tour
  */
-public abstract class Tower {
+public abstract class Tower implements Serializable {
     private static final int BUILD_TIME_SECONDS = 2; //Temps de construction
     private static final int DEFAULT_SELL_COST = 25; //Prix de construction
     private int attackDamage;
