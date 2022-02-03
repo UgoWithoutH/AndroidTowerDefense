@@ -31,7 +31,7 @@ public class BuyerTower implements IBuyer {
      */
     @Override
     public boolean buy(double xCords, double yCords) {
-        /*int xTile = (int) (xCords / 64);
+        int xTile = (int) (xCords / 64);
         int yTile = (int) (yCords / 64);
 
         if (gameMap.nodeOpen(xTile, yTile)) {
@@ -42,7 +42,7 @@ public class BuyerTower implements IBuyer {
                 gameMap.setMapNode(((int) (xCords / 64)), ((int) (yCords / 64)), 7);
                 return true;
             }
-        }*/
+        }
         return false;
     }
 }

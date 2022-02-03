@@ -30,7 +30,7 @@ public abstract class Character {
         this.movementSpeed = movementSpeed;
         this.healthPoints = healthPoints;
         reward = 2;
-        //coordinate = new Coordinate(path.get(0).getExactX(), path.get(0).getExactY());
+        coordinate = new Coordinate(path.get(0).getExactX(), path.get(0).getExactY());
     }
 
     public int getDirection() {return direction;}
@@ -44,19 +44,11 @@ public abstract class Character {
 
     public Coordinate getCoordinate(){return coordinate;}
 
-    /*public int getX() {
-        return coordinate.getX();
-    }
-    public void setX(int x) {
-        coordinate.setX(x);
-    }
+    public int getX() {return coordinate.getX();}
+    public void setX(int x) {coordinate.setX(x);}
 
-    public int getY() {
-        return coordinate.getY();
-    }
-    public void setY(int y) {
-        coordinate.setY(y);
-    }*/
+    public int getY() {return coordinate.getY();}
+    public void setY(int y) {coordinate.setY(y);}
 
     public int getReward() {
         return reward;
@@ -82,7 +74,7 @@ public abstract class Character {
      * Modifie la Position, vérifie s'il est arrivé à la fin du chemin.
      * Modifie également la direction qu'il doit prendre en fonction de sa position et du chemin définit
      */
-    /*public void updateLocation() {
+    public void updateLocation() {
         if(pathFinished) return;
         // Déplacement selon l'axe des x
         if (moveX) {
@@ -115,5 +107,5 @@ public abstract class Character {
                 }
             }
         }
-    }*/
+    }
 }

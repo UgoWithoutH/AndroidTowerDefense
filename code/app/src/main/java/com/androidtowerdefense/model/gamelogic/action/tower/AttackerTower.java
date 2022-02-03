@@ -1,25 +1,28 @@
 package com.androidtowerdefense.model.gamelogic.action.tower;
 
 
+import com.androidtowerdefense.model.characters.Character;
+import com.androidtowerdefense.model.characters.monster.Monster;
 import com.androidtowerdefense.model.characters.tower.Tower;
 import com.androidtowerdefense.model.gamelogic.action.IAttacker;
+import java.util.List;
 
 /**
  * Classe permettant aux tours d'attaquer
  */
 public class AttackerTower implements IAttacker {
-    /*private ObservableList<Tower> listTower;
-    private ObservableList<Character> listCharacter;*/
+    private List<Tower> listTower;
+    private List<Character> listCharacter;
 
     /**
      * Créé le système d'attaque des Tours sur les Characters
      * @param listTower
      * @param listCharacter
      */
-    /*public AttackerTower(ObservableList<Tower> listTower, ObservableList<Character> listCharacter) {
+    public AttackerTower(List<Tower> listTower, List<Character> listCharacter) {
         this.listTower = listTower;
         this.listCharacter = listCharacter;
-    }*/
+    }
 
 
     /**
@@ -30,7 +33,7 @@ public class AttackerTower implements IAttacker {
         Character target;
         WaitingBuild attackService;
 
-        /*for (Tower tower : listTower) {
+        for (Tower tower : listTower) {
             if (tower.isAttacker()) {
                 int towerMinXRange = tower.getX() - tower.getAttackRange();
                 int towerMaxXRange = tower.getX() + tower.getAttackRange();
@@ -45,7 +48,8 @@ public class AttackerTower implements IAttacker {
                         t.start();
                         if (tower.isBuild()) {
                             tower.createProjectile(target);
-                            if (target instanceof Monster monster) {
+                            if (target instanceof Monster) {
+                                Monster monster = (Monster) target;
                                 monster.takeDamage(tower.getAttackDamage());
                             }
                         }
@@ -53,6 +57,6 @@ public class AttackerTower implements IAttacker {
                     }
                 }
             }
-        }*/
+        }
     }
 }

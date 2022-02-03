@@ -10,10 +10,7 @@ public class Monster extends Character {
     /**
      * Variable qui définit si le Monstre est visible ou non
      */
-    /*private BooleanProperty visible = new SimpleBooleanProperty();
-        public boolean isVisible() {return visible.get();}
-        public BooleanProperty visibleProperty() {return visible;}
-        public void setVisible(boolean visible) {this.visible.set(visible);}*/
+    private boolean visible;
 
     /**
      * Constructeur de Monstre
@@ -22,8 +19,12 @@ public class Monster extends Character {
      */
     public Monster(int healthPoints, int movementSpeed) {
         super(healthPoints,movementSpeed);
-        //setVisible(true);
+        visible = true;
     }
+
+
+    public boolean isVisible() {return visible;}
+    public void setVisible(boolean visible) {this.visible = visible;}
 
     /**
      *  Dommages reçus

@@ -16,7 +16,7 @@ public class AdministratorLevel implements ILevel {
 
     public AdministratorLevel(GameState game) {
         this.game = game;
-        //this.level = game.getLevel();
+        this.level = game.getLevel();
         setLevelFile(level);
     }
 
@@ -49,7 +49,7 @@ public class AdministratorLevel implements ILevel {
     public boolean nextLevel() {
         this.level++;
         if(setLevelFile(this.level)){
-            //this.game.setLevel(this.level);
+            this.game.setLevel(this.level);
             return true;
         }
         return false;

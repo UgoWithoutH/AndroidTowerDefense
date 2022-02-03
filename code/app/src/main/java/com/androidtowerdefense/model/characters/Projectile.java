@@ -25,19 +25,11 @@ public class Projectile{
         return target;
     }
 
-    /*public int getEndX(){
-        return target.getX();
-    }
-    public int getEndY(){
-        return target.getY();
-    }*/
+    public int getEndX(){return target.getX();}
+    public int getEndY(){return target.getY();}
 
-    public int getStartX(){
-        return startX;
-    }
-    public int getStartY(){
-        return startY;
-    }
+    public int getStartX(){return startX;}
+    public int getStartY(){return startY;}
 
 }
 

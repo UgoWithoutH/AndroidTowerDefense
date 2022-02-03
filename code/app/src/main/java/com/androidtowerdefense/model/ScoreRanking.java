@@ -2,28 +2,23 @@ package com.androidtowerdefense.model;
 
 import com.androidtowerdefense.model.gamelogic.GameState;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Classe Score et Ranking permettant de classer le resultat en fonction du score obtenu
  */
 public class ScoreRanking {
-    //private final ObservableList<GameState> rankingObservable = FXCollections.observableArrayList();
-
-    /*private ListProperty<GameState> ranking = new SimpleListProperty<>(rankingObservable);
-        public ObservableList<GameState> getRanking() {return ranking.get();}
-        public ListProperty<GameState> rankingProperty() {return ranking;}
-        public void setRanking(ObservableList<GameState> ranking) {this.ranking.set(ranking);}
-    private IntegerProperty numberScores = new SimpleIntegerProperty();
-        public int getNumberScores() {return numberScores.get();}
-        public IntegerProperty numberScoresProperty() {return numberScores;}
-        public void setNumberScores(int numberScores) {this.numberScores.set(numberScores);}*/
+    private final List<GameState> ranking;
+    private int numberScores;
 
     /**
      * Set le score de base au lancement de la Partie
      */
     public ScoreRanking() {
-        //setNumberScores(10);
+        ranking = new ArrayList<>();
+        numberScores = 10;
     }
 
     /**
@@ -33,23 +28,23 @@ public class ScoreRanking {
      */
     public void updateRanking(GameState gameState) {
 
-        /*if(getNumberScores() == 0){
-            rankingObservable.clear();
+        if(numberScores == 0){
+            ranking.clear();
             return;
         }
 
-        if (!rankingObservable.isEmpty()) {
-            if (rankingObservable.size() >= getNumberScores()) {
-                Collections.sort(rankingObservable);
-                GameState lowerState = rankingObservable.get(rankingObservable.size() - 1);
+        if (!ranking.isEmpty()) {
+            if (ranking.size() >= numberScores) {
+                Collections.sort(ranking);
+                GameState lowerState = ranking.get(ranking.size() - 1);
                 if (lowerState != gameState) {
-                    rankingObservable.remove(lowerState);
+                    ranking.remove(lowerState);
                 }
             }
         }
-        rankingObservable.add(gameState);
-        if(rankingObservable.size() > 1){
-            Collections.sort(rankingObservable);
-        }*/
+        ranking.add(gameState);
+        if(ranking.size() > 1){
+            Collections.sort(ranking);
+        }
     }
 }

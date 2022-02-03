@@ -23,12 +23,13 @@ public class AdministratorVictoryGameOver {
      * Vérifie si l'état de la partie est une victoire
      */
     public void verifyVictory() {
-        /*if(enemyFile instanceof AdministratorLevel administratorLevel) {
+        if(enemyFile instanceof AdministratorLevel) {
+            AdministratorLevel administratorLevel = (AdministratorLevel) enemyFile;
             if (!administratorLevel.getLevelFile().hasNextLine() && game.getCharactersAlive().isEmpty() && loop.isRunning()) {
                 loop.setRunning(false);
                 game.setVictory(true);
             }
-        }*/
+        }
     }
 
     /**
@@ -36,10 +37,10 @@ public class AdministratorVictoryGameOver {
      * @param value none
      */
     public void verifyGameOver(boolean value){
-        /*if(!value) return;
+        if(!value) return;
         game.setRemoveCharacter(true);
         game.getCharactersAlive().clear();
         loop.setRunning(false);
-        game.setGameOver(true);*/
+        game.setGameOver(true);
     }
 }

@@ -41,7 +41,7 @@ public class GameManager implements IObserver {
         levelNext = new AdministratorLevel(game);
         administratorVictoryGameOver = new AdministratorVictoryGameOver(game, levelNext, loop);
         spawner = new SpawnerCharacter(game, levelNext);
-        //attacker = new AttackerTower(game.getPlayerTowers(), game.getCharactersAlive());
+        attacker = new AttackerTower(game.getPlayerTowers(), game.getCharactersAlive());
     }
 
     public Loop getLoop(){ return loop; }

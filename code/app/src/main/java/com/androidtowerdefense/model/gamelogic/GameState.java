@@ -1,63 +1,44 @@
 package com.androidtowerdefense.model.gamelogic;
 
+import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.characters.tower.Tower;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * States relatifs à la partie
  */
-public class GameState/* implements Comparable<GameState>*/{
+public class GameState implements Comparable<GameState>{
 
-    /*private final ObservableList<Tower> playerTowers = FXCollections.observableArrayList();
-    private final ObservableList<Character> charactersAlive = FXCollections.observableArrayList();*/
+    private final List<Tower> playerTowers;
+    private final List<Character> charactersAlive;
     private boolean speed = false;
     private boolean removeCharacter = false;
-    /*private StringProperty pseudo = new SimpleStringProperty();
-        public String getPseudo() {return pseudo.get();}
-        public StringProperty pseudoProperty() {return pseudo;}
-        public void setPseudo(String pseudo) {this.pseudo.set(pseudo);}
-    private IntegerProperty timeSeconds = new SimpleIntegerProperty();
-        public int getTimeSeconds() {return timeSeconds.get();}
-        public IntegerProperty timeSecondsProperty() {return timeSeconds;}
-        public void setTimeSeconds(int timeSeconds) {this.timeSeconds.set(timeSeconds);}
-    private BooleanProperty gameOver = new SimpleBooleanProperty();
-        public boolean isGameOver() {return gameOver.get();}
-        public BooleanProperty gameOverProperty() {return gameOver;}
-        public void setGameOver(boolean gameOver) {this.gameOver.set(gameOver);}
-    private BooleanProperty victory = new SimpleBooleanProperty(false);
-        public boolean isVictory() {return victory.get();}
-        public BooleanProperty victoryProperty() {return victory;}
-        public void setVictory(boolean victory) {this.victory.set(victory);}
-    private IntegerProperty level = new SimpleIntegerProperty();
-        public int getLevel() {return level.get();}
-        public IntegerProperty levelProperty() {return level;}
-        public void setLevel(int level) {this.level.set(level);}
-    private IntegerProperty lives = new SimpleIntegerProperty();
-        public int getLives(){return lives.get();}
-        public IntegerProperty livesProperty() {return lives;}
-        public void setLives(int lives){this.lives.set(lives);}
-    private IntegerProperty coins = new SimpleIntegerProperty();
-        public int getCoins() {return coins.get();}
-        public IntegerProperty coinsProperty() {return coins;}
-        public void setCoins(int coins) {this.coins.set(coins);}
-    private IntegerProperty score = new SimpleIntegerProperty();
-        public int getScore() {return score.get();}
-        public IntegerProperty scoreProperty() {return score;}
-        public void setScore(int score) {this.score.set(score);}*/
+    private String pseudo;
+    private int timeSeconds;
+    private boolean gameOver;
+    private boolean victory;
+    private int level;
+    private int lives;
+    private int coins;
+    private int score;
 
     /**
      * Ressources du joueur et states de la Partie
      * @param pseudo    String Pseudo
      */
     public GameState(String pseudo){
-        /*setPseudo(pseudo);
-        setTimeSeconds(0);
-        setCoins(50);
-        setLevel(1);
-        setScore(0);
-        setLives(2);
-        setVictory(false);*/
+        this.pseudo = pseudo;
+        playerTowers = new ArrayList<>();
+        charactersAlive = new ArrayList<>();
+        timeSeconds = 0;
+        coins = 50;
+        level = 1;
+        score = 0;
+        lives = 2;
+        victory = false;
     }
 
     public boolean isRemoveCharacter() {return removeCharacter;}
@@ -67,16 +48,37 @@ public class GameState/* implements Comparable<GameState>*/{
     public boolean isSpeed() {return speed;}
     public void setSpeed(boolean speed) {this.speed = speed;}
 
-    /*public ObservableList<Tower> getPlayerTowers(){
-        return playerTowers;
-    }
-    public ObservableList<Character> getCharactersAlive() {
-        return charactersAlive;
-    }*/
+    public List<Tower> getPlayerTowers() {return playerTowers;}
 
-    //public void addTower(Tower tower){playerTowers.add(tower);}
+    public List<Character> getCharactersAlive() {return charactersAlive;}
 
-    /*@Override
+    public String getPseudo() {return pseudo;}
+    public void setPseudo(String pseudo) {this.pseudo = pseudo;}
+
+    public int getTimeSeconds() {return timeSeconds;}
+    public void setTimeSeconds(int timeSeconds) {this.timeSeconds = timeSeconds;}
+
+    public boolean isGameOver() {return gameOver;}
+    public void setGameOver(boolean gameOver) {this.gameOver = gameOver;}
+
+    public boolean isVictory() {return victory;}
+    public void setVictory(boolean victory) {this.victory = victory;}
+
+    public int getLevel() {return level;}
+    public void setLevel(int level) {this.level = level;}
+
+    public int getLives() {return lives;}
+    public void setLives(int lives) {this.lives = lives;}
+
+    public int getCoins() {return coins;}
+    public void setCoins(int coins) {this.coins = coins;}
+
+    public int getScore() {return score;}
+    public void setScore(int score) {this.score = score;}
+
+    public void addTower(Tower tower){playerTowers.add(tower);}
+
+    @Override
     public int compareTo(GameState g) {
         int coeff = g.isGameOver() ? 100 : 1;
 
@@ -98,11 +100,11 @@ public class GameState/* implements Comparable<GameState>*/{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GameState gameState = (GameState) o;
-        return pseudo.equals(gameState.pseudo) && timeSeconds.equals(gameState.timeSeconds) && victory.equals(gameState.victory) && level.equals(gameState.level) && score.equals(gameState.score);
+        return pseudo.equals(gameState.pseudo) && timeSeconds == gameState.timeSeconds && victory == gameState.victory && level == gameState.level && score == gameState.score;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(pseudo, timeSeconds, victory, level, score);
-    }*/
+    }
 }

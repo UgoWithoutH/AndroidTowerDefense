@@ -1,6 +1,7 @@
 package com.androidtowerdefense.model.gamelogic.action.states;
 
 
+import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.gamelogic.GameState;
 
 /**
@@ -14,12 +15,12 @@ public class Updater {
      * @param game  GameState
      */
     public static void updateStates(Character character, GameState game) {
-        /*if (character.isPathFinished()) {
+        if (character.isPathFinished()) {
             game.setLives((game.getLives()) - 1);
         } else {
             game.setCoins((game.getCoins()) + character.getReward());
             game.setScore(game.getScore() + (character.getReward() * (game.getLevel() + 1)));
-        }*/
+        }
     }
 
     /**
@@ -29,11 +30,11 @@ public class Updater {
      * @param game  GameState
      */
     public static void updateTimerSeconds(int timer, long millis, GameState game){
-        /*var timeMillis = timer * millis;
-        var timeSeconds = (int) (timeMillis / 1000);
+        long timeMillis = timer * millis;
+        int timeSeconds = (int) (timeMillis / 1000);
 
         if (timeSeconds != game.getTimeSeconds()) {
             game.setTimeSeconds(game.getTimeSeconds() + 1);
-        }*/
+        }
     }
 }

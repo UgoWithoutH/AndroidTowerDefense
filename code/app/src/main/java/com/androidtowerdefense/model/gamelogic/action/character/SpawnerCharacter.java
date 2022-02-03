@@ -1,5 +1,7 @@
 package com.androidtowerdefense.model.gamelogic.action.character;
 
+import com.androidtowerdefense.model.characters.monster.Basic;
+import com.androidtowerdefense.model.characters.monster.Speed;
 import com.androidtowerdefense.model.gamelogic.AdministratorLevel;
 import com.androidtowerdefense.model.gamelogic.GameState;
 import com.androidtowerdefense.model.gamelogic.action.ILevel;
@@ -27,17 +29,23 @@ public class SpawnerCharacter implements ISpawner {
      * @param timer int Timer de la Boucle de Jeu
      */
     public void spawn(int timer) {
-        /*if (level instanceof AdministratorLevel administratorLevel) {
+        if (level instanceof AdministratorLevel) {
+            AdministratorLevel administratorLevel = (AdministratorLevel) level;
             Scanner scannerFile = administratorLevel.getLevelFile();
             if (timer % 40 == 0 && scannerFile.hasNextLine()) {
                 switch (scannerFile.next()) {
-                    case "Basic" -> game.getCharactersAlive().add(new Basic(5));
-                    case "Speed" -> game.getCharactersAlive().add(new Speed(3));
-                    default -> game.getCharactersAlive().add(new Basic(3));
+                    case "Basic" :
+                         game.getCharactersAlive().add(new Basic(5));
+                         break;
+                    case "Speed" :
+                        game.getCharactersAlive().add(new Speed(3));
+                        break;
+                    default :
+                        game.getCharactersAlive().add(new Basic(3));
                 }
             } else if (!scannerFile.hasNextLine()) {
                 level.nextLevel();
             }
-        }*/
+        }
     }
 }

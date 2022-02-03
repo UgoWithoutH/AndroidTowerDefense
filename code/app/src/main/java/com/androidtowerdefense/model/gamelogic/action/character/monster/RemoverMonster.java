@@ -1,6 +1,6 @@
 package com.androidtowerdefense.model.gamelogic.action.character.monster;
 
-
+import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.characters.monster.Monster;
 import com.androidtowerdefense.model.gamelogic.GameState;
 import com.androidtowerdefense.model.gamelogic.action.IRemover;
@@ -21,10 +21,10 @@ public class RemoverMonster implements IRemover {
      */
     @Override
     public void remove(Character character) {
-        //Monster monster = (Monster) character;
+        Monster monster = (Monster) character;
         game.setRemoveCharacter(true);
-        //game.getCharactersAlive().remove(monster);
-        //monster.setVisible(false);
+        game.getCharactersAlive().remove(monster);
+        monster.setVisible(false);
         game.setRemoveCharacter(false);
     }
 }

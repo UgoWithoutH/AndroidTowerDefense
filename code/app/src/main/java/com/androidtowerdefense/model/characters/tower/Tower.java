@@ -2,6 +2,7 @@ package com.androidtowerdefense.model.characters.tower;
 
 
 import com.androidtowerdefense.model.Coordinate;
+import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.characters.Projectile;
 
 /**
@@ -12,10 +13,7 @@ public abstract class Tower {
     private static final int DEFAULT_SELL_COST = 25; //Prix de construction
     private int attackDamage;
     private int attackRange;
-    /*private ObjectProperty<Projectile> projectile = new SimpleObjectProperty<>();
-        public Projectile getProjectile() {return projectile.get();}
-        public ObjectProperty<Projectile> projectileProperty() {return projectile;}
-        public void setProjectile(Projectile projectile) {this.projectile.set(projectile);}*/
+    private Projectile projectile;
     private Coordinate coordinate;
     private boolean attacker = true;
     private boolean build = false;
@@ -43,12 +41,9 @@ public abstract class Tower {
         this.build = build;
     }
 
-    /*public int getX() {
-        return coordinate.getExactX();
-    }
-    public int getY() {
-        return coordinate.getExactY();
-    }*/
+    public int getX() {return coordinate.getExactX();}
+
+    public int getY() {return coordinate.getExactY();}
 
     public int getAttackRange(){
         return attackRange;
@@ -78,7 +73,7 @@ public abstract class Tower {
      * @param target Character ciblé
      */
     public void createProjectile(Character target){
-        //setProjectile(new Projectile(target , coordinate.getExactX() , coordinate.getExactY()));
+        projectile = new Projectile(target , coordinate.getExactX() , coordinate.getExactY());
     }
 
 }
