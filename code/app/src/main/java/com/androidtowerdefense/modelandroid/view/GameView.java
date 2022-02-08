@@ -11,10 +11,15 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.androidtowerdefense.R;
+import com.androidtowerdefense.model.gamelogic.map.GenerationMap;
+import com.androidtowerdefense.model.gamelogic.map.ImportMap;
+import com.androidtowerdefense.model.gamelogic.map.Map;
+import com.androidtowerdefense.modelandroid.view.map.DrawMap;
 
 public class GameView extends View {
     private Paint paint = new Paint();
     private Bitmap bitmap;
+    private DrawMap drawMap;
 
     public GameView(Context context) {
         super(context);
@@ -23,6 +28,8 @@ public class GameView extends View {
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.tile);
+        GenerationMap generationMap = new GenerationMap(1216, 608);
+        drawMap = new DrawMap(generationMap,bitmap);
     }
 
     public GameView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -32,6 +39,6 @@ public class GameView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(bitmap,0,0,paint);
+        drawMap.draw(canvas,paint);
     }
 }

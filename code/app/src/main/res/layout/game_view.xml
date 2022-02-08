@@ -19,11 +19,14 @@
         android:id="@+id/buttonGiveUp"
         android:layout_width="66dp"
         android:layout_height="27dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/giveUp"
         android:textSize="6sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="165dp" />
+        app:layout_constraintEnd_toEndOf="@+id/myView"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96" />
 
     <Button
         android:id="@+id/buttonStop"
@@ -31,8 +34,12 @@
         android:layout_height="32dp"
         android:text="@string/stop"
         android:textSize="6sp"
-        tools:layout_editor_absoluteX="245dp"
-        tools:layout_editor_absoluteY="375dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98" />
 
     <TextView
         android:id="@+id/score"
@@ -68,15 +75,26 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/coeur" />
+        android:src="@drawable/coeur"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="29dp"
         android:layout_height="29dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/myView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.00999999" />
 </androidx.constraintlayout.widget.ConstraintLayout>
