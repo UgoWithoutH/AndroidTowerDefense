@@ -1,10 +1,18 @@
 package com.androidtowerdefense.modelandroid;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -75,17 +83,68 @@ public class MainActivity extends AppCompatActivity {
         Log.d("truc","Destroy");
     }
 
-    private void inputData(){
-        EditText numberScores = findViewById(R.id.numberScores);
-        EditText pseudo = findViewById(R.id.numberScores);
-        manager.getScoreRanking().setNumberScores(Integer.parseInt(numberScores.getText().toString()));
-        manager.setPseudo(pseudo.getText().toString());
+    private boolean inputData(){
+        try{
+            EditText numberScores = findViewById(R.id.numberScores);
+            EditText pseudo = findViewById(R.id.numberScores);
+            manager.getScoreRanking().setNumberScores(Integer.parseInt(numberScores.getText().toString()));
+            manager.setPseudo(pseudo.getText().toString());
+            return true;
+        }
+        catch(NumberFormatException ex){
+            return false;
+        }
+
+    }
+    //TODO : Ajouter le même mécanisme pour le pseudonyme de l'user
+    public void newGame(View view) {
+        Log.d("truc", "Nouvelle Partie");
+        if (!inputData())
+        {
+            Log.d("truc", "Input Data pas correct");
+            popUpWindow(view);
+        }
+        else{
+            Intent intent = new Intent(this,GameActivity.class);
+            intent.putExtra("manager",manager);
+            startActivity(intent);
+        }
+
     }
 
-    public void newGame(View view) {
-        inputData();
-        Intent intent = new Intent(this,GameActivity.class);
-        intent.putExtra("manager",manager);
-        startActivity(intent);
+    public void quitterApplication(View view){
+        Log.d("truc", "Finish activity");
+        finish();
+        System.exit(0);
     }
+
+
+    //Methode qui ajoute une popup pour l'user qui se ferme si on click a côté etc..
+    public void popUpWindow(View view)
+    {
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_window, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+    }
+
 }
