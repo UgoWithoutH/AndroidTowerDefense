@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.Manager;
+import com.androidtowerdefense.modelandroid.view.GameView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("truc","Create");
+        //GameView gameView = findViewById(R.id.myView);
+        //gameView.invalidate(); -> déclancher le onDraw
         setContentView(R.layout.game_menu);
         manager = new Manager();
     }
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void newGame(View view) {
-        inputData();
+        //inputData();
         Intent intent = new Intent(this,GameActivity.class);
         intent.putExtra("manager",manager);
         startActivity(intent);
