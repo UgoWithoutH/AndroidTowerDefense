@@ -14,7 +14,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("truc","Create2");
-        setContentView(R.layout.game_view);
+        setContentView(R.layout.game_test);
         Bundle data = getIntent().getExtras();
         //data.get(....);
     }

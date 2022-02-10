@@ -28,8 +28,8 @@ public class GameView extends View {
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.tile);
-        GenerationMap generationMap = new GenerationMap(1216, 608);
-        drawMap = new DrawMap(generationMap,bitmap);
+        GenerationMap generationMap = new GenerationMap(500, 500);
+        drawMap = new DrawMap(generationMap,bitmap,context);
     }
 
     public GameView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
