@@ -1,5 +1,7 @@
 package com.androidtowerdefense.model.gamelogic.map;
 
+import android.util.Log;
+
 import com.androidtowerdefense.model.Coordinate;
 
 import java.util.ArrayList;
@@ -25,12 +27,12 @@ public class Map {
      * @param mapWidth  int Largeur du Tableau
      * @param mapHeight int Longueur du Tableau
      */
+    //TODO : changer les valeurs brutes 13 et 20
     public Map(int mapWidth , int mapHeight) {
         resolutionWidth = mapWidth;
         resolutionHeight = mapHeight;
-
-        tileLengthX = (int) Math.ceil(mapWidth / 64d);
-        tileLengthY = (int) Math.ceil(mapHeight / 64d);
+        tileLengthX = 20; //(int) Math.ceil(mapWidth / 64d);
+        tileLengthY = 13; //(int) Math.ceil(mapHeight / 64d);
 
         offsetX = tileLengthX * 64 - resolutionWidth;
         offsetY = tileLengthY * 64 - resolutionHeight;
