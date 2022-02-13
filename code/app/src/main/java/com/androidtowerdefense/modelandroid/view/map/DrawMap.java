@@ -28,6 +28,7 @@ public class DrawMap {
         //int dim = (int) (64 * context.getResources().getDisplayMetrics().density);
         int width = bitmap.getWidth();
         int dim = width * 64 / DEFAULT_MATCH_WIDTH;
+        Log.d("taille", String.valueOf(width));
         for(int x = 0; x < map.getTileLengthX(); x++){
             for(int y = 0; y < map.getTileLengthY(); y++ ){
                 switch (map.getMap()[y][x]) {
