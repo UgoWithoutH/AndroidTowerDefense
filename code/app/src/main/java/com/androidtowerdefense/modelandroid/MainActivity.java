@@ -24,7 +24,7 @@ import com.androidtowerdefense.modelandroid.view.GameView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Manager manager;
+    private Manager manager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

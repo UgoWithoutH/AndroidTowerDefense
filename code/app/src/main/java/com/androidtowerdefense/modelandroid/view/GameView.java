@@ -6,9 +6,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.gamelogic.map.GenerationMap;
@@ -37,6 +39,10 @@ public class GameView extends View {
 
     public GameView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    public DrawMap getDrawMap() {
+        return drawMap;
     }
 
     @Override

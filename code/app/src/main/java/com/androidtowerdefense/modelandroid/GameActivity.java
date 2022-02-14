@@ -2,20 +2,49 @@ package com.androidtowerdefense.modelandroid;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.androidtowerdefense.R;
+import com.androidtowerdefense.model.Manager;
+import com.androidtowerdefense.model.gamelogic.GameManager;
+import com.androidtowerdefense.model.gamelogic.action.IBuyer;
+import com.androidtowerdefense.model.gamelogic.action.tower.BuyerTower;
+import com.androidtowerdefense.modelandroid.view.GameView;
 
 public class GameActivity extends AppCompatActivity {
+
+    private Manager manager;
+    private boolean constructTowers = true;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("truc","Create2");
-        setContentView(R.layout.game_view);
         Bundle data = getIntent().getExtras();
+        manager = (Manager) data.get("manager");
+        Log.d("truc","Create2");
+
+        setContentView(R.layout.game_view);
+        GameView gameView = findViewById(R.id.myView);
+        GameManager gameManager = new GameManager(manager.getPseudo(), gameView.getDrawMap().getMap());
+        manager.setGameManager(gameManager);
+        ConstraintLayout layout = findViewById(R.id.gameLayout);
+        gameView.setOnTouchListener((view, event) -> {
+                Log.d("click","click ");
+                if (constructTowers) {
+                    IBuyer buyer = new BuyerTower(gameManager.getGame(), gameManager.getGameMap());
+                    if(buyer.buy(event.getX(), event.getY())){
+                        gameView.invalidate();
+                    }
+                    constructTowers = true;
+                }
+                return true;
+        });
         //data.get(....);
     }
 

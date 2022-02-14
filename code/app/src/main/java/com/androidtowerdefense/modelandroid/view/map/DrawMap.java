@@ -22,6 +22,10 @@ public class DrawMap {
         this.context = context;
     }
 
+    public Map getMap() {
+        return map;
+    }
+
     //TODO : correspondance de l'écran avec la Bitmap pour la position et les tailles
     public void draw(Canvas canvas, Paint paint){
         Bitmap tile = null;
@@ -58,7 +62,7 @@ public class DrawMap {
                             break;
                 }
                 if(tile != null){
-                    canvas.drawBitmap(tile,x*64,y*64,paint);
+                    canvas.drawBitmap(tile,x*dim,y*dim,paint);
                 }
             }
         }
