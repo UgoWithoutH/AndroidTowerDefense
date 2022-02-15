@@ -15,12 +15,13 @@ import com.androidtowerdefense.model.Manager;
 import com.androidtowerdefense.model.gamelogic.GameManager;
 import com.androidtowerdefense.model.gamelogic.action.IBuyer;
 import com.androidtowerdefense.model.gamelogic.action.tower.BuyerTower;
+import com.androidtowerdefense.modelandroid.view.CheckerModelChanges;
 import com.androidtowerdefense.modelandroid.view.GameView;
 
 public class GameActivity extends AppCompatActivity {
 
     private Manager manager;
-    private boolean constructTowers = true;
+    private boolean constructTowers = true; //true pour test sinon false
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
         GameView gameView = findViewById(R.id.myView);
         GameManager gameManager = new GameManager(manager.getPseudo(), gameView.getDrawMap().getMap());
         manager.setGameManager(gameManager);
-        ConstraintLayout layout = findViewById(R.id.gameLayout);
+        initializeGame(gameView);
         gameView.setOnTouchListener((view, event) -> {
                 Log.d("click","click ");
                 if (constructTowers) {
@@ -46,6 +47,20 @@ public class GameActivity extends AppCompatActivity {
                 return true;
         });
         //data.get(....);
+    }
+
+    private void initializeGame(GameView gameView){
+        CheckerModelChanges cmc = new CheckerModelChanges(manager.getGameManager(), gameView);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    if(manager.getGameManager().getLoop().isRunning()){
+                        cmc.check();
+                    }
+                }
+            }
+        });
     }
 
     @Override
