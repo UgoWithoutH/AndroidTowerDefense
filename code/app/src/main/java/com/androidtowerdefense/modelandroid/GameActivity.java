@@ -34,14 +34,16 @@ public class GameActivity extends AppCompatActivity {
         GameView gameView = findViewById(R.id.myView);
         GameManager gameManager = new GameManager(manager.getPseudo(), gameView.getDrawMap().getMap());
         manager.setGameManager(gameManager);
-        initializeGame(gameView);
+        //initializeGame(gameView);
         gameView.setOnTouchListener((view, event) -> {
-                Log.d("click","click ");
+                Log.d("click","x : " + event.getX() + " y : " + event.getY());
                 if (constructTowers) {
                     IBuyer buyer = new BuyerTower(gameManager.getGame(), gameManager.getGameMap());
-                    if(buyer.buy(event.getX(), event.getY())){
+                    float x = event.getX();
+                    float y = event.getY();
+                    if(buyer.buy(x, y)){
                         gameView.invalidate();
-                    }
+                    } //déléguer tout ça dans le GameManager
                     constructTowers = true;
                 }
                 return true;

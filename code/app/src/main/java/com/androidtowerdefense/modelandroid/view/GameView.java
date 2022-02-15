@@ -32,8 +32,8 @@ public class GameView extends View {
         super(context, attrs);
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.tile);
         int width = bitmap.getWidth();
-        int dim = width * 64 / DEFAULT_MATCH_WIDTH;
-        GenerationMap generationMap = new GenerationMap(20*dim, 13*dim);
+        int tileSize = width * 64 / DEFAULT_MATCH_WIDTH;
+        GenerationMap generationMap = new GenerationMap(20*tileSize, 13*tileSize);
         drawMap = new DrawMap(generationMap,bitmap,context);
     }
 
@@ -49,5 +49,11 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawMap.draw(canvas,paint);
+    }
+
+    //est appelé quand le téléphone tourne içi on viendrait mettre en cache
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
     }
 }
