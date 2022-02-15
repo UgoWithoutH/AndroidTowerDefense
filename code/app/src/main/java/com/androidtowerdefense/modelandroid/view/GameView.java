@@ -32,8 +32,7 @@ public class GameView extends View {
         super(context, attrs);
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.tile);
         int width = bitmap.getWidth();
-        int tileSize = width * 64 / DEFAULT_MATCH_WIDTH;
-        GenerationMap generationMap = new GenerationMap(20*tileSize, 13*tileSize);
+        GenerationMap generationMap = new GenerationMap(20*64, 13*64);
         drawMap = new DrawMap(generationMap,bitmap,context);
     }
 

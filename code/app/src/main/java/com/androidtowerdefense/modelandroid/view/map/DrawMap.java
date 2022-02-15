@@ -11,11 +11,12 @@ import android.util.Log;
 import com.androidtowerdefense.model.gamelogic.map.Map;
 
 public class DrawMap {
-    private static final int DEFAULT_MATCH_WIDTH = 512;
     private static final int tileSize = 64;
     private Bitmap bitmap;
     private Map map;
     private Context context;
+    private int widthResize;
+    private int heightResize;
 
     public DrawMap(Map map, Bitmap bitmap, Context context) {
         this.map = map;
@@ -27,14 +28,19 @@ public class DrawMap {
         return map;
     }
 
+    public int getWidthResize() {
+        return widthResize;
+    }
+
+    public int getHeightResize() {
+        return heightResize;
+    }
+
     //TODO : correspondance de l'écran avec la Bitmap pour la position et les tailles
     public void draw(Canvas canvas, Paint paint){
         Bitmap tile = null;
-        int widthBitmap = bitmap.getWidth();
-        int heightBitmap = bitmap.getHeight();
-        //int tileSize = widthBitmap * 64 / DEFAULT_MATCH_WIDTH; --> avant avec les qualifiers
-        int widthResize = canvas.getWidth() / 20;
-        int heightResize = canvas.getHeight() / 13;
+        widthResize = canvas.getWidth() / 20;
+        heightResize = canvas.getHeight() / 13;
         for(int x = 0; x < map.getTileLengthX(); x++){
             for(int y = 0; y < map.getTileLengthY(); y++ ){
                 switch (map.getMap()[y][x]) {
