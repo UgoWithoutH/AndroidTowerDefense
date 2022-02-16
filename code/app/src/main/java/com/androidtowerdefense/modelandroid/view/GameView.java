@@ -10,19 +10,20 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.androidtowerdefense.R;
+import com.androidtowerdefense.model.gamelogic.GameManager;
 import com.androidtowerdefense.model.gamelogic.map.GenerationMap;
-import com.androidtowerdefense.model.gamelogic.map.ImportMap;
-import com.androidtowerdefense.model.gamelogic.map.Map;
-import com.androidtowerdefense.modelandroid.view.map.DrawMap;
+import com.androidtowerdefense.model.observer.IObserver;
+import com.androidtowerdefense.modelandroid.view.draw.DrawMap;
+import com.androidtowerdefense.modelandroid.view.draw.DrawCharacters;
 
-public class GameView extends View {
+public class GameView extends View  implements IObserver {
     private Paint paint = new Paint();
     private Bitmap bitmap;
+    private GameManager gameManager;
     private DrawMap drawMap;
-    private static final int DEFAULT_MATCH_WIDTH = 512;
+    private DrawCharacters drawMonsters;
 
     public GameView(Context context) {
         super(context);
@@ -31,9 +32,14 @@ public class GameView extends View {
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.tile);
-        int width = bitmap.getWidth();
         GenerationMap generationMap = new GenerationMap(20*64, 13*64);
         drawMap = new DrawMap(generationMap,bitmap,context);
+    }
+
+    public void setGameManager(GameManager gameManager){
+        this.gameManager = gameManager;
+        drawMonsters = new DrawCharacters(gameManager.getGame().getCharactersAlive());
+        gameManager.subscribe(this);
     }
 
     public GameView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -48,11 +54,19 @@ public class GameView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawMap.draw(canvas,paint);
+        gameManager.setTileWidth(drawMap.getWidthResize());
+        gameManager.setTileHeight(drawMap.getHeightResize());
+        drawMonsters.draw(canvas,paint);
     }
 
     //est appelé quand le téléphone tourne içi on viendrait mettre en cache
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+    }
+
+    @Override
+    public void update(int timer) {
+        invalidate();
     }
 }

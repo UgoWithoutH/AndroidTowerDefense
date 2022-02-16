@@ -1,6 +1,8 @@
 package com.androidtowerdefense.model.gamelogic.action.tower;
 
 
+import android.util.Log;
+
 import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.characters.monster.Monster;
 import com.androidtowerdefense.model.characters.tower.Tower;
@@ -32,7 +34,6 @@ public class AttackerTower implements IAttacker {
     public void attack() {
         Character target;
         WaitingBuild attackService;
-
         for (Tower tower : listTower) {
             if (tower.isAttacker()) {
                 int towerMinXRange = tower.getX() - tower.getAttackRange();
@@ -51,6 +52,7 @@ public class AttackerTower implements IAttacker {
                             if (target instanceof Monster) {
                                 Monster monster = (Monster) target;
                                 monster.takeDamage(tower.getAttackDamage());
+                                Log.d("attaque","attaque");
                             }
                         }
                         break;

@@ -2,23 +2,20 @@ package com.androidtowerdefense.modelandroid;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.Manager;
 import com.androidtowerdefense.model.gamelogic.GameManager;
 import com.androidtowerdefense.model.gamelogic.action.IBuyer;
 import com.androidtowerdefense.model.gamelogic.action.tower.BuyerTower;
-import com.androidtowerdefense.modelandroid.view.CheckerModelChanges;
 import com.androidtowerdefense.modelandroid.view.GameView;
+import com.androidtowerdefense.modelandroid.view.draw.DrawMap;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity{
 
     private Manager manager;
     private boolean constructTowers = true; //true pour test sinon false
@@ -32,35 +29,23 @@ public class GameActivity extends AppCompatActivity {
 
         setContentView(R.layout.game_view);
         GameView gameView = findViewById(R.id.myView);
+        DrawMap drawMap = gameView.getDrawMap();
         GameManager gameManager = new GameManager(manager.getPseudo(), gameView.getDrawMap().getMap());
         manager.setGameManager(gameManager);
-        //initializeGame(gameView);
+        gameView.setGameManager(gameManager);
         gameView.setOnTouchListener((view, event) -> {
-                //Log.d("click","x : " + event.getX() + " y : " + event.getY());
                 if (constructTowers) {
+                    Log.d("click","click");
                     IBuyer buyer = new BuyerTower(gameManager.getGame(), gameManager.getGameMap());
-                    if(buyer.buy((int) event.getX()/gameView.getDrawMap().getWidthResize(), (int) event.getY()/gameView.getDrawMap().getHeightResize())){
+                    if(buyer.buy((int) event.getX()/drawMap.getWidthResize(), (int) event.getY()/drawMap.getHeightResize())){
                         gameView.invalidate();
                     } //déléguer tout ça dans le GameManager
                     constructTowers = true;
                 }
                 return true;
         });
+        gameManager.start();
         //data.get(....);
-    }
-
-    private void initializeGame(GameView gameView){
-        CheckerModelChanges cmc = new CheckerModelChanges(manager.getGameManager(), gameView);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    if(manager.getGameManager().getLoop().isRunning()){
-                        cmc.check();
-                    }
-                }
-            }
-        });
     }
 
     @Override

@@ -1,12 +1,9 @@
-package com.androidtowerdefense.modelandroid.view.map;
+package com.androidtowerdefense.modelandroid.view.draw;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.media.Image;
-import android.util.Log;
 
 import com.androidtowerdefense.model.gamelogic.map.Map;
 

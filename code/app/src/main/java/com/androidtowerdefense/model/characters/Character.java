@@ -1,5 +1,7 @@
 package com.androidtowerdefense.model.characters;
 
+import android.util.Log;
+
 import com.androidtowerdefense.model.Coordinate;
 
 import java.io.Serializable;
@@ -79,9 +81,17 @@ public abstract class Character implements Serializable {
         if(pathFinished) return;
         // Déplacement selon l'axe des x
         if (moveX) {
-            setX(coordinate.getX() + movementSpeed);
+            if((coordinate.getX() + movementSpeed) > path.get(direction).getExactX()){
+                setX(path.get(direction).getExactX());
+            }
+            else {
+                setX(coordinate.getX() + movementSpeed);
+            }
             // Arrivé à un point de changement dans le chemin, changer de direction
-            if (coordinate.getX() == path.get(direction).getExactX()) {
+            int tmp1 = coordinate.getX();
+            int tmp2 = path.get(direction).getExactX();
+            Log.d("deplacement", "tmp1 : "+ tmp1 + " tmp2 : "+ tmp2);
+            if (tmp1 == tmp2) {
                 moveX = false;
                 direction++;
                 // Traversée de tous les points de changement, fin du chemin
@@ -94,9 +104,19 @@ public abstract class Character implements Serializable {
         // Déplacement selon l'axe des y
         else {
             if (coordinate.getY() < path.get(direction).getExactY()) {
-                setY(coordinate.getY() + movementSpeed);
+                if((coordinate.getY() + movementSpeed) > path.get(direction).getExactY()){
+                    setY(path.get(direction).getExactY());
+                }
+                else {
+                    setY(coordinate.getY() + movementSpeed);
+                }
             } else {
-                setY(coordinate.getY() - movementSpeed);
+                if((coordinate.getY() - movementSpeed) < path.get(direction).getExactY()){
+                    setY(path.get(direction).getExactY());
+                }
+                else{
+                    setY(coordinate.getY() - movementSpeed);
+                }
             }
             // Atteindre le point de changement, changer de direction
             if (coordinate.getY() == path.get(direction).getExactY()) {

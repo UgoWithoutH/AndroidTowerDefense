@@ -1,9 +1,20 @@
 package com.androidtowerdefense.model.gamelogic;
 
+import android.util.Log;
+
 import com.androidtowerdefense.model.gamelogic.action.ILevel;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.file.Paths;
+import java.util.Enumeration;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -30,15 +41,33 @@ public class AdministratorLevel implements ILevel {
      * @param level int Level a charger
      * @return  boolean true si disponible
      */
-    public boolean setLevelFile(int level){
+    public boolean setLevelFile(int level) {
         Scanner scannerMonster = null;
-        try {
-            scannerMonster = new Scanner(new File(System.getProperty("user.dir") + "/code/ressources/levels/level"+level+".txt"));
-        } catch (FileNotFoundException e) {
-            return false;
+        String currentLine;
+        String afterLine;
+        StringBuilder sb = new StringBuilder();
+
+        InputStream is = getClass().getResourceAsStream("/res/raw/level" + level + ".txt");
+        if (is != null) {
+            try (BufferedReader bf = new BufferedReader(new InputStreamReader(is))) {
+                currentLine = bf.readLine();
+                while (currentLine != null) {
+                    if ((afterLine = bf.readLine()) == null) {
+                        sb.append(currentLine);
+                        currentLine = null;
+                    } else {
+                        sb.append(currentLine + "\n");
+                        currentLine = afterLine;
+                    }
+                }
+            } catch (IOException e) {
+                return false;
+            }
+            scannerMonster = new Scanner(sb.toString());
+            this.levelFile = scannerMonster;
+            return true;
         }
-        this.levelFile = scannerMonster;
-        return true;
+        return false;
     }
 
     /**

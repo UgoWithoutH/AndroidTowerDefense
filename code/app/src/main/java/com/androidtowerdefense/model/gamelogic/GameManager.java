@@ -1,5 +1,7 @@
 package com.androidtowerdefense.model.gamelogic;
 
+import com.androidtowerdefense.model.Coordinate;
+import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.gamelogic.action.IAttacker;
 import com.androidtowerdefense.model.gamelogic.action.IDisplacer;
 import com.androidtowerdefense.model.gamelogic.action.ILevel;
@@ -9,13 +11,14 @@ import com.androidtowerdefense.model.gamelogic.action.character.SpawnerCharacter
 import com.androidtowerdefense.model.gamelogic.action.states.Updater;
 import com.androidtowerdefense.model.gamelogic.action.tower.AttackerTower;
 import com.androidtowerdefense.model.gamelogic.map.Map;
-import com.androidtowerdefense.model.gameloop.IObserver;
-import com.androidtowerdefense.model.gameloop.Loop;
+import com.androidtowerdefense.model.observer.IObserver;
+import com.androidtowerdefense.model.Loop;
+import com.androidtowerdefense.model.observer.Observable;
 
 /**
  * Classe qui gère la partie
  */
-public class GameManager implements IObserver {
+public class GameManager extends Observable implements IObserver {
 
     private Map gameMap;
     private GameState game;
@@ -25,6 +28,8 @@ public class GameManager implements IObserver {
     private ISpawner spawner;
     private IAttacker attacker;
     private ILevel levelNext;
+    private int tileWidth;
+    private int tileHeight;
 
     /**
      * Creation d'un gameManager et de tout ses éléments
@@ -34,7 +39,7 @@ public class GameManager implements IObserver {
     public GameManager(String pseudo, Map map){
         this.gameMap = map;
         game = new GameState(pseudo);
-        //Character.setPath(gameMap.getPath());
+        Character.setPath(gameMap.getPath());
         loop = new Loop();
         loop.subscribe(this);
         displacer = new DisplacerCharacters(game);
@@ -51,6 +56,24 @@ public class GameManager implements IObserver {
     }
 
     public Map getGameMap() {return gameMap;}
+
+    public int getTileWidth() {
+        return tileWidth;
+    }
+
+    public void setTileWidth(int tileWidth) {
+        this.tileWidth = tileWidth;
+        Coordinate.setTileWidth(tileWidth);
+    }
+
+    public int getTileHeight() {
+        return tileHeight;
+    }
+
+    public void setTileHeight(int tileHeight) {
+        this.tileHeight = tileHeight;
+        Coordinate.setTileHeight(tileHeight);
+    }
 
     /**
      * Démarre la boucle de jeu
@@ -77,6 +100,8 @@ public class GameManager implements IObserver {
             administratorVictoryGameOver.verifyGameOver(!displacer.updateLocations());
 
             attacker.attack();
+
+            notify(0);
         }
     }
 }

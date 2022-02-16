@@ -1,4 +1,4 @@
-package com.androidtowerdefense.model.gameloop;
+package com.androidtowerdefense.model.observer;
 
 import java.util.LinkedList;
 

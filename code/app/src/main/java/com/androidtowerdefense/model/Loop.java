@@ -1,13 +1,15 @@
-package com.androidtowerdefense.model.gameloop;
+package com.androidtowerdefense.model;
 
 import static java.lang.Thread.sleep;
+
+import com.androidtowerdefense.model.observer.Observable;
 
 /**
  * Boucle de jeu
  */
 public class Loop extends Observable implements Runnable {
     private static final long DEFAULT_MILLIS = 50;
-    private long millis = 50;
+    private long millis = DEFAULT_MILLIS;
     private int timer = 0;
     private boolean running = false;
 
@@ -45,6 +47,6 @@ public class Loop extends Observable implements Runnable {
     }
 
     private void beep(int timer) {
-        //Platform.runLater(() -> notify(timer));
+        notify(timer);
     }
 }

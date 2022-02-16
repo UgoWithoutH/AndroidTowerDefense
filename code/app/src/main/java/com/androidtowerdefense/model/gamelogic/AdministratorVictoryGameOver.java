@@ -2,7 +2,7 @@ package com.androidtowerdefense.model.gamelogic;
 
 
 import com.androidtowerdefense.model.gamelogic.action.ILevel;
-import com.androidtowerdefense.model.gameloop.Loop;
+import com.androidtowerdefense.model.Loop;
 
 /**
  * Classe permettant de vérifier la victoire ou la partie perdu

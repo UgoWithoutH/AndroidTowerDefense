@@ -1,5 +1,7 @@
 package com.androidtowerdefense.model.gamelogic.action.character;
 
+import android.util.Log;
+
 import com.androidtowerdefense.model.characters.monster.Basic;
 import com.androidtowerdefense.model.characters.monster.Speed;
 import com.androidtowerdefense.model.gamelogic.AdministratorLevel;
@@ -33,7 +35,9 @@ public class SpawnerCharacter implements ISpawner {
             AdministratorLevel administratorLevel = (AdministratorLevel) level;
             Scanner scannerFile = administratorLevel.getLevelFile();
             if (timer % 40 == 0 && scannerFile.hasNextLine()) {
-                switch (scannerFile.next()) {
+                String spawn = scannerFile.next();
+                Log.d("spawn", spawn);
+                switch (spawn) {
                     case "Basic" :
                          game.getCharactersAlive().add(new Basic(5));
                          break;

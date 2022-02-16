@@ -1,4 +1,4 @@
-package com.androidtowerdefense.model.gameloop;
+package com.androidtowerdefense.model.observer;
 
 public interface IObserver {
 

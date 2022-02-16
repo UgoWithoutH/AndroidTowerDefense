@@ -9,6 +9,8 @@ import java.io.Serializable;
 public class Coordinate implements Serializable {
     private int x;
     private int y;
+    private static int tileWidth;
+    private static int tileHeight;
 
     /**
      * Coordonée sur la map
@@ -20,19 +22,27 @@ public class Coordinate implements Serializable {
         this.y = y;
     }
 
+    public static void setTileWidth(int tileWidth) {
+        Coordinate.tileWidth = tileWidth;
+    }
+
+    public static void setTileHeight(int tileHeight) {
+        Coordinate.tileHeight = tileHeight;
+    }
+
     /**
      * Accède a la position X exacte sur la fenêtre
      * @return int Position X
      */
     public int getExactX() {
-        return x * 64 + 32;
+        return x * tileWidth + (tileWidth/2);
     }
 
     /**
      * Accède a la position Y exacte sur la fenêtre
      * @return  int Position Y
      */
-    public int getExactY() { return y * 64 + 32;}
+    public int getExactY() { return y * tileHeight + (tileHeight/2);}
 
     public int getX() {return x;}
     public void setX(int x) {this.x = x;}
