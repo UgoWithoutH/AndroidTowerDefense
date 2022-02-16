@@ -33,6 +33,7 @@ public class GameActivity extends AppCompatActivity{
         GameManager gameManager = new GameManager(manager.getPseudo(), gameView.getDrawMap().getMap());
         manager.setGameManager(gameManager);
         gameView.setGameManager(gameManager);
+        gameView.setGameActivity(this);
         gameView.setOnTouchListener((view, event) -> {
                 if (constructTowers) {
                     Log.d("click","click");

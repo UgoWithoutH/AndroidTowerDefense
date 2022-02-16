@@ -1,5 +1,6 @@
 package com.androidtowerdefense.modelandroid.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,6 +25,7 @@ public class GameView extends View  implements IObserver {
     private GameManager gameManager;
     private DrawMap drawMap;
     private DrawCharacters drawMonsters;
+    private Activity gameActivity;
 
     public GameView(Context context) {
         super(context);
@@ -40,6 +42,10 @@ public class GameView extends View  implements IObserver {
         this.gameManager = gameManager;
         drawMonsters = new DrawCharacters(gameManager.getGame().getCharactersAlive());
         gameManager.subscribe(this);
+    }
+
+    public void setGameActivity(Activity gameActivity) {
+        this.gameActivity = gameActivity;
     }
 
     public GameView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -67,6 +73,11 @@ public class GameView extends View  implements IObserver {
 
     @Override
     public void update(int timer) {
-        invalidate();
+        gameActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                invalidate();
+            }
+        });
     }
 }
