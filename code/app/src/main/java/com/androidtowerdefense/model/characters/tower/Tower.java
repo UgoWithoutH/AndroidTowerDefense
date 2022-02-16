@@ -6,6 +6,8 @@ import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.characters.Projectile;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Tour
@@ -15,7 +17,7 @@ public abstract class Tower implements Serializable {
     private static final int DEFAULT_SELL_COST = 25; //Prix de construction
     private int attackDamage;
     private int attackRange;
-    private Projectile projectile;
+    private List<Projectile> projectiles;
     private Coordinate coordinate;
     private boolean attacker = true;
     private boolean build = false;
@@ -28,6 +30,7 @@ public abstract class Tower implements Serializable {
      */
     public Tower(int x , int y){
         coordinate = new Coordinate(x , y);
+        projectiles = new ArrayList<>();
         attackDamage = 5;
         attackRange = 200;
     }
@@ -70,12 +73,14 @@ public abstract class Tower implements Serializable {
         this.attacker = attacker;
     }
 
+    public List<Projectile> getProjectiles() {return projectiles;}
+
     /**
      * Créé un projetctile et cible un Character
      * @param target Character ciblé
      */
     public void createProjectile(Character target){
-        projectile = new Projectile(target , coordinate.getExactX() , coordinate.getExactY());
+        projectiles.add(new Projectile(target , coordinate.getExactX() , coordinate.getExactY()));
     }
 
 }

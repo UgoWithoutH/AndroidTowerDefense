@@ -73,6 +73,8 @@ public abstract class Character implements Serializable {
     public int getMovementSpeed() {return movementSpeed;}
     public void setMovementSpeed(int movementSpeed){this.movementSpeed = movementSpeed;}
 
+
+    public abstract void takeDamage(int damage);
     /**
      * Modifie la Position, vérifie s'il est arrivé à la fin du chemin.
      * Modifie également la direction qu'il doit prendre en fonction de sa position et du chemin définit
@@ -88,10 +90,7 @@ public abstract class Character implements Serializable {
                 setX(coordinate.getX() + movementSpeed);
             }
             // Arrivé à un point de changement dans le chemin, changer de direction
-            int tmp1 = coordinate.getX();
-            int tmp2 = path.get(direction).getExactX();
-            Log.d("deplacement", "tmp1 : "+ tmp1 + " tmp2 : "+ tmp2);
-            if (tmp1 == tmp2) {
+            if (coordinate.getX() == path.get(direction).getExactX()) {
                 moveX = false;
                 direction++;
                 // Traversée de tous les points de changement, fin du chemin

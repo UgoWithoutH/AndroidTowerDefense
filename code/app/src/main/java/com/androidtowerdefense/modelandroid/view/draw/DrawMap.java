@@ -14,11 +14,13 @@ public class DrawMap {
     private Context context;
     private int widthResize;
     private int heightResize;
+    private Paint paint;
 
     public DrawMap(Map map, Bitmap bitmap, Context context) {
         this.map = map;
         this.bitmap = bitmap;
         this.context = context;
+        paint = new Paint();
     }
 
     public Map getMap() {
@@ -34,7 +36,7 @@ public class DrawMap {
     }
 
     //TODO : correspondance de l'écran avec la Bitmap pour la position et les tailles
-    public void draw(Canvas canvas, Paint paint){
+    public void draw(Canvas canvas){
         Bitmap tile = null;
         widthResize = canvas.getWidth() / 20;
         heightResize = canvas.getHeight() / 13;

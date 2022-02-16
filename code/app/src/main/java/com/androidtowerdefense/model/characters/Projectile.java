@@ -5,8 +5,8 @@ package com.androidtowerdefense.model.characters;
  */
 public class Projectile{
     private final Character target;
-    private final int startX;
-    private final int startY;
+    private int currentX;
+    private int currentY;
 
     /**
      * Créé un Projectile de Tour avec une cible Character
@@ -17,9 +17,11 @@ public class Projectile{
      */
     public Projectile(Character target, int towerX, int towerY){
         this.target = target;
-        startX = towerX;
-        startY = towerY;
+        currentX = towerX;
+        currentY = towerY;
     }
+
+
 
     public Character getTarget(){
         return target;
@@ -28,8 +30,10 @@ public class Projectile{
     public int getEndX(){return target.getX();}
     public int getEndY(){return target.getY();}
 
-    public int getStartX(){return startX;}
-    public int getStartY(){return startY;}
+    public int getCurrentX(){return currentX;}
+    public int getCurrentY(){return currentY;}
 
+    public void setCurrentX(int currentX) {this.currentX = currentX;}
+    public void setCurrentY(int currentY) {this.currentY = currentY;}
 }
 

@@ -11,21 +11,23 @@ import com.androidtowerdefense.model.characters.monster.Speed;
 import java.util.List;
 
 public class DrawCharacters {
-    List<Character> list;
+    private List<Character> characters;
+    private Paint paint;
 
-    public DrawCharacters(List<Character> list) {
-        this.list = list;
+    public DrawCharacters(List<Character> characters) {
+        this.characters = characters;
+        paint = new Paint();
     }
 
-    public void draw(Canvas canvas, Paint paint){
-        for(Character character : list){
+    public void draw(Canvas canvas){
+        for(Character character : characters){
             if(character instanceof Monster){
-                drawMonster(canvas, paint, (Monster) character);
+                drawMonster(canvas, (Monster) character);
             }
         }
     }
 
-    private void drawMonster(Canvas canvas, Paint paint, Monster monster){
+    private void drawMonster(Canvas canvas, Monster monster){
         if(monster instanceof Speed){
             paint.setColor(Color.GREEN);
         }

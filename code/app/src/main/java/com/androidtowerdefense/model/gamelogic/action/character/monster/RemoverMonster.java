@@ -22,9 +22,6 @@ public class RemoverMonster implements IRemover {
     @Override
     public void remove(Character character) {
         Monster monster = (Monster) character;
-        game.setRemoveCharacter(true);
         game.getCharactersAlive().remove(monster);
-        monster.setVisible(false);
-        game.setRemoveCharacter(false);
     }
 }

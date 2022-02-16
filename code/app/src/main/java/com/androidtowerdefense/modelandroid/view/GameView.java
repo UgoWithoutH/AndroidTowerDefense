@@ -18,13 +18,14 @@ import com.androidtowerdefense.model.gamelogic.map.GenerationMap;
 import com.androidtowerdefense.model.observer.IObserver;
 import com.androidtowerdefense.modelandroid.view.draw.DrawMap;
 import com.androidtowerdefense.modelandroid.view.draw.DrawCharacters;
+import com.androidtowerdefense.modelandroid.view.draw.DrawProjectiles;
 
 public class GameView extends View  implements IObserver {
-    private Paint paint = new Paint();
     private Bitmap bitmap;
     private GameManager gameManager;
     private DrawMap drawMap;
     private DrawCharacters drawMonsters;
+    private DrawProjectiles drawProjectiles;
     private Activity gameActivity;
 
     public GameView(Context context) {
@@ -41,6 +42,7 @@ public class GameView extends View  implements IObserver {
     public void setGameManager(GameManager gameManager){
         this.gameManager = gameManager;
         drawMonsters = new DrawCharacters(gameManager.getGame().getCharactersAlive());
+        drawProjectiles = new DrawProjectiles(gameManager.getGame().getPlayerTowers());
         gameManager.subscribe(this);
     }
 
@@ -59,10 +61,12 @@ public class GameView extends View  implements IObserver {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        drawMap.draw(canvas,paint);
+        drawMap.draw(canvas);
         gameManager.setTileWidth(drawMap.getWidthResize());
         gameManager.setTileHeight(drawMap.getHeightResize());
-        drawMonsters.draw(canvas,paint);
+        drawMonsters.draw(canvas);
+        drawProjectiles.draw(canvas);
+
     }
 
     //est appelé quand le téléphone tourne içi on viendrait mettre en cache

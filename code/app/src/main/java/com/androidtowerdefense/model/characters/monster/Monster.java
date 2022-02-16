@@ -1,11 +1,13 @@
 package com.androidtowerdefense.model.characters.monster;
 
+import android.util.Log;
+
 import com.androidtowerdefense.model.characters.Character;
 
 /**
  * Définit un Monster à partir d'un Character
  */
-public class Monster extends Character {
+public abstract class Monster extends Character {
 
     /**
      * Variable qui définit si le Monstre est visible ou non
@@ -30,7 +32,9 @@ public class Monster extends Character {
      *  Dommages reçus
      * @param damage int Valeur des dégats
      */
+    @Override
     public void takeDamage(int damage) {
+        Log.d("attaque","dégats");
         setHealthPoints(getHealthPoints() - damage);
         if (getHealthPoints() <= 0) {
             setDead(true);
