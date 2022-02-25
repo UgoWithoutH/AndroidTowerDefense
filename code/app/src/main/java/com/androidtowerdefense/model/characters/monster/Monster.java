@@ -19,7 +19,7 @@ public abstract class Monster extends Character {
      * @param healthPoints  int Nombre Point de Vie
      * @param movementSpeed int Vitesse de Mouvement
      */
-    public Monster(int healthPoints, int movementSpeed) {
+    public Monster(int healthPoints, float movementSpeed) {
         super(healthPoints,movementSpeed);
         visible = true;
     }

@@ -19,14 +19,14 @@ public abstract class Character implements Serializable {
     private boolean moveX;
     private boolean dead;
     private boolean pathFinished;
-    private int movementSpeed;
+    private float movementSpeed;
 
     /**
      * Définit les valeurs Basic d'un character
      * @param healthPoints  int Nombre de Point de Vie
      * @param movementSpeed int Vitesse
      */
-    public Character(int healthPoints, int movementSpeed) {
+    public Character(int healthPoints, float movementSpeed) {
         pathFinished = false;
         moveX = true;
         direction = 1;
@@ -47,11 +47,11 @@ public abstract class Character implements Serializable {
 
     public Coordinate getCoordinate(){return coordinate;}
 
-    public int getX() {return coordinate.getX();}
-    public void setX(int x) {coordinate.setX(x);}
+    public float getX() {return coordinate.getX();}
+    public void setX(float x) {coordinate.setX(x);}
 
-    public int getY() {return coordinate.getY();}
-    public void setY(int y) {coordinate.setY(y);}
+    public float getY() {return coordinate.getY();}
+    public void setY(float y) {coordinate.setY(y);}
 
     public int getReward() {
         return reward;
@@ -70,8 +70,8 @@ public abstract class Character implements Serializable {
     public static void setPath(ArrayList<Coordinate> pathSet) {path = pathSet;}
     public ArrayList<Coordinate> getPath(){return path;}
 
-    public int getMovementSpeed() {return movementSpeed;}
-    public void setMovementSpeed(int movementSpeed){this.movementSpeed = movementSpeed;}
+    public float getMovementSpeed() {return movementSpeed;}
+    public void setMovementSpeed(float movementSpeed){this.movementSpeed = movementSpeed;}
 
 
     public abstract void takeDamage(int damage);

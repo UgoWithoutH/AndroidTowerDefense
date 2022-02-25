@@ -34,7 +34,7 @@ public class SpawnerCharacter implements ISpawner {
         if (level instanceof AdministratorLevel) {
             AdministratorLevel administratorLevel = (AdministratorLevel) level;
             Scanner scannerFile = administratorLevel.getLevelFile();
-            if (timer % 40 == 0 && scannerFile.hasNextLine()) {
+            if (timer % 500 == 0 && scannerFile.hasNextLine()) {
                 String spawn = scannerFile.next();
                 Log.d("spawn", spawn);
                 switch (spawn) {

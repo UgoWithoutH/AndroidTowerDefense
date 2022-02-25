@@ -33,10 +33,10 @@ public class GeneratorProjectiles implements IGenerator {
         WaitingBuild attackService;
         for (Tower tower : listTower) {
             if (tower.isAttacker()) {
-                int towerMinXRange = tower.getX() - tower.getAttackRange();
-                int towerMaxXRange = tower.getX() + tower.getAttackRange();
-                int towerMinYRange = tower.getY() - tower.getAttackRange();
-                int towerMaxYRange = tower.getY() + tower.getAttackRange();
+                double towerMinXRange = tower.getX() - tower.getAttackRange();
+                double towerMaxXRange = tower.getX() + tower.getAttackRange();
+                double towerMinYRange = tower.getY() - tower.getAttackRange();
+                double towerMaxYRange = tower.getY() + tower.getAttackRange();
 
                 for (Character character : listCharacter) {
                     target = character;

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DisplacerProjectiles implements IDisplacer {
-    private static final int DEFAULT_SPEED_PROJECTILES = 10;
     private GameState gameState;
     private AttackerTower attackerTower;
 
@@ -24,7 +23,7 @@ public class DisplacerProjectiles implements IDisplacer {
 
     @Override
     public boolean updateLocations() {
-        ArrayList<Integer> positions;
+        ArrayList<Float> positions;
         ArrayList<Projectile> removeProjectiles = new ArrayList<>();
         for(Tower tower : gameState.getPlayerTowers()){
             for(Projectile projectile : tower.getProjectiles()){
@@ -48,21 +47,21 @@ public class DisplacerProjectiles implements IDisplacer {
         return true;
     }
 
-    private ArrayList<Integer> generatePosition(Projectile projectile){
-        ArrayList<Integer> positions = new ArrayList<>();
+    private ArrayList<Float> generatePosition(Projectile projectile){
+        ArrayList<Float> positions = new ArrayList<>();
         Character target = projectile.getTarget();
 
-        int posX;
-        int posY;
+        float posX;
+        float posY;
 
         if(projectile.getCurrentX() > target.getCoordinate().getX()){
-            posX = projectile.getCurrentX() - DEFAULT_SPEED_PROJECTILES;
+            posX = projectile.getCurrentX() - Projectile.getDefaultSpeedProjectiles();
             if(posX < target.getCoordinate().getX()){
                 posX = target.getCoordinate().getX();
             }
         }
         else{
-            posX = projectile.getCurrentX() + DEFAULT_SPEED_PROJECTILES;
+            posX = projectile.getCurrentX() + Projectile.getDefaultSpeedProjectiles();
             if(posX > target.getCoordinate().getX()){
                 posX = target.getCoordinate().getX();
             }
@@ -70,13 +69,13 @@ public class DisplacerProjectiles implements IDisplacer {
         positions.add(posX);
 
         if(projectile.getCurrentY() > target.getCoordinate().getY()){
-            posY = projectile.getCurrentY() - DEFAULT_SPEED_PROJECTILES;
+            posY = projectile.getCurrentY() - Projectile.getDefaultSpeedProjectiles();
             if(posY < target.getCoordinate().getY()){
                 posY = target.getCoordinate().getY();
             }
         }
         else{
-            posY = projectile.getCurrentY() + DEFAULT_SPEED_PROJECTILES;
+            posY = projectile.getCurrentY() + Projectile.getDefaultSpeedProjectiles();
             if(posY > target.getCoordinate().getY()){
                 posY =  target.getCoordinate().getY();
             }

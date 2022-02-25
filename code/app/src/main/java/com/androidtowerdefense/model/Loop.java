@@ -8,7 +8,7 @@ import com.androidtowerdefense.model.observer.Observable;
  * Boucle de jeu
  */
 public class Loop extends Observable implements Runnable {
-    private static final long DEFAULT_MILLIS = 50;
+    private static final long DEFAULT_MILLIS = 2;
     private long millis = DEFAULT_MILLIS;
     private int timer = 0;
     private boolean running = false;

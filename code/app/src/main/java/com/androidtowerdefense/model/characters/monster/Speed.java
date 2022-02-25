@@ -5,7 +5,7 @@ package com.androidtowerdefense.model.characters.monster;
  */
 public class Speed extends Monster{
 
-    private static final int DEFAULT_MOVEMENT_SPEED = 4;
+    private static final float DEFAULT_MOVEMENT_SPEED = 0.30f;
 
     /**
      * Creer un Monstre Speed avec un choix du nombre de point de vie.

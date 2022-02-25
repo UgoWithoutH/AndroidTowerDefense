@@ -46,9 +46,9 @@ public abstract class Tower implements Serializable {
         this.build = build;
     }
 
-    public int getX() {return coordinate.getExactX();}
+    public float getX() {return coordinate.getExactX();}
 
-    public int getY() {return coordinate.getExactY();}
+    public float getY() {return coordinate.getExactY();}
 
     public int getAttackRange(){
         return attackRange;
