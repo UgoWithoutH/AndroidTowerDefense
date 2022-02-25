@@ -1,13 +1,18 @@
 package com.androidtowerdefense.modelandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.androidtowerdefense.R;
+import com.androidtowerdefense.model.Loop;
 import com.androidtowerdefense.model.Manager;
 import com.androidtowerdefense.model.gamelogic.GameManager;
 import com.androidtowerdefense.model.gamelogic.action.IBuyer;
@@ -19,6 +24,8 @@ public class GameActivity extends AppCompatActivity{
 
     private Manager manager;
     private boolean constructTowers = true; //true pour test sinon false
+    private Button pauseRestartButton;
+    private Button speedButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,11 +33,12 @@ public class GameActivity extends AppCompatActivity{
         Bundle data = getIntent().getExtras();
         manager = (Manager) data.get("manager");
         Log.d("truc","Create2");
-
         setContentView(R.layout.game_view);
         GameView gameView = findViewById(R.id.myView);
+        pauseRestartButton = findViewById(R.id.buttonStopRestart);
+        speedButton = findViewById(R.id.speedButton);
         DrawMap drawMap = gameView.getDrawMap();
-        GameManager gameManager = new GameManager(manager.getPseudo(), gameView.getDrawMap().getMap());
+        GameManager gameManager = new GameManager(manager.getPseudo(), drawMap.getMap());
         manager.setGameManager(gameManager);
         gameView.setGameManager(gameManager);
         gameView.setGameActivity(this);
@@ -97,5 +105,37 @@ public class GameActivity extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
         Log.d("truc","Destroy2");
+    }
+
+    public void returnHome(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void stopOrRestart(View view) {
+        GameManager gameManager = manager.getGameManager();
+
+        if (gameManager.getLoop().isRunning()) {
+            pauseRestartButton.setText("Restart");
+            gameManager.getLoop().setRunning(false);
+        } else {
+            pauseRestartButton.setText("Stop");
+            gameManager.getLoop().setRunning(true);
+            gameManager.start();
+        }
+    }
+
+    public void speed(View view) {
+        GameManager gameManager = manager.getGameManager();
+        Loop boucle = gameManager.getLoop();
+        if (!gameManager.getGame().isSpeed()) {
+            speedButton.setText("X1");
+            gameManager.getGame().setSpeed(true);
+            boucle.setMillis(boucle.getMillis() / 2);
+        } else {
+            speedButton.setText("X2");
+            gameManager.getGame().setSpeed(false);
+            boucle.setMillis(boucle.getMillis() * 2);
+        }
     }
 }

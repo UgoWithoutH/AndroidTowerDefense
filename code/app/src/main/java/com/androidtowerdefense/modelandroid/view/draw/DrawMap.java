@@ -11,15 +11,13 @@ public class DrawMap {
     private static final int tileSize = 64;
     private Bitmap bitmap;
     private Map map;
-    private Context context;
     private int widthResize;
     private int heightResize;
     private Paint paint;
 
-    public DrawMap(Map map, Bitmap bitmap, Context context) {
+    public DrawMap(Map map, Bitmap bitmap) {
         this.map = map;
         this.bitmap = bitmap;
-        this.context = context;
         paint = new Paint();
     }
 

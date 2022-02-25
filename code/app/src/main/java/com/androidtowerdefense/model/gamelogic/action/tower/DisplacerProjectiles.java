@@ -25,7 +25,7 @@ public class DisplacerProjectiles implements IDisplacer {
     @Override
     public boolean updateLocations() {
         ArrayList<Integer> positions;
-        ArrayList<Projectile> removeProjectile = new ArrayList<>();
+        ArrayList<Projectile> removeProjectiles = new ArrayList<>();
         for(Tower tower : gameState.getPlayerTowers()){
             for(Projectile projectile : tower.getProjectiles()){
                 positions = generatePosition(projectile);
@@ -36,10 +36,10 @@ public class DisplacerProjectiles implements IDisplacer {
                    projectile.getTarget().getCoordinate().getY() == projectile.getCurrentY())
                         ||
                    projectile.getTarget().isDead()){
-                    removeProjectile.add(projectile);
+                    removeProjectiles.add(projectile);
                 }
             }
-            for(Projectile projectile : removeProjectile){
+            for(Projectile projectile : removeProjectiles){
                 Character target = projectile.getTarget();
                 tower.getProjectiles().remove(projectile);
                 attackerTower.attack(target, tower);
