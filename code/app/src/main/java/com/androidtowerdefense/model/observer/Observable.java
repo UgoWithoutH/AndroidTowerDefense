@@ -1,5 +1,7 @@
 package com.androidtowerdefense.model.observer;
 
+import android.util.Log;
+
 import java.util.LinkedList;
 
 /**
@@ -21,6 +23,7 @@ public abstract class Observable {
      * @param timer
      */
     protected void notify(int timer){
+        Log.d("Totot",String.valueOf(observatory.size()));
         for(IObserver observer : observatory){
             observer.update(timer);
         }

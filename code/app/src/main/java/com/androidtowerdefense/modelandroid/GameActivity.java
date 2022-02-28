@@ -30,6 +30,7 @@ public class GameActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("Totot","-------------");
         Bundle data = getIntent().getExtras();
         manager = (Manager) data.get("manager");
         Log.d("truc","Create2");

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.Manager;
 import com.androidtowerdefense.modelandroid.view.GameView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
 import java.io.InputStream;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("truc","Create");
+        Log.i("Totot","-------------");
         //GameView gameView = findViewById(R.id.myView);
         //gameView.invalidate(); -> déclancher le onDraw
         setContentView(R.layout.game_menu);
@@ -94,12 +98,15 @@ public class MainActivity extends AppCompatActivity {
         Log.d("truc","Destroy");
     }
 
-    private boolean inputData(){
+    private boolean inputScore(){
         try{
             EditText numberScores = findViewById(R.id.numberScores);
-            EditText pseudo = findViewById(R.id.numberScores);
+            EditText pseudo =  findViewById(R.id.pseudonyme);
             manager.getScoreRanking().setNumberScores(Integer.parseInt(numberScores.getText().toString()));
             manager.setPseudo(pseudo.getText().toString());
+            if(pseudo.length()==0){
+                return false;
+            }
             return true;
         }
         catch(NumberFormatException ex){
@@ -107,12 +114,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     //TODO : Ajouter le même mécanisme pour le pseudonyme de l'user
     public void newGame(View view) {
         Log.d("truc", "Nouvelle Partie");
-        if (!inputData())
+        if (!inputScore())
         {
-            Log.d("truc", "Input Data pas correct");
+            Log.d("truc", "Input Data / input String pas correct");
             popUpWindow(view);
         }
         else{
