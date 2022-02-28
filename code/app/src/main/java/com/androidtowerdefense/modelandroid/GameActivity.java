@@ -9,7 +9,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.Loop;
@@ -18,6 +17,7 @@ import com.androidtowerdefense.model.gamelogic.GameManager;
 import com.androidtowerdefense.model.gamelogic.action.IBuyer;
 import com.androidtowerdefense.model.gamelogic.action.tower.BuyerTower;
 import com.androidtowerdefense.modelandroid.view.GameView;
+import com.androidtowerdefense.modelandroid.view.adapter.MyAdapter;
 import com.androidtowerdefense.modelandroid.view.draw.DrawMap;
 
 public class GameActivity extends AppCompatActivity{
@@ -108,6 +108,7 @@ public class GameActivity extends AppCompatActivity{
     }
 
     public void returnHome(View view) {
+        manager.getScoreRanking().updateRanking(manager.getGameManager().getGame());
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

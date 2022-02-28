@@ -1,6 +1,7 @@
 package com.androidtowerdefense.model;
 
 import com.androidtowerdefense.model.gamelogic.GameManager;
+import com.androidtowerdefense.model.gamelogic.GameState;
 import com.androidtowerdefense.model.serialization.AdministratorPersistence;
 import com.androidtowerdefense.model.serialization.AdministratorPersistenceBinary;
 
@@ -16,10 +17,15 @@ public class Manager implements Serializable {
     private String pseudo;
 
     public Manager(){
-        this.scoreRanking= new ScoreRanking();
+        this.scoreRanking = new ScoreRanking();
+        stubTest();
         administratorPersistence = new AdministratorPersistenceBinary();
         //ScreenController.getStage().setOnCloseRequest(event -> saveStates());
         //administratorPersistence.load(scoreRanking);
+    }
+
+    private void stubTest(){
+        scoreRanking.getRanking().add(new GameState("TOTO"));
     }
 
     /**

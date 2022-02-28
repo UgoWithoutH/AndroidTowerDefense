@@ -18,10 +18,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RawRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.Manager;
 import com.androidtowerdefense.modelandroid.view.GameView;
+import com.androidtowerdefense.modelandroid.view.adapter.MyAdapter;
 
 import java.io.File;
 import java.io.InputStream;
@@ -33,6 +36,7 @@ import java.util.Scanner;
 public class MainActivity extends AppCompatActivity {
 
     private Manager manager;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        recyclerView.setAdapter(new MyAdapter(this,manager.getScoreRanking().getRanking()));
         Log.d("truc","Resume");
     }
 

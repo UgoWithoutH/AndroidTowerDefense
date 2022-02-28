@@ -22,6 +22,10 @@ public class ScoreRanking implements Serializable {
         numberScores = 10;
     }
 
+    public List<GameState> getRanking() {
+        return ranking;
+    }
+
     public void setNumberScores(int numberScores) {this.numberScores = numberScores;}
 
     /**
