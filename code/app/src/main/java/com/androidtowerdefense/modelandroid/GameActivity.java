@@ -14,6 +14,7 @@ import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.Loop;
 import com.androidtowerdefense.model.Manager;
 import com.androidtowerdefense.model.gamelogic.GameManager;
+import com.androidtowerdefense.model.gamelogic.GameState;
 import com.androidtowerdefense.model.gamelogic.action.IBuyer;
 import com.androidtowerdefense.model.gamelogic.action.tower.BuyerTower;
 import com.androidtowerdefense.modelandroid.view.GameView;
@@ -30,6 +31,7 @@ public class GameActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("Totot","-------------");
         Bundle data = getIntent().getExtras();
         manager = (Manager) data.get("manager");
         Log.d("truc","Create2");
@@ -53,7 +55,9 @@ public class GameActivity extends AppCompatActivity{
                 }
                 return true;
         });
-        gameManager.start();
+        if(!gameManager.getLoop().isRunning()){
+            gameManager.start();
+        }
         //data.get(....);
     }
 
@@ -108,7 +112,8 @@ public class GameActivity extends AppCompatActivity{
     }
 
     public void returnHome(View view) {
-        manager.getScoreRanking().updateRanking(manager.getGameManager().getGame());
+        GameState game = manager.getGameManager().getGame();
+        manager.getScoreRanking().updateRanking(game);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

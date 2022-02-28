@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
+import com.androidtowerdefense.model.ScoreRanking;
 import com.androidtowerdefense.model.gamelogic.GameState;
 
 import java.util.List;
@@ -15,11 +16,11 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter {
 
     private AppCompatActivity parentActivity;
-    private List<GameState> ranking;
+    private ScoreRanking scoreRanking;
 
-    public MyAdapter(AppCompatActivity parentActivity, List<GameState> ranking) {
+    public MyAdapter(AppCompatActivity parentActivity, ScoreRanking scoreRanking) {
         this.parentActivity = parentActivity;
-        this.ranking = ranking;
+        this.scoreRanking = scoreRanking;
     }
 
     @NonNull
@@ -31,12 +32,12 @@ public class MyAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        GameState gameState = ranking.get(position);
+        GameState gameState = scoreRanking.getRanking().get(position);
         ((ViewHolderScoreRanking)holder).getMyTextView().setText(gameState.getPseudo());
     }
 
     @Override
     public int getItemCount() {
-        return ranking.size();
+        return scoreRanking.getRanking().size();
     }
 }

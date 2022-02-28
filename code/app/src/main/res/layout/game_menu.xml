@@ -116,7 +116,7 @@ de comment ca serait mis en place en mode portrait
         app:layout_constraintStart_toEndOf="@+id/nbScore" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/pseudonyme"
         android:layout_width="190dp"
         android:layout_height="31dp"
         android:ems="10"

@@ -2,6 +2,8 @@ package com.androidtowerdefense.model;
 
 import static java.lang.Thread.sleep;
 
+import android.util.Log;
+
 import com.androidtowerdefense.model.observer.Observable;
 
 /**
@@ -39,6 +41,7 @@ public class Loop extends Observable implements Runnable {
             try {
                 sleep(millis);
                 timer++;
+                Log.d("Totot","---");
                 beep(timer);
             } catch (InterruptedException e) {
                 e.printStackTrace();
