@@ -100,6 +100,7 @@ public class GameView extends View implements IObserver {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        drawMap.caching(w,h);
     }
 
     @Override

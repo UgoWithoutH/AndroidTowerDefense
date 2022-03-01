@@ -1,6 +1,7 @@
 package com.androidtowerdefense.modelandroid;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,19 +13,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.Loop;
-import com.androidtowerdefense.model.Manager;
+import com.androidtowerdefense.model.RankingManager;
 import com.androidtowerdefense.model.gamelogic.GameManager;
 import com.androidtowerdefense.model.gamelogic.GameState;
 import com.androidtowerdefense.model.gamelogic.action.IBuyer;
 import com.androidtowerdefense.model.gamelogic.action.tower.BuyerTower;
 import com.androidtowerdefense.modelandroid.view.GameView;
-import com.androidtowerdefense.modelandroid.view.adapter.MyAdapter;
 import com.androidtowerdefense.modelandroid.view.draw.DrawMap;
 
 public class GameActivity extends AppCompatActivity{
 
-    private Manager manager;
     private boolean constructTowers = true; //true pour test sinon false
+    private GameManager gameManager;
     private Button pauseRestartButton;
     private Button speedButton;
 
@@ -33,15 +33,14 @@ public class GameActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         Log.d("Totot","-------------");
         Bundle data = getIntent().getExtras();
-        manager = (Manager) data.get("manager");
+        String pseudo = data.getString("pseudo");
         Log.d("truc","Create2");
         setContentView(R.layout.game_view);
         GameView gameView = findViewById(R.id.myView);
         pauseRestartButton = findViewById(R.id.buttonStopRestart);
         speedButton = findViewById(R.id.speedButton);
         DrawMap drawMap = gameView.getDrawMap();
-        GameManager gameManager = new GameManager(manager.getPseudo(), drawMap.getMap());
-        manager.setGameManager(gameManager);
+        gameManager = new GameManager(pseudo, drawMap.getMap());
         gameView.setGameManager(gameManager);
         gameView.setGameActivity(this);
         gameView.setOnTouchListener((view, event) -> {
@@ -112,16 +111,15 @@ public class GameActivity extends AppCompatActivity{
     }
 
     public void returnHome(View view) {
-        GameState game = manager.getGameManager().getGame();
-        manager.getScoreRanking().updateRanking(game);
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("preferences",MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("pseudo",gameManager.getGame().getPseudo());
+        editor.commit();
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("manager",manager);
         startActivity(intent);
     }
 
     public void stopOrRestart(View view) {
-        GameManager gameManager = manager.getGameManager();
-
         if (gameManager.getLoop().isRunning()) {
             pauseRestartButton.setText("Restart");
             gameManager.getLoop().setRunning(false);
@@ -133,7 +131,6 @@ public class GameActivity extends AppCompatActivity{
     }
 
     public void speed(View view) {
-        GameManager gameManager = manager.getGameManager();
         Loop boucle = gameManager.getLoop();
         if (!gameManager.getGame().isSpeed()) {
             speedButton.setText("X1");

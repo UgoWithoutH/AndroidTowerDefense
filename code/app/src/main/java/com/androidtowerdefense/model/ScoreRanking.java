@@ -22,36 +22,5 @@ public class ScoreRanking implements Serializable {
         numberScores = 10;
     }
 
-    public List<GameState> getRanking() {
-        return ranking;
-    }
 
-    public void setNumberScores(int numberScores) {this.numberScores = numberScores;}
-
-    /**
-     * Met a jour le Classement une fois que la partie est terminée
-     * Prépare aussi la persistence
-     * @param gameState GameState
-     */
-    public void updateRanking(GameState gameState) {
-
-        if(numberScores == 0){
-            ranking.clear();
-            return;
-        }
-
-        if (!ranking.isEmpty()) {
-            if (ranking.size() >= numberScores) {
-                Collections.sort(ranking);
-                GameState lowerState = ranking.get(ranking.size() - 1);
-                if (lowerState != gameState) {
-                    ranking.remove(lowerState);
-                }
-            }
-        }
-        ranking.add(gameState);
-        if(ranking.size() > 1){
-            Collections.sort(ranking);
-        }
-    }
 }

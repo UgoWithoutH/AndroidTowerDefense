@@ -1,35 +1,30 @@
 package com.androidtowerdefense.modelandroid;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RawRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
-import com.androidtowerdefense.model.Manager;
-import com.androidtowerdefense.modelandroid.view.GameView;
+import com.androidtowerdefense.model.RankingManager;
 import com.androidtowerdefense.modelandroid.view.adapter.MyAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Manager manager;
+    private RankingManager rankingManager;
     private RecyclerView recyclerView;
 
     @Override
@@ -41,16 +36,12 @@ public class MainActivity extends AppCompatActivity {
         //gameView.invalidate(); -> déclancher le onDraw
         setContentView(R.layout.game_menu);
         if(savedInstanceState != null){
-            manager = (Manager) savedInstanceState.get("manager");
+            rankingManager = (RankingManager) savedInstanceState.get("rankingManager");
         }else{
-            Bundle data = getIntent().getExtras();
-            if(data != null){
-                manager = (Manager) data.get("manager2");
-            }
-            else{
-                manager = new Manager();
-            }
+            rankingManager = new RankingManager();
         }
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("preferences",MODE_PRIVATE);
+        String s = preferences.getString("pseudo", null);
     }
 
     @Override
@@ -65,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new MyAdapter(this,manager.getScoreRanking()));
+        recyclerView.setAdapter(new MyAdapter(this, rankingManager.getRanking()));
         Log.d("truc","Resume");
     }
 
@@ -73,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.d("truc","SaveInstanceState");
-        outState.putSerializable("manager",manager);
+        outState.putSerializable("rankingManager", rankingManager);
     }
 
     @Override
@@ -110,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
         try{
             EditText numberScores = findViewById(R.id.numberScores);
             EditText pseudo =  findViewById(R.id.pseudonyme);
-            manager.getScoreRanking().setNumberScores(Integer.parseInt(numberScores.getText().toString()));
-            manager.setPseudo(pseudo.getText().toString());
+            rankingManager.setNumberScores(Integer.parseInt(numberScores.getText().toString()));
+            rankingManager.setPseudo(pseudo.getText().toString());
             if(pseudo.length()==0){
                 return false;
             }
@@ -133,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             Intent intent = new Intent(this,GameActivity.class);
-            intent.putExtra("manager",manager);
+            intent.putExtra("pseudo", rankingManager.getPseudo());
             startActivity(intent);
         }
     }

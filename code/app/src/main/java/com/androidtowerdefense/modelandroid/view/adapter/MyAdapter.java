@@ -16,11 +16,11 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter {
 
     private AppCompatActivity parentActivity;
-    private ScoreRanking scoreRanking;
+    private List<GameState> ranking;
 
-    public MyAdapter(AppCompatActivity parentActivity, ScoreRanking scoreRanking) {
+    public MyAdapter(AppCompatActivity parentActivity, List<GameState> ranking) {
         this.parentActivity = parentActivity;
-        this.scoreRanking = scoreRanking;
+        this.ranking = ranking;
     }
 
     @NonNull
@@ -32,12 +32,12 @@ public class MyAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        GameState gameState = scoreRanking.getRanking().get(position);
+        GameState gameState = ranking.get(position);
         ((ViewHolderScoreRanking)holder).getMyTextView().setText(gameState.getPseudo());
     }
 
     @Override
     public int getItemCount() {
-        return scoreRanking.getRanking().size();
+        return ranking.size();
     }
 }
