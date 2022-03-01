@@ -49,7 +49,6 @@ public class DrawMap {
         bitmapsCache.put("Tower", Bitmap.createScaledBitmap(Bitmap.createBitmap(bitmap,6*tileSize,8*tileSize,tileSize,tileSize),widthResize,heightResize,false));
     }
 
-    //TODO : correspondance de l'écran avec la Bitmap pour la position et les tailles
     public void draw(Canvas canvas){
         Bitmap tile = null;
         for(int x = 0; x < map.getTileLengthX(); x++){

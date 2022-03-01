@@ -20,12 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.RankingManager;
+import com.androidtowerdefense.model.gamelogic.GameState;
 import com.androidtowerdefense.modelandroid.view.adapter.MyAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
     private RankingManager rankingManager;
     private RecyclerView recyclerView;
+    private GameState gameState;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
             rankingManager = new RankingManager();
         }
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("preferences",MODE_PRIVATE);
-        String s = preferences.getString("pseudo", null);
+        Bundle data = getIntent().getExtras();
+        if(data != null && gameState == null){
+            gameState = (GameState) data.get("gameState");
+            rankingManager.updateRanking(gameState);
+        }
     }
 
     @Override
@@ -137,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
             popUpWindow(view,0);
         }
         else{
+            rankingManager.setRankingEditable(true);
             Intent intent = new Intent(this,GameActivity.class);
             intent.putExtra("pseudo", rankingManager.getPseudo());
             startActivity(intent);

@@ -18,15 +18,17 @@ public class RankingManager implements Serializable {
     private final List<GameState> ranking;
     private int numberScores;
     private String pseudo;
+    private boolean rankingEditable;
 
     public RankingManager(){
         ranking = new ArrayList<>();
         numberScores = 10;
+        rankingEditable = true;
         stubTest();
     }
 
-    private void stubTest(){
-        ranking.add(new GameState("TOTO"));
+    public void setRankingEditable(boolean rankingEditable) {
+        this.rankingEditable = rankingEditable;
     }
 
     public String getPseudo() {return pseudo;}
@@ -38,12 +40,19 @@ public class RankingManager implements Serializable {
 
     public void setNumberScores(int numberScores) {this.numberScores = numberScores;}
 
+    private void stubTest(){
+        ranking.add(new GameState("TOTO"));
+        ranking.add(new GameState("TITI"));
+    }
+
     /**
      * Met a jour le Classement une fois que la partie est terminée
      * Prépare aussi la persistence
      * @param gameState GameState
      */
     public void updateRanking(GameState gameState) {
+
+        if(!rankingEditable) return;
 
         if(numberScores == 0){
             ranking.clear();
@@ -63,5 +72,6 @@ public class RankingManager implements Serializable {
         if(ranking.size() > 1){
             Collections.sort(ranking);
         }
+        rankingEditable = false;
     }
 }

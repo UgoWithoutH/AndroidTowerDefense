@@ -60,22 +60,18 @@ public class GameManager extends Observable implements IObserver {
 
     public Map getGameMap() {return gameMap;}
 
-    public int getTileWidth() {
-        return tileWidth;
-    }
-
     public void setTileWidth(int tileWidth) {
         this.tileWidth = tileWidth;
         Coordinate.setTileWidth(tileWidth);
     }
 
-    public int getTileHeight() {
-        return tileHeight;
-    }
-
     public void setTileHeight(int tileHeight) {
         this.tileHeight = tileHeight;
         Coordinate.setTileHeight(tileHeight);
+    }
+
+    public void stop(){
+        loop.setRunning(false);
     }
 
     /**

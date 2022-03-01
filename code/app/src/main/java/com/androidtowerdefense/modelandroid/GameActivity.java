@@ -113,19 +113,22 @@ public class GameActivity extends AppCompatActivity{
     public void returnHome(View view) {
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("preferences",MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("pseudo",gameManager.getGame().getPseudo());
+        editor.putString("pseudo", gameManager.getGame().getPseudo());
+        editor.putInt("level", gameManager.getGame().getLevel());
+        editor.putInt("score", gameManager.getGame().getScore());
+        editor.putInt("time", gameManager.getGame().getTimeSeconds());
         editor.commit();
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("gameState",gameManager.getGame());
         startActivity(intent);
     }
 
     public void stopOrRestart(View view) {
         if (gameManager.getLoop().isRunning()) {
-            pauseRestartButton.setText("Restart");
-            gameManager.getLoop().setRunning(false);
+            pauseRestartButton.setText(getString(R.string.restart));
+            gameManager.stop();
         } else {
-            pauseRestartButton.setText("Stop");
-            gameManager.getLoop().setRunning(true);
+            pauseRestartButton.setText(R.string.stop);
             gameManager.start();
         }
     }
@@ -133,11 +136,11 @@ public class GameActivity extends AppCompatActivity{
     public void speed(View view) {
         Loop boucle = gameManager.getLoop();
         if (!gameManager.getGame().isSpeed()) {
-            speedButton.setText("X1");
+            speedButton.setText(getString(R.string.x1));
             gameManager.getGame().setSpeed(true);
             boucle.setMillis(boucle.getMillis() / 2);
         } else {
-            speedButton.setText("X2");
+            speedButton.setText(getString(R.string.x2));
             gameManager.getGame().setSpeed(false);
             boucle.setMillis(boucle.getMillis() * 2);
         }

@@ -4,7 +4,7 @@ package com.androidtowerdefense.model.characters;
  * Projectile d'une tour
  */
 public class Projectile{
-    private static final float DEFAULT_SPEED_PROJECTILES = 0.5f;
+    private static final float DEFAULT_SPEED_PROJECTILES = 4.5f;
     private final Character target;
     private float currentX;
     private float currentY;
