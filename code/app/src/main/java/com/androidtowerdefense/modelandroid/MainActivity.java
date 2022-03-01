@@ -97,15 +97,25 @@ public class MainActivity extends AppCompatActivity {
         Log.d("truc","Destroy");
     }
 
+    private boolean inputData(){
+        try{
+            EditText pseudo=findViewById(R.id.pseudonyme);
+            if(pseudo.length()==0){
+                return false;
+            }
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
+
     private boolean inputScore(){
         try{
             EditText numberScores = findViewById(R.id.numberScores);
             EditText pseudo =  findViewById(R.id.pseudonyme);
             rankingManager.setNumberScores(Integer.parseInt(numberScores.getText().toString()));
             rankingManager.setPseudo(pseudo.getText().toString());
-            if(pseudo.length()==0){
-                return false;
-            }
             return true;
         }
         catch(NumberFormatException ex){
@@ -119,8 +129,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d("truc", "Nouvelle Partie");
         if (!inputScore())
         {
-            Log.d("truc", "Input Data / input String pas correct");
-            popUpWindow(view);
+            Log.d("truc", "InputScore pas correct");
+            popUpWindow(view,1);
+        }
+        else if(!inputData()){
+            Log.d("truc", "InputData pas correct");
+            popUpWindow(view,0);
         }
         else{
             Intent intent = new Intent(this,GameActivity.class);
@@ -136,25 +150,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //Methode qui ajoute une popup pour l'user qui se ferme si on click a côté etc..
-    public void popUpWindow(View view)
+    //Methode qui ajoute une popup pour l'user qui se ferme si on click a côté/dessus
+    public void popUpWindow(View view, int file)
     {
-        // inflate the layout of the popup window
+
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_window, null);
-
-        // create the popup window
+        View popupView = inflater.inflate(R.layout.popup_window_data, null);
+        if(file==1){
+            popupView = inflater.inflate(R.layout.popup_window_score, null);
+        }
+        //Creer la popupWindow
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         boolean focusable = true; // lets taps outside the popup also dismiss it
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
+        //Affiche la popupwindow
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        // dismiss the popup window when touched
+        // ferme la popupwindow si on click dessus
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

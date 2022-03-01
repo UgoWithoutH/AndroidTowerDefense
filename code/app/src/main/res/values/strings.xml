@@ -5,7 +5,8 @@
     <string name="gameTitle">Tower Defense</string>
     <string name="scoreBoard"> SCOREBOARD</string>
     <string name="nbScoreMenu">Maximum number of scores :</string>
-    <string name="popupMessage">Nombre de scores incorrectes !</string>
+    <string name="popupScore">Nombre de scores incorrectes !</string>
+    <string name="popupData">Pseudo invalide !</string>
 
     <string name="score">Score :</string>
     <string name="coins">Coins :</string>
