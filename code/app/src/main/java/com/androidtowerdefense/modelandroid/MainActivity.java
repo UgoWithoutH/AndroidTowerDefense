@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.RankingManager;
 import com.androidtowerdefense.model.gamelogic.GameState;
-import com.androidtowerdefense.modelandroid.view.adapter.MyAdapter;
+import com.androidtowerdefense.modelandroid.view.recycler_view.MyAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new MyAdapter(this, rankingManager.getRanking()));
+        recyclerView.setAdapter(new MyAdapter(this, rankingManager.getRanking(),this.getSupportFragmentManager()));
         Log.d("truc","Resume");
     }
 

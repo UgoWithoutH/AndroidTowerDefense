@@ -1,15 +1,18 @@
-package com.androidtowerdefense.modelandroid.view.adapter;
+package com.androidtowerdefense.modelandroid.view.recycler_view;
 
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
-import com.androidtowerdefense.model.ScoreRanking;
 import com.androidtowerdefense.model.gamelogic.GameState;
+import com.androidtowerdefense.modelandroid.view.fragments.RankindDetailFragment;
 
 import java.util.List;
 
@@ -17,10 +20,12 @@ public class MyAdapter extends RecyclerView.Adapter {
 
     private AppCompatActivity parentActivity;
     private List<GameState> ranking;
+    private FragmentManager fragmentManager;
 
-    public MyAdapter(AppCompatActivity parentActivity, List<GameState> ranking) {
+    public MyAdapter(AppCompatActivity parentActivity, List<GameState> ranking, FragmentManager supportFragmentManager) {
         this.parentActivity = parentActivity;
         this.ranking = ranking;
+        this.fragmentManager = supportFragmentManager;
     }
 
     @NonNull
@@ -34,10 +39,28 @@ public class MyAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         GameState gameState = ranking.get(position);
         ((ViewHolderScoreRanking)holder).getMyTextView().setText(gameState.getPseudo());
+
+        ((ViewHolderScoreRanking) holder).setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+                openDialogFragment(gameState.getPseudo());
+                Toast.makeText(parentActivity, gameState.getPseudo(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return ranking.size();
     }
+
+    private void openDialogFragment(String pseudo){
+        Bundle b = new Bundle();
+        b.putString("PSEUDO_KEY", pseudo);
+
+        RankindDetailFragment rankindDetailFragment = new RankindDetailFragment();
+        rankindDetailFragment.setArguments(b);
+        rankindDetailFragment.show(fragmentManager,"tag");
+    }
+
 }
