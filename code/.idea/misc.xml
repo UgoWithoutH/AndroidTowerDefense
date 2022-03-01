@@ -32,6 +32,8 @@
         <entry key="app/src/main/res/layout/game_view.xml" value="0.23777173913043478" />
         <entry key="app/src/main/res/layout/popup_test.xml" value="0.20364583333333333" />
         <entry key="app/src/main/res/layout/popup_window.xml" value="0.20364583333333333" />
+        <entry key="app/src/main/res/layout/popup_window_datee.xml" value="0.22327898550724637" />
+        <entry key="app/src/main/res/layout/score_ranking_cell.xml" value="0.22327898550724637" />
       </map>
     </option>
   </component>
