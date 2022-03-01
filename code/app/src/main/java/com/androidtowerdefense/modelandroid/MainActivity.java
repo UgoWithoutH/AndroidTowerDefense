@@ -40,7 +40,17 @@ public class MainActivity extends AppCompatActivity {
         //GameView gameView = findViewById(R.id.myView);
         //gameView.invalidate(); -> déclancher le onDraw
         setContentView(R.layout.game_menu);
-        manager = new Manager();
+        if(savedInstanceState != null){
+            manager = (Manager) savedInstanceState.get("manager");
+        }else{
+            Bundle data = getIntent().getExtras();
+            if(data != null){
+                manager = (Manager) data.get("manager2");
+            }
+            else{
+                manager = new Manager();
+            }
+        }
     }
 
     @Override

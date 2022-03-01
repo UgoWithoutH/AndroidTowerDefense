@@ -115,6 +115,7 @@ public class GameActivity extends AppCompatActivity{
         GameState game = manager.getGameManager().getGame();
         manager.getScoreRanking().updateRanking(game);
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("manager",manager);
         startActivity(intent);
     }
 
