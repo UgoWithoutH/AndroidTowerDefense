@@ -15,13 +15,16 @@ import android.widget.PopupWindow;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.RankingManager;
 import com.androidtowerdefense.model.gamelogic.GameState;
+import com.androidtowerdefense.modelandroid.view.fragments.MenuFragment;
 import com.androidtowerdefense.modelandroid.view.recycler_view.MyAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,9 +37,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("truc","Create");
         Log.i("Totot","-------------");
-        //GameView gameView = findViewById(R.id.myView);
-        //gameView.invalidate(); -> déclancher le onDraw
-        setContentView(R.layout.game_menu);
+        setContentView(R.layout.menu_tab);
+        TabLayout layout = findViewById(R.id.menuTabLayout);
+        FragmentContainerView fcv = findViewById(R.id.fragmentContainerMenu);
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragmentContainerMenu, MenuFragment.class,null)
+                .commit();
+        layout.addTab(layout.newTab().setText("Game"));
+        layout.addTab(layout.newTab().setText("Ranking"));
+        layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        //getSupportFragmentManager().beginTransaction().add()
+        //setContentView(R.layout.game_menu);
         if(savedInstanceState != null){
             rankingManager = (RankingManager) savedInstanceState.get("rankingManager");
         }else{
@@ -60,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new MyAdapter(this, rankingManager.getRanking(),this.getSupportFragmentManager()));
+        //recyclerView = findViewById(R.id.recyclerView);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        //recyclerView.setAdapter(new MyAdapter(this, rankingManager.getRanking(),this.getSupportFragmentManager()));
         Log.d("truc","Resume");
     }
 

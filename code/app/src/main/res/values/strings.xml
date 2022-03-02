@@ -11,6 +11,7 @@
     <string name="score">Score :</string>
     <string name="coins">Coins :</string>
     <string name="level">Level :</string>
+    <string name="time">Time :</string>
 
     <string name="victory">Victory</string>
     <string name="gameOver">GameOver</string>

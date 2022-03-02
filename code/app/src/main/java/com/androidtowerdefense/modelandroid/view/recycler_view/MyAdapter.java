@@ -43,7 +43,10 @@ public class MyAdapter extends RecyclerView.Adapter {
         ((ViewHolderScoreRanking) holder).setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(int pos) {
-                openDialogFragment(gameState.getPseudo());
+                openDialogFragment(gameState.getPseudo(),
+                        String.valueOf(gameState.getLevel()),
+                        String.valueOf(gameState.getScore()),
+                        String.valueOf(gameState.getTimeSeconds()));
                 Toast.makeText(parentActivity, gameState.getPseudo(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -54,9 +57,12 @@ public class MyAdapter extends RecyclerView.Adapter {
         return ranking.size();
     }
 
-    private void openDialogFragment(String pseudo){
+    private void openDialogFragment(String pseudo, String level, String score, String time){
         Bundle b = new Bundle();
         b.putString("PSEUDO_KEY", pseudo);
+        b.putString("LEVEL_KEY", level);
+        b.putString("SCORE_KEY", score);
+        b.putString("TIME_KEY", time);
 
         RankindDetailFragment rankindDetailFragment = new RankindDetailFragment();
         rankindDetailFragment.setArguments(b);
