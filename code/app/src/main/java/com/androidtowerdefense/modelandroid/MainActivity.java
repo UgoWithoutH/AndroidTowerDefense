@@ -23,6 +23,7 @@ import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.RankingManager;
 import com.androidtowerdefense.model.gamelogic.GameState;
 import com.androidtowerdefense.modelandroid.view.fragments.MenuFragment;
+import com.androidtowerdefense.modelandroid.view.fragments.RankingFragment;
 import com.androidtowerdefense.modelandroid.view.recycler_view.MyAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -41,18 +42,28 @@ public class MainActivity extends AppCompatActivity {
         TabLayout layout = findViewById(R.id.menuTabLayout);
         FragmentContainerView fcv = findViewById(R.id.fragmentContainerMenu);
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragmentContainerMenu, MenuFragment.class,null)
+                .add(R.id.fragmentContainerMenu, RankingFragment.class,null)
                 .commit();
         layout.addTab(layout.newTab().setText("Game"));
         layout.addTab(layout.newTab().setText("Ranking"));
         layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                int pos = tab.getPosition();
+                if(pos == 0) {
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.fragmentContainerMenu, MenuFragment.class,null)
+                            .commit();
+                }
+                else if(pos == 1){
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainerMenu, RankingFragment.class, null)
+                            .commit();
+                }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
@@ -85,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //recyclerView = findViewById(R.id.recyclerView);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        //recyclerView.setAdapter(new MyAdapter(this, rankingManager.getRanking(),this.getSupportFragmentManager()));
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        recyclerView.setAdapter(new MyAdapter(this, rankingManager.getRanking(),getSupportFragmentManager()));
         Log.d("truc","Resume");
     }
 
