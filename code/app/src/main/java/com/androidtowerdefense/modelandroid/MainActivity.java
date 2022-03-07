@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         TabLayout layout = findViewById(R.id.menuTabLayout);
         FragmentContainerView fcv = findViewById(R.id.fragmentContainerMenu);
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragmentContainerMenu, RankingFragment.class,null)
+                .add(R.id.fragmentContainerMenu, MenuFragment.class,null)
                 .commit();
         layout.addTab(layout.newTab().setText("Game"));
         layout.addTab(layout.newTab().setText("Ranking"));
@@ -50,14 +52,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int pos = tab.getPosition();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+
                 if(pos == 0) {
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.fragmentContainerMenu, MenuFragment.class,null)
+                    fragmentTransaction
+                            .replace(R.id.fragmentContainerMenu, MenuFragment.class,null)
                             .commit();
                 }
                 else if(pos == 1){
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragmentContainerMenu, RankingFragment.class, null)
+                    bundle.putSerializable("rankingManager", rankingManager);
+
+                    fragmentTransaction
+                            .replace(R.id.fragmentContainerMenu, RankingFragment.class, bundle)
                             .commit();
                 }
             }
@@ -96,9 +103,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new MyAdapter(this, rankingManager.getRanking(),getSupportFragmentManager()));
+        //recyclerView = findViewById(R.id.recyclerView);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        //recyclerView.setAdapter(new MyAdapter(this, rankingManager.getRanking(),getSupportFragmentManager()));
         Log.d("truc","Resume");
     }
 

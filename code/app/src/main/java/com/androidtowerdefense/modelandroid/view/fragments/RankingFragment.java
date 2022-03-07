@@ -7,15 +7,27 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
+import com.androidtowerdefense.model.RankingManager;
+import com.androidtowerdefense.modelandroid.view.recycler_view.MyAdapter;
 
 public class RankingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.ranking_view,container,false);
+        View view = inflater.inflate(R.layout.ranking_view,container,false);
+        Bundle bundle = getArguments();
+        RankingManager rankingManager = (RankingManager) bundle.get("rankingManager");
+
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        recyclerView.setAdapter(new MyAdapter((AppCompatActivity) getContext(), rankingManager.getRanking(),getActivity().getSupportFragmentManager()));
+        return view;
     }
 }
