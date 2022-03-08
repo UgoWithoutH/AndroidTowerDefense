@@ -1,9 +1,13 @@
 package com.androidtowerdefense.model;
 
-import com.androidtowerdefense.model.gamelogic.GameManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.androidtowerdefense.model.gamelogic.GameState;
-import com.androidtowerdefense.model.serialization.AdministratorPersistence;
-import com.androidtowerdefense.model.serialization.AdministratorPersistenceBinary;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,12 +23,13 @@ public class RankingManager implements Serializable {
     private int numberScores;
     private String pseudo;
     private boolean rankingEditable;
+    private Context context;
 
-    public RankingManager(){
+    public RankingManager(Context context){
+        this.context = context;
         ranking = new ArrayList<>();
         numberScores = 10;
         rankingEditable = true;
-        stubTest();
     }
 
     public void setRankingEditable(boolean rankingEditable) {
@@ -43,6 +48,51 @@ public class RankingManager implements Serializable {
     private void stubTest(){
         ranking.add(new GameState("TOTO"));
         ranking.add(new GameState("TITI"));
+    }
+
+    public void saveGameState(GameState gameState){
+        JSONArray jsonArray = new JSONArray();
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("pseudo", gameState.getPseudo());
+            obj.put("level", gameState.getLevel());
+            obj.put("score", gameState.getScore());
+            obj.put("time", gameState.getTimeSeconds());
+
+            jsonArray.put(obj);
+
+            saveState(jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveState(JSONArray jsonArray){
+        SharedPreferences preferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("ranking", jsonArray.toString());
+        editor.apply();
+    }
+
+    public void loadRanking(){
+        SharedPreferences preferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        try {
+            String result = preferences.getString("ranking",null);
+            if(result != null) {
+                JSONArray jsonArray = new JSONArray(result);
+                for(int i = 0; i < jsonArray.length(); i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    GameState gameState = new GameState(jsonObject.getString("pseudo"));
+                    gameState.setLevel(Integer.parseInt(jsonObject.getString("level")));
+                    gameState.setScore(Integer.parseInt(jsonObject.getString("score")));
+                    gameState.setTimeSeconds(Integer.parseInt(jsonObject.getString("time")));
+
+                    updateRanking(gameState);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

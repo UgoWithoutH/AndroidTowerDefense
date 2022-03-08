@@ -32,17 +32,14 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
 
     private RankingManager rankingManager;
-    private RecyclerView recyclerView;
     private GameState gameState;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("truc","Create");
-        Log.i("Totot","-------------");
         setContentView(R.layout.menu_tab);
         TabLayout layout = findViewById(R.id.menuTabLayout);
-        FragmentContainerView fcv = findViewById(R.id.fragmentContainerMenu);
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentContainerMenu, MenuFragment.class,null)
                 .commit();
@@ -80,17 +77,14 @@ public class MainActivity extends AppCompatActivity {
         });
         //getSupportFragmentManager().beginTransaction().add()
         //setContentView(R.layout.game_menu);
-        if(savedInstanceState != null){
-            rankingManager = (RankingManager) savedInstanceState.get("rankingManager");
-        }else{
-            rankingManager = new RankingManager();
-        }
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("preferences",MODE_PRIVATE);
-        Bundle data = getIntent().getExtras();
+        rankingManager = new RankingManager(getApplicationContext());
+        rankingManager.loadRanking();
+        //SharedPreferences preferences = getApplicationContext().getSharedPreferences("preferences",MODE_PRIVATE);
+        /*Bundle data = getIntent().getExtras();
         if(data != null && gameState == null){
             gameState = (GameState) data.get("gameState");
             rankingManager.updateRanking(gameState);
-        }
+        }*/
     }
 
     @Override
@@ -113,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.d("truc","SaveInstanceState");
-        outState.putSerializable("rankingManager", rankingManager);
     }
 
     @Override
@@ -126,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.d("truc","Restart");
+        rankingManager.loadRanking();
     }
 
     @Override

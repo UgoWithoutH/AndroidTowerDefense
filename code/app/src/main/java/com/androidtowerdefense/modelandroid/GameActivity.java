@@ -1,7 +1,5 @@
 package com.androidtowerdefense.modelandroid;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +13,6 @@ import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.Loop;
 import com.androidtowerdefense.model.RankingManager;
 import com.androidtowerdefense.model.gamelogic.GameManager;
-import com.androidtowerdefense.model.gamelogic.GameState;
 import com.androidtowerdefense.model.gamelogic.action.IBuyer;
 import com.androidtowerdefense.model.gamelogic.action.tower.BuyerTower;
 import com.androidtowerdefense.modelandroid.view.GameView;
@@ -25,21 +22,23 @@ public class GameActivity extends AppCompatActivity{
 
     private boolean constructTowers = true; //true pour test sinon false
     private GameManager gameManager;
+    private RankingManager rankingManager;
     private Button pauseRestartButton;
     private Button speedButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("Totot","-------------");
+        Log.d("truc","Create2");
+
         Bundle data = getIntent().getExtras();
         String pseudo = data.getString("pseudo");
-        Log.d("truc","Create2");
         setContentView(R.layout.game_view);
         GameView gameView = findViewById(R.id.myView);
         pauseRestartButton = findViewById(R.id.buttonStopRestart);
         speedButton = findViewById(R.id.speedButton);
         DrawMap drawMap = gameView.getDrawMap();
+        rankingManager = new RankingManager(getApplicationContext());
         gameManager = new GameManager(pseudo, drawMap.getMap());
         gameView.setGameManager(gameManager);
         gameView.setGameActivity(this);
@@ -111,16 +110,31 @@ public class GameActivity extends AppCompatActivity{
     }
 
     public void returnHome(View view) {
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("preferences",MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("pseudo", gameManager.getGame().getPseudo());
-        editor.putInt("level", gameManager.getGame().getLevel());
-        editor.putInt("score", gameManager.getGame().getScore());
-        editor.putInt("time", gameManager.getGame().getTimeSeconds());
-        editor.commit();
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("gameState",gameManager.getGame());
-        startActivity(intent);
+
+        //SharedPreferences preferences = getApplicationContext().getSharedPreferences("preferences",MODE_PRIVATE);
+        //SharedPreferences.Editor editor = preferences.edit();
+        //editor.putString("pseudo", gameManager.getGame().getPseudo());
+        //editor.putInt("level", gameManager.getGame().getLevel());
+        //editor.putInt("score", gameManager.getGame().getScore());
+        //editor.putInt("time", gameManager.getGame().getTimeSeconds());
+
+        //String json = obj.toString();
+        // { "pseudo": "Toto"}
+        //JSONArray array = new JSONArray();
+        //array.put(obj);
+        // [ { "pseudo": "Toto"}, { "pseudo": "Titi"}.. ]
+        //array.length();
+        //JSONObject score = array.getJSONObject(0);
+        //String pseudo = score.getString("pseudo");
+
+        //editor.commit();
+
+        rankingManager.saveGameState(gameManager.getGame());
+        finish();
+
+        //Intent intent = new Intent(this, MainActivity.class);
+        //intent.putExtra("gameState",gameManager.getGame());
+        //startActivity(intent);
     }
 
     public void stopOrRestart(View view) {
