@@ -11,16 +11,47 @@ import java.util.List;
  * Classe Score et Ranking permettant de classer le resultat en fonction du score obtenu
  */
 public class ScoreRanking implements Serializable {
-    private final List<GameState> ranking;
-    private int numberScores;
+    private String pseudo;
+    private int level;
+    private int score;
+    private int time;
 
-    /**
-     * Set le score de base au lancement de la Partie
-     */
-    public ScoreRanking() {
-        ranking = new ArrayList<>();
-        numberScores = 10;
+    public ScoreRanking(String pseudo, int level, int score, int time) {
+        this.pseudo = pseudo;
+        this.level = level;
+        this.score = score;
+        this.time = time;
     }
 
+    public String getPseudo() {
+        return pseudo;
+    }
 
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
 }

@@ -14,20 +14,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.RankingManager;
+import com.androidtowerdefense.model.ScoreRanking;
 import com.androidtowerdefense.modelandroid.view.recycler_view.MyAdapter;
+
+import java.util.List;
 
 public class RankingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.ranking_view,container,false);
-        Bundle bundle = getArguments();
-        RankingManager rankingManager = (RankingManager) bundle.get("rankingManager");
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RankingManager rankingManager = new RankingManager(requireContext());
+        List<ScoreRanking> scoreRankingList =  rankingManager.getRankings();
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(new MyAdapter((AppCompatActivity) getContext(), rankingManager.getRanking(),getActivity().getSupportFragmentManager()));
-        return view;
+        recyclerView.setAdapter(new MyAdapter((AppCompatActivity) getContext(), scoreRankingList,getActivity().getSupportFragmentManager()));
+
     }
 }

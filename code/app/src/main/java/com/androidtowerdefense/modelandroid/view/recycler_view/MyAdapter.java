@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
+import com.androidtowerdefense.model.ScoreRanking;
 import com.androidtowerdefense.model.gamelogic.GameState;
 import com.androidtowerdefense.modelandroid.view.fragments.RankindDetailFragment;
 
@@ -19,12 +20,12 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter {
 
     private AppCompatActivity parentActivity;
-    private List<GameState> ranking;
+    private List<ScoreRanking> scoreRankingList;
     private FragmentManager fragmentManager;
 
-    public MyAdapter(AppCompatActivity parentActivity, List<GameState> ranking, FragmentManager supportFragmentManager) {
+    public MyAdapter(AppCompatActivity parentActivity, List<ScoreRanking> ranking, FragmentManager supportFragmentManager) {
         this.parentActivity = parentActivity;
-        this.ranking = ranking;
+        this.scoreRankingList = ranking;
         this.fragmentManager = supportFragmentManager;
     }
 
@@ -37,24 +38,24 @@ public class MyAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        GameState gameState = ranking.get(position);
-        ((ViewHolderScoreRanking)holder).getMyTextView().setText(gameState.getPseudo());
+        ScoreRanking scoreRanking = scoreRankingList.get(position);
+        ((ViewHolderScoreRanking)holder).getMyTextView().setText(scoreRanking.getPseudo());
 
         ((ViewHolderScoreRanking) holder).setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(int pos) {
-                openDialogFragment(gameState.getPseudo(),
-                        String.valueOf(gameState.getLevel()),
-                        String.valueOf(gameState.getScore()),
-                        String.valueOf(gameState.getTimeSeconds()));
-                Toast.makeText(parentActivity, gameState.getPseudo(), Toast.LENGTH_SHORT).show();
+                openDialogFragment(scoreRanking.getPseudo(),
+                        String.valueOf(scoreRanking.getLevel()),
+                        String.valueOf(scoreRanking.getScore()),
+                        String.valueOf(scoreRanking.getTime()));
+                Toast.makeText(parentActivity, scoreRanking.getPseudo(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return ranking.size();
+        return scoreRankingList.size();
     }
 
     private void openDialogFragment(String pseudo, String level, String score, String time){

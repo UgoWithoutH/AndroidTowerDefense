@@ -30,19 +30,13 @@ import com.androidtowerdefense.modelandroid.view.recycler_view.MyAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-
-    private RankingManager rankingManager;
-    private GameState gameState;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("truc","Create");
         setContentView(R.layout.menu_tab);
+
         TabLayout layout = findViewById(R.id.menuTabLayout);
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragmentContainerMenu, MenuFragment.class,null)
-                .commit();
         layout.addTab(layout.newTab().setText("Game"));
         layout.addTab(layout.newTab().setText("Ranking"));
         layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -50,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 int pos = tab.getPosition();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                Bundle bundle = new Bundle();
 
                 if(pos == 0) {
                     fragmentTransaction
@@ -58,10 +51,8 @@ public class MainActivity extends AppCompatActivity {
                             .commit();
                 }
                 else if(pos == 1){
-                    bundle.putSerializable("rankingManager", rankingManager);
-
                     fragmentTransaction
-                            .replace(R.id.fragmentContainerMenu, RankingFragment.class, bundle)
+                            .replace(R.id.fragmentContainerMenu, RankingFragment.class, null)
                             .commit();
                 }
             }
@@ -75,16 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        //getSupportFragmentManager().beginTransaction().add()
-        //setContentView(R.layout.game_menu);
-        rankingManager = new RankingManager(getApplicationContext());
-        rankingManager.loadRanking();
-        //SharedPreferences preferences = getApplicationContext().getSharedPreferences("preferences",MODE_PRIVATE);
-        /*Bundle data = getIntent().getExtras();
-        if(data != null && gameState == null){
-            gameState = (GameState) data.get("gameState");
-            rankingManager.updateRanking(gameState);
-        }*/
+
+        if(savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragmentContainerMenu, MenuFragment.class, null)
+                    .commit();
+        }
     }
 
     @Override
@@ -97,9 +84,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //recyclerView = findViewById(R.id.recyclerView);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        //recyclerView.setAdapter(new MyAdapter(this, rankingManager.getRanking(),getSupportFragmentManager()));
         Log.d("truc","Resume");
     }
 
@@ -118,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        rankingManager = new RankingManager(getApplicationContext());
-        rankingManager.loadRanking();
         Log.d("truc","Restart");
     }
 
@@ -158,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
         try{
             EditText numberScores = findViewById(R.id.numberScores);
             EditText pseudo =  findViewById(R.id.pseudonyme);
-            rankingManager.setNumberScores(Integer.parseInt(numberScores.getText().toString()));
-            rankingManager.setPseudo(pseudo.getText().toString());
+//            rankingManager.setNumberScores(Integer.parseInt(numberScores.getText().toString()));
+//            rankingManager.setPseudo(pseudo.getText().toString());
             return true;
         }
         catch(NumberFormatException ex){
@@ -181,8 +163,10 @@ public class MainActivity extends AppCompatActivity {
             popUpWindow(view,0);
         }
         else{
+            EditText pseudo =  findViewById(R.id.pseudonyme);
             Intent intent = new Intent(this,GameActivity.class);
-            intent.putExtra("pseudo", rankingManager.getPseudo());
+            String test = pseudo.getText().toString();
+            intent.putExtra("pseudo", test);
             startActivity(intent);
         }
     }

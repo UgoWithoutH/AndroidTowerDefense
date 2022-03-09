@@ -20,26 +20,26 @@ public class RankindDetailFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder =  new AlertDialog.Builder(requireActivity());
-        builder.setView(R.layout.ranking_detail);
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        View dialogLayout = getLayoutInflater().inflate(R.layout.ranking_detail, null);
+        builder.setView(dialogLayout);
+        AlertDialog dialog = builder.create();
 
+        TextView pseudoTextDetail = dialogLayout.findViewById(R.id.pseudoDetailValue);
+        TextView scoreTextDetail = dialogLayout.findViewById(R.id.scoreDetailValue);
+        TextView levelTextDetail = dialogLayout.findViewById(R.id.levelDetailValue);
+        TextView timeTextDetail = dialogLayout.findViewById(R.id.timeDetailValue);
 
+        String pseudo = getArguments().getString("PSEUDO_KEY");
+        String level = getArguments().getString("LEVEL_KEY");
+        String score = getArguments().getString("SCORE_KEY");
+        String time = getArguments().getString("TIME_KEY");
 
-        AlertDialog dialog =  builder.create();
-//                dialog.findViewById()
-//        TextView pseudoTextDetail = root.findViewById(R.id.pseudoDetailValue);
-//        TextView scoreTextDetail = root.findViewById(R.id.scoreDetailValue);
-//        TextView levelTextDetail = root.findViewById(R.id.levelDetailValue);
-//        TextView timeTextDetail = root.findViewById(R.id.timeDetailValue);
-//
-//        String pseudo = this.getArguments().getString("PSEUDO_KEY");
-//        String level = this.getArguments().getString("LEVEL_KEY");
-//        String score = this.getArguments().getString("SCORE_KEY");
-//        String time = this.getArguments().getString("TIME_KEY");
-//        pseudoTextDetail.setText(pseudo);
-//        levelTextDetail.setText(level);
-//        scoreTextDetail.setText(score);
-//        timeTextDetail.setText(time);
+        pseudoTextDetail.setText(pseudo);
+        levelTextDetail.setText(level);
+        scoreTextDetail.setText(score);
+        timeTextDetail.setText(time);
+
         return dialog;
     }
 }

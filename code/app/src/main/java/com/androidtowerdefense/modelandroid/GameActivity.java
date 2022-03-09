@@ -32,6 +32,7 @@ public class GameActivity extends AppCompatActivity{
         Log.d("truc","Create2");
 
         Bundle data = getIntent().getExtras();
+
         String pseudo = data.getString("pseudo");
         setContentView(R.layout.game_view);
         GameView gameView = findViewById(R.id.myView);
