@@ -22,18 +22,12 @@ public class RankingManager implements Serializable {
     private final List<GameState> ranking;
     private int numberScores;
     private String pseudo;
-    private boolean rankingEditable;
     private Context context;
 
     public RankingManager(Context context){
         this.context = context;
         ranking = new ArrayList<>();
         numberScores = 10;
-        rankingEditable = true;
-    }
-
-    public void setRankingEditable(boolean rankingEditable) {
-        this.rankingEditable = rankingEditable;
     }
 
     public String getPseudo() {return pseudo;}
@@ -51,26 +45,38 @@ public class RankingManager implements Serializable {
     }
 
     public void saveGameState(GameState gameState){
-        JSONArray jsonArray = new JSONArray();
-        JSONObject obj = new JSONObject();
+        JSONObject jsonObject = new JSONObject();
         try {
-            obj.put("pseudo", gameState.getPseudo());
-            obj.put("level", gameState.getLevel());
-            obj.put("score", gameState.getScore());
-            obj.put("time", gameState.getTimeSeconds());
+            jsonObject.put("pseudo", gameState.getPseudo());
+            jsonObject.put("level", gameState.getLevel());
+            jsonObject.put("score", gameState.getScore());
+            jsonObject.put("time", gameState.getTimeSeconds());
 
-            jsonArray.put(obj);
-
-            saveState(jsonArray);
+            saveState(jsonObject);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void saveState(JSONArray jsonArray){
+    private void saveState(JSONObject jsonObject){
         SharedPreferences preferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("ranking", jsonArray.toString());
+        String result = preferences.getString("ranking",null);
+
+        if(result != null){
+            try {
+                JSONArray jsonArrayResult = new JSONArray(result);
+                jsonArrayResult.put(jsonObject);
+                editor.putString("ranking", jsonArrayResult.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.put(jsonObject);
+            editor.putString("ranking", jsonArray.toString());
+        }
         editor.apply();
     }
 
@@ -102,8 +108,6 @@ public class RankingManager implements Serializable {
      */
     public void updateRanking(GameState gameState) {
 
-        if(!rankingEditable) return;
-
         if(numberScores == 0){
             ranking.clear();
             return;
@@ -122,6 +126,5 @@ public class RankingManager implements Serializable {
         if(ranking.size() > 1){
             Collections.sort(ranking);
         }
-        rankingEditable = false;
     }
 }

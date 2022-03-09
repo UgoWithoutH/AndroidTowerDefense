@@ -118,8 +118,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d("truc","Restart");
+        rankingManager = new RankingManager(getApplicationContext());
         rankingManager.loadRanking();
+        Log.d("truc","Restart");
     }
 
     @Override
@@ -180,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
             popUpWindow(view,0);
         }
         else{
-            rankingManager.setRankingEditable(true);
             Intent intent = new Intent(this,GameActivity.class);
             intent.putExtra("pseudo", rankingManager.getPseudo());
             startActivity(intent);
