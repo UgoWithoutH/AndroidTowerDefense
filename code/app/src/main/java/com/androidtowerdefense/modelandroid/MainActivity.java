@@ -1,7 +1,6 @@
 package com.androidtowerdefense.modelandroid;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,31 +14,27 @@ import android.widget.PopupWindow;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentContainerView;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
-import com.androidtowerdefense.model.RankingManager;
-import com.androidtowerdefense.model.gamelogic.GameState;
 import com.androidtowerdefense.modelandroid.view.fragments.MenuFragment;
 import com.androidtowerdefense.modelandroid.view.fragments.RankingFragment;
-import com.androidtowerdefense.modelandroid.view.recycler_view.MyAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TabLayout tabLayout;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("truc","Create");
         setContentView(R.layout.menu_tab);
 
-        TabLayout layout = findViewById(R.id.menuTabLayout);
-        layout.addTab(layout.newTab().setText("Game"));
-        layout.addTab(layout.newTab().setText("Ranking"));
-        layout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout = findViewById(R.id.menuTabLayout);
+        tabLayout.addTab(tabLayout.newTab().setText("Game"));
+        tabLayout.addTab(tabLayout.newTab().setText("Ranking"));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int pos = tab.getPosition();
@@ -72,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragmentContainerMenu, MenuFragment.class, null)
                     .commit();
         }
+        else{
+            int pos = (int) savedInstanceState.get("pos");
+            TabLayout.Tab tab = tabLayout.getTabAt(pos);
+            tab.select();
+        }
     }
 
     @Override
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putInt("pos", tabLayout.getSelectedTabPosition());
         Log.d("truc","SaveInstanceState");
     }
 
