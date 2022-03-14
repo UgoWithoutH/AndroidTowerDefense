@@ -151,11 +151,11 @@ public class GameActivity extends AppCompatActivity{
     public void speed(View view) {
         Loop boucle = gameManager.getLoop();
         if (!gameManager.getGame().isSpeed()) {
-            speedButton.setText(getString(R.string.x1));
+            speedButton.setText(getString(R.string.x2));
             gameManager.getGame().setSpeed(true);
             boucle.setMillis(boucle.getMillis() / 2);
         } else {
-            speedButton.setText(getString(R.string.x2));
+            speedButton.setText(getString(R.string.x1));
             gameManager.getGame().setSpeed(false);
             boucle.setMillis(boucle.getMillis() * 2);
         }

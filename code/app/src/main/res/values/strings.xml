@@ -18,6 +18,18 @@
     <string name="victory">Victory</string>
     <string name="gameOver">GameOver</string>
 
+    <string name="tutoTitre">Comment Jouer</string>
+    <string name="tutoParagraphe">TowerDefense est un jeu comme son nom l\'indique de type Tower Defense!</string>
+    <string name="tutoParagraphe2">Le but du jeu est très simple : Des monstres sous forme de boule vont apparaître au fil du temps sur le chemin</string>
+    <string name="tutoParagraphe3">Votre objectif : Leur empêcher d\'atteindre la fin du chemin. Vous pouvez appuyer sur nimporte quel endroit afin de
+    placer une tour qui pourra tirer sur les monstres</string>
+    <string name="tutoParagraphe4">Vous pouvez observer divers bouton sur votre ecran : "GIVE UP" pour abandonner une partie en cours
+    "STOP" pour mettre une partie en pause et un bouton "X1 / X2" pour changer la vitesse de la partie en cours</string>
+
+    <string name="tutoParagraphe5">Dans le coin inférieur droit, vous observerez un indicateur de score, de temps, de niveau et d\'argent</string>
+    <string name="tutoParagraphe6">Une tour coûte 25 pièces, tuer un monstre vous en rapporte deux</string>
+
+
     <!-- String pour boutons-->
     <string name="newGame">New Game</string>
     <string name="home">Return</string>
@@ -27,4 +39,6 @@
     <string name="restart">Restart</string>
     <string name="x2">X2</string>
     <string name="x1">X1</string>
+    <string name="return_menu">Retour Menu</string>
+    <string name="tuto">Comment Jouer</string>
 </resources>

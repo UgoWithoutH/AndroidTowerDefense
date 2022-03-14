@@ -151,8 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //TODO : Ajouter le même mécanisme pour le pseudonyme de l'user
-    public void newGame(View view) {
+    public void NewGame(View view) {
         Log.d("truc", "Nouvelle Partie");
         if (!inputScore())
         {
@@ -170,6 +169,11 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("pseudo", test);
             startActivity(intent);
         }
+    }
+
+    public void VueOption(View view){
+        Intent intent = new Intent(this, OptionActivity.class);
+        startActivity(intent);
     }
 
     public void quitterApplication(View view){
