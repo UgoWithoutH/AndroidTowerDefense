@@ -1,0 +1,8 @@
+Note TP ludni 14/03 : 
+
+Persistance longue a faire pour le edit text du pseudo quand on switch de vueOption a vueMenu
+Ptit probleme quand on va une fois sur la vue Tuto et qu'on revient sur le menu, le bouton exit ne marche plus
+J'ai commencé a faire une alert dialog en gros quand on quitte l'appli en pleine partie et qu'on revient qu'il y ait un msg pour prévenir
+
+
+Sinon il reste la doc a faire genre contexte, diagramme de classe, preuves etc..

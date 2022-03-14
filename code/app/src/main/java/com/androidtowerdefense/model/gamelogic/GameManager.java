@@ -1,5 +1,7 @@
 package com.androidtowerdefense.model.gamelogic;
 
+import android.app.Dialog;
+
 import com.androidtowerdefense.model.Coordinate;
 import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.gamelogic.action.IGenerator;
@@ -15,6 +17,7 @@ import com.androidtowerdefense.model.gamelogic.map.Map;
 import com.androidtowerdefense.model.observer.IObserver;
 import com.androidtowerdefense.model.Loop;
 import com.androidtowerdefense.model.observer.Observable;
+import com.androidtowerdefense.modelandroid.view.alert_dialog.MyDialogFragment;
 
 /**
  * Classe qui gère la partie

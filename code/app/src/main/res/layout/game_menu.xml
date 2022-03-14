@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/green"
-        android:onClick="NewGame"
+        android:onClick="newGame"
         android:text="@string/newGame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,13 +121,14 @@ de comment ca serait mis en place en mode portrait
     <EditText
         android:id="@+id/pseudonyme"
         android:layout_width="190dp"
-        android:layout_height="31dp"
+        android:layout_height="50dp"
         android:ems="10"
+        android:maxLength="20"
         app:layout_constraintBottom_toBottomOf="@+id/nickname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toEndOf="@+id/nickname"
         app:layout_constraintTop_toTopOf="@+id/nickname"
-        app:layout_constraintVertical_bias="0.113" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.Loop;
@@ -71,6 +72,8 @@ public class GameActivity extends AppCompatActivity{
     protected void onResume() {
         super.onResume();
         Log.d("truc","Resume2");
+
+
     }
 
     @Override

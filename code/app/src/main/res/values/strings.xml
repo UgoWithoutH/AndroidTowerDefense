@@ -41,4 +41,10 @@
     <string name="x1">X1</string>
     <string name="return_menu">Retour Menu</string>
     <string name="tuto">Comment Jouer</string>
+
+    <!-- String pour dialogFragment-->
+    <string name="continueGame">Reprendre la partie en cours ?</string>
+    <string name="yes">OUI</string>
+    <string name="cancel">ANNULER</string>
+
 </resources>

@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void NewGame(View view) {
+    public void newGame(View view) {
         Log.d("truc", "Nouvelle Partie");
         if (!inputScore())
         {
@@ -165,7 +165,8 @@ public class MainActivity extends AppCompatActivity {
         else{
             EditText pseudo =  findViewById(R.id.pseudonyme);
             Intent intent = new Intent(this,GameActivity.class);
-            String test = pseudo.getText().toString();
+            String test = pseudo.getText().toString()
+                    ;
             intent.putExtra("pseudo", test);
             startActivity(intent);
         }
