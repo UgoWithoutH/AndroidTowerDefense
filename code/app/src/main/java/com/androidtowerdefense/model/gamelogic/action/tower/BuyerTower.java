@@ -4,13 +4,13 @@ package com.androidtowerdefense.model.gamelogic.action.tower;
 import com.androidtowerdefense.model.characters.tower.ClassicTower;
 import com.androidtowerdefense.model.characters.tower.Tower;
 import com.androidtowerdefense.model.gamelogic.GameState;
-import com.androidtowerdefense.model.gamelogic.action.IBuyer;
+import com.androidtowerdefense.model.gamelogic.action.IBuyerTower;
 import com.androidtowerdefense.model.gamelogic.map.Map;
 
 /**
  * Class permettant d'acheter des tours
  */
-public class BuyerTower implements IBuyer {
+public class BuyerTower implements IBuyerTower {
     private GameState game;
     private Map gameMap;
 
@@ -26,21 +26,21 @@ public class BuyerTower implements IBuyer {
 
     /**
      * Achat et placement d'une Tower en fonction de la fenêtre
-     * @param xCords    double Position X sur la Fenetre
-     * @param yCords    double Position Y sur la Fenetre
+     * @param x    double Position X sur la Fenetre
+     * @param y    double Position Y sur la Fenetre
      */
     @Override
-    public boolean buy(int x, int y) {
+    public Tower buy(int x, int y) {
 
         if (gameMap.nodeOpen(x, y)) {
             Tower tower = new ClassicTower(x, y);
-            if (game.getCoins() >= Tower.getDefaultSellCost()) {
+            if (game.getCoins() >= Tower.DEFAULT_SELL_COST) {
                 game.addTower(tower);
-                game.setCoins(game.getCoins() - Tower.getDefaultSellCost());
+                game.setCoins(game.getCoins() - Tower.DEFAULT_SELL_COST);
                 gameMap.setMapNode(x, y, 7);
-                return true;
+                return tower;
             }
         }
-        return false;
+        return null;
     }
 }

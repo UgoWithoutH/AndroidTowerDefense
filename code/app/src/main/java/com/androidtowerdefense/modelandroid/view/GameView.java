@@ -16,12 +16,21 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.androidtowerdefense.R;
+import com.androidtowerdefense.model.characters.tower.Tower;
 import com.androidtowerdefense.model.gamelogic.GameManager;
+import com.androidtowerdefense.model.gamelogic.action.IBuyerTower;
+import com.androidtowerdefense.model.gamelogic.action.tower.BuyerTower;
 import com.androidtowerdefense.model.gamelogic.map.GenerationMap;
 import com.androidtowerdefense.model.observer.IObserver;
 import com.androidtowerdefense.modelandroid.view.draw.DrawMap;
 import com.androidtowerdefense.modelandroid.view.draw.DrawCharacters;
+import com.androidtowerdefense.modelandroid.view.draw.DrawProgressBar;
 import com.androidtowerdefense.modelandroid.view.draw.DrawProjectiles;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class GameView extends View implements IObserver {
     private Bitmap bitmap;
@@ -29,12 +38,15 @@ public class GameView extends View implements IObserver {
     private DrawMap drawMap;
     private DrawCharacters drawMonsters;
     private DrawProjectiles drawProjectiles;
+    private DrawProgressBar drawProgressBar;
     private UpdaterTextStates updaterTextStates;
     private IVerifier verifier;
     private ConstraintLayout endLayout;
     private Activity gameActivity;
     private TextView textEndGame;
     private Paint paint;
+    private boolean constructTowers = true;
+    private Map<ProgressBar,Integer> progressBars = new HashMap<>();
 
     public GameView(Context context) {
         super(context);
@@ -45,6 +57,7 @@ public class GameView extends View implements IObserver {
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.tile);
         GenerationMap generationMap = new GenerationMap(20*64, 13*64);
         drawMap = new DrawMap(generationMap,bitmap);
+        drawProgressBar = new DrawProgressBar();
         paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
     }
@@ -72,12 +85,17 @@ public class GameView extends View implements IObserver {
         return drawMap;
     }
 
+    public void setConstructTowers(boolean constructTowers) {
+        this.constructTowers = constructTowers;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawMap.draw(canvas);
         gameManager.setTileWidth(drawMap.getWidthResize());
         gameManager.setTileHeight(drawMap.getHeightResize());
+        drawProgressBar.draw(canvas, progressBars);
         drawMonsters.draw(canvas);
         drawProjectiles.draw(canvas);
         updaterTextStates.update();
@@ -110,6 +128,22 @@ public class GameView extends View implements IObserver {
             public void run() {
                 invalidate();
             }
+        });
+    }
+
+    public void initializeListener() {
+        this.setOnTouchListener((view, event) -> {
+            if (constructTowers) {
+                Log.d("click","click");
+                IBuyerTower buyer = new BuyerTower(gameManager.getGame(), gameManager.getGameMap());
+                Tower tower = buyer.buy((int) event.getX()/drawMap.getWidthResize(), (int) event.getY()/drawMap.getHeightResize());
+                if(tower != null){
+                    progressBars.put(new ProgressBar(tower.getProgressBuild(),(int) event.getX(),(int) event.getY()),0);
+                    invalidate();
+                } //déléguer tout ça dans le GameManager
+                constructTowers = true;
+            }
+            return true;
         });
     }
 }

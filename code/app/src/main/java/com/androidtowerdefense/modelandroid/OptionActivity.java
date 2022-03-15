@@ -20,7 +20,6 @@ public class OptionActivity extends AppCompatActivity {
     }
 
     public void retourMenu(View view){
-        Intent intent= new Intent(this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 }

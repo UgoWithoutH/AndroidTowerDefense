@@ -10,8 +10,8 @@ import java.util.List;
  * Classe permettant aux tours d'attaquer
  */
 public class GeneratorProjectiles implements IGenerator {
-    private List<Tower> listTower;
-    private List<Character> listCharacter;
+    private final List<Tower> listTower;
+    private final List<Character> listCharacter;
 
     /**
      * Créé le système d'attaque des Tours sur les Characters
@@ -30,9 +30,7 @@ public class GeneratorProjectiles implements IGenerator {
      */
     public void generate() {
         Character target;
-        WaitingBuild attackService;
         for (Tower tower : listTower) {
-            if (tower.isAttacker()) {
                 double towerMinXRange = tower.getX() - tower.getAttackRange();
                 double towerMaxXRange = tower.getX() + tower.getAttackRange();
                 double towerMinYRange = tower.getY() - tower.getAttackRange();
@@ -41,16 +39,13 @@ public class GeneratorProjectiles implements IGenerator {
                 for (Character character : listCharacter) {
                     target = character;
                     if (target.getX() < towerMaxXRange & target.getX() > towerMinXRange & target.getY() > towerMinYRange & target.getY() < towerMaxYRange) {
-                        attackService = new WaitingBuild(tower);
-                        Thread t = new Thread(attackService);
-                        t.start();
-                        if (tower.isBuild()) {
+                        if (tower.isBuild() && tower.isAttacker()) {
                             tower.createProjectile(target);
+                            tower.setAttacker(false);
                         }
                         break;
                     }
                 }
-            }
         }
     }
 }

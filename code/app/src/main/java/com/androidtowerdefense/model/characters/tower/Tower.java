@@ -4,6 +4,8 @@ package com.androidtowerdefense.model.characters.tower;
 import com.androidtowerdefense.model.Coordinate;
 import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.characters.Projectile;
+import com.androidtowerdefense.model.gamelogic.ProgressBuild;
+import com.androidtowerdefense.model.gamelogic.action.tower.WaitingAttacker;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,15 +15,19 @@ import java.util.List;
  * Tour
  */
 public abstract class Tower implements Serializable {
-    private static final int BUILD_TIME_SECONDS = 2; //Temps de construction
-    private static final int DEFAULT_SELL_COST = 25; //Prix de construction
+    public static final int DEFAULT_BUILD_TICK = 400; //Temps de construction
+    public static final int DEFAULT_PROGRESS_BUILD_TICK = 5;
+    public static final int DEFAULT_ATTACK_TICK = 100;
+    public static final int DEFAULT_PROGRESS_ATTACK_TICK = 1;
+    public static final int DEFAULT_SELL_COST = 25; //Prix de construction
+    private final WaitingAttacker waitingAttacker = new WaitingAttacker(DEFAULT_ATTACK_TICK, 0, DEFAULT_PROGRESS_ATTACK_TICK);
+    private ProgressBuild progressBuild = new ProgressBuild(DEFAULT_BUILD_TICK,0, DEFAULT_PROGRESS_BUILD_TICK);
     private int attackDamage;
     private int attackRange;
     private List<Projectile> projectiles;
     private Coordinate coordinate;
     private boolean attacker = true;
     private boolean build = false;
-
 
     /**
      * Création d'une Tower à une position X et Y sur la map
@@ -35,13 +41,10 @@ public abstract class Tower implements Serializable {
         attackRange = 200;
     }
 
-    public int getBuildTimeSeconds() {
-        return BUILD_TIME_SECONDS;
-    }
-
     public boolean isBuild() {
         return build;
     }
+
     public void setBuild(boolean build) {
         this.build = build;
     }
@@ -58,10 +61,6 @@ public abstract class Tower implements Serializable {
         return  attackDamage;
     }
 
-    public static int getDefaultSellCost(){
-        return DEFAULT_SELL_COST;
-    }
-
     public Coordinate getCoordinate(){
         return coordinate;
     }
@@ -73,7 +72,25 @@ public abstract class Tower implements Serializable {
         this.attacker = attacker;
     }
 
-    public List<Projectile> getProjectiles() {return projectiles;}
+    public ProgressBuild getProgressBuild() {
+        return progressBuild;
+    }
+
+    public boolean isAttackerFinished(){
+        return waitingAttacker.isFinished();
+    }
+
+    public void incrementedWaitingAttack(){
+        waitingAttacker.increment();
+    }
+
+    public void resetWaitingAttack(){
+        waitingAttacker.reset();
+    }
+
+    public List<Projectile> getProjectiles() {
+        return projectiles;
+    }
 
     /**
      * Créé un projetctile et cible un Character
@@ -82,5 +99,4 @@ public abstract class Tower implements Serializable {
     public void createProjectile(Character target){
         projectiles.add(new Projectile(target , coordinate.getExactX() , coordinate.getExactY()));
     }
-
 }

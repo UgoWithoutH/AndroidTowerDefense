@@ -13,6 +13,7 @@ import com.androidtowerdefense.model.gamelogic.action.character.SpawnerCharacter
 import com.androidtowerdefense.model.gamelogic.action.states.Updater;
 import com.androidtowerdefense.model.gamelogic.action.tower.GeneratorProjectiles;
 import com.androidtowerdefense.model.gamelogic.action.tower.DisplacerProjectiles;
+import com.androidtowerdefense.model.gamelogic.action.tower.WaitingTowers;
 import com.androidtowerdefense.model.gamelogic.map.Map;
 import com.androidtowerdefense.model.observer.IObserver;
 import com.androidtowerdefense.model.Loop;
@@ -55,8 +56,6 @@ public class GameManager extends Observable implements IObserver {
         attacker = new GeneratorProjectiles(game.getPlayerTowers(), game.getCharactersAlive());
     }
 
-    public Loop getLoop(){ return loop; }
-
     public GameState getGame() {
         return game;
     }
@@ -77,6 +76,23 @@ public class GameManager extends Observable implements IObserver {
         loop.setRunning(false);
     }
 
+    public void restart(){
+        loop.setRunning(true);
+        loop.restart();
+    }
+
+    public long getSpeedMillis(){
+        return loop.getMillis();
+    }
+
+    public void setSpeedMillis(long millis){
+        loop.setMillis(millis);
+    }
+
+    public boolean isRunning(){
+        return loop.isRunning();
+    }
+
     /**
      * Démarre la boucle de jeu
      */
@@ -93,11 +109,13 @@ public class GameManager extends Observable implements IObserver {
     @Override
     public void update(int timer) {
         if (loop.isRunning()) {
-            Updater.updateTimerSeconds(timer, loop.getDefaultMillis(), game);
+            Updater.updateTimerSeconds(timer, loop.DEFAULT_MILLIS, game);
 
             administratorVictoryGameOver.verifyVictory();
 
             spawner.spawn(timer);
+
+            WaitingTowers.run(game.getPlayerTowers());
 
             administratorVictoryGameOver.verifyGameOver(!displacerCharacters.updateLocations());
 

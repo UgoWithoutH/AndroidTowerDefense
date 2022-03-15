@@ -8,20 +8,15 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import com.androidtowerdefense.R;
-import com.androidtowerdefense.model.Loop;
 import com.androidtowerdefense.model.RankingManager;
 import com.androidtowerdefense.model.gamelogic.GameManager;
-import com.androidtowerdefense.model.gamelogic.action.IBuyer;
-import com.androidtowerdefense.model.gamelogic.action.tower.BuyerTower;
 import com.androidtowerdefense.modelandroid.view.GameView;
 import com.androidtowerdefense.modelandroid.view.draw.DrawMap;
 
 public class GameActivity extends AppCompatActivity{
 
-    private boolean constructTowers = true; //true pour test sinon false
     private GameManager gameManager;
     private RankingManager rankingManager;
     private Button pauseRestartButton;
@@ -44,21 +39,10 @@ public class GameActivity extends AppCompatActivity{
         gameManager = new GameManager(pseudo, drawMap.getMap());
         gameView.setGameManager(gameManager);
         gameView.setGameActivity(this);
-        gameView.setOnTouchListener((view, event) -> {
-                if (constructTowers) {
-                    Log.d("click","click");
-                    IBuyer buyer = new BuyerTower(gameManager.getGame(), gameManager.getGameMap());
-                    if(buyer.buy((int) event.getX()/drawMap.getWidthResize(), (int) event.getY()/drawMap.getHeightResize())){
-                        gameView.invalidate();
-                    } //déléguer tout ça dans le GameManager
-                    constructTowers = true;
-                }
-                return true;
-        });
-        if(!gameManager.getLoop().isRunning()){
+        gameView.initializeListener();
+        if(!gameManager.isRunning()){
             gameManager.start();
         }
-        //data.get(....);
     }
 
     @Override
@@ -142,25 +126,24 @@ public class GameActivity extends AppCompatActivity{
     }
 
     public void stopOrRestart(View view) {
-        if (gameManager.getLoop().isRunning()) {
+        if (gameManager.isRunning()) {
             pauseRestartButton.setText(getString(R.string.restart));
             gameManager.stop();
         } else {
             pauseRestartButton.setText(R.string.stop);
-            gameManager.start();
+            gameManager.restart();
         }
     }
 
     public void speed(View view) {
-        Loop boucle = gameManager.getLoop();
         if (!gameManager.getGame().isSpeed()) {
             speedButton.setText(getString(R.string.x2));
             gameManager.getGame().setSpeed(true);
-            boucle.setMillis(boucle.getMillis() / 2);
+            gameManager.setSpeedMillis(gameManager.getSpeedMillis() / 2);
         } else {
             speedButton.setText(getString(R.string.x1));
             gameManager.getGame().setSpeed(false);
-            boucle.setMillis(boucle.getMillis() * 2);
+            gameManager.setSpeedMillis(gameManager.getSpeedMillis() * 2);
         }
     }
 }
