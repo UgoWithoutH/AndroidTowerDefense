@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         rankingFragment = new RankingFragment();
 
         tabLayout = findViewById(R.id.menuTabLayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Game"));
-        tabLayout.addTab(tabLayout.newTab().setText("Ranking"));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.onglet1)));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.onglet2)));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

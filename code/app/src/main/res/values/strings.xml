@@ -1,22 +1,23 @@
 <resources>
     <string name="app_name">TowerDefense</string>
-    <string name="readyMenu">GET READY !</string>
-    <string name="nicknameMenu">NICKNAME :</string>
+    <string name="readyMenu">TIENS-TOI PRET!</string>
+    <string name="nicknameMenu">PSEUDO :</string>
     <string name="gameTitle">Tower Defense</string>
-    <string name="scoreBoard"> SCOREBOARD</string>
-    <string name="nbScoreMenu">Maximum number of scores :</string>
+    <string name="scoreBoard"> SCORES</string>
     <string name="popupScore">Nombre de scores incorrectes !</string>
     <string name="popupData">Pseudo invalide !</string>
-    
-    <string name="rankingTile">Score Ranking</string>
+    <string name="onglet1">Partie</string>
+    <string name="onglet2">Score</string>
+
+    <string name="rankingTile">Tableau des scores</string>
 
     <string name="score">Score :</string>
-    <string name="coins">Coins :</string>
-    <string name="level">Level :</string>
-    <string name="time">Time :</string>
+    <string name="coins">Sous :</string>
+    <string name="level">Niveau :</string>
+    <string name="time">Temps :</string>
 
-    <string name="victory">Victory</string>
-    <string name="gameOver">GameOver</string>
+    <string name="victory">Victoire</string>
+    <string name="gameOver">Perdu</string>
 
     <string name="tutoTitre">Comment Jouer</string>
     <string name="tutoParagraphe">TowerDefense est un jeu comme son nom l\'indique de type Tower Defense!</string>
@@ -31,16 +32,15 @@
 
 
     <!-- String pour boutons-->
-    <string name="newGame">New Game</string>
-    <string name="home">Return</string>
-    <string name="exit">Exit</string>
-    <string name="giveUp">GiveUp</string>
+    <string name="newGame">Nouvelle Partie</string>
+    <string name="home">Retour</string>
+    <string name="exit">Quitter</string>
+    <string name="giveUp">Abandonner</string>
     <string name="stop">Stop</string>
-    <string name="restart">Restart</string>
+    <string name="restart">Reprendre</string>
     <string name="x2">X2</string>
     <string name="x1">X1</string>
-    <string name="return_menu">Retour Menu</string>
-    <string name="tuto">How to play ?</string>
+    <string name="tuto">Comment jouer ?</string>
 
     <!-- String pour dialogFragment-->
     <string name="continueGame">Reprendre la partie en cours ?</string>

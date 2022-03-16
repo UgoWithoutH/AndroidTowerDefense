@@ -21,19 +21,26 @@
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2985" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout-land/game_end_view.xml" value="0.1" />
+        <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout-land/game_menu.xml" value="0.25" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout-land/game_test.xml" value="0.16302083333333334" />
+        <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout-land/game_tuto.xml" value="0.22" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout-land/game_view.xml" value="0.1591710758377425" />
+        <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout-port/game_menu.xml" value="0.2463768115942029" />
+        <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout-port/game_tuto.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/activity_game.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/activity_menu.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/game_menu.xml" value="0.25" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/game_test.xml" value="0.14175724637681159" />
+        <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/game_tuto.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/game_view.xml" value="0.25" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/menu_tab.xml" value="0.15185185185185185" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/menutest.xml" value="0.15433946130825138" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/popup_window.xml" value="0.17777777777777778" />
+        <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/popup_window_data.xml" value="0.14722222222222223" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/ranking_detail.xml" value="1.3963815789473684" />
-        <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/ranking_view.xml" value="0.15185185185185185" />
+        <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/ranking_view.xml" value="0.25" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/score_ranking_cell.xml" value="0.20199275362318841" />
+        <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/test.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196" />
         <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/layout-land/game_end_view.xml" value="0.1" />
         <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/layout-land/game_view.xml" value="0.14666666666666667" />

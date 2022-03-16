@@ -38,7 +38,6 @@ public class GameActivity extends AppCompatActivity{
         rankingManager = new RankingManager(getApplicationContext());
         gameManager = new GameManager(pseudo, drawMap.getMap());
         gameView.setGameManager(gameManager);
-        gameView.setGameActivity(this);
         gameView.initializeListener();
         if(!gameManager.isRunning()){
             gameManager.start();

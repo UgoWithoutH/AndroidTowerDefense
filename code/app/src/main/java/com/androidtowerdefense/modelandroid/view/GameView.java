@@ -45,7 +45,6 @@ public class GameView extends View implements IObserver {
     private Activity gameActivity;
     private TextView textEndGame;
     private Paint paint;
-    private boolean constructTowers = true;
     private Map<ProgressBar,Integer> progressBars = new HashMap<>();
 
     public GameView(Context context) {
@@ -68,25 +67,19 @@ public class GameView extends View implements IObserver {
 
     public void setGameManager(GameManager gameManager){
         this.gameManager = gameManager;
+        this.gameActivity = (Activity) getContext();
+
         drawMonsters = new DrawCharacters(gameManager.getGame().getCharactersAlive());
         drawProjectiles = new DrawProjectiles(gameManager.getGame().getPlayerTowers());
         verifier = new VerifierGame(gameManager.getGame());
-        gameManager.subscribe(this);
-    }
-
-    public void setGameActivity(Activity gameActivity) {
-        this.gameActivity = gameActivity;
         endLayout = gameActivity.findViewById(R.id.gameEndView);
         updaterTextStates = new UpdaterTextStates(gameActivity,gameManager.getGame());
         textEndGame = gameActivity.findViewById(R.id.textEndGame);
+        gameManager.subscribe(this);
     }
 
     public DrawMap getDrawMap() {
         return drawMap;
-    }
-
-    public void setConstructTowers(boolean constructTowers) {
-        this.constructTowers = constructTowers;
     }
 
     @Override
@@ -133,16 +126,13 @@ public class GameView extends View implements IObserver {
 
     public void initializeListener() {
         this.setOnTouchListener((view, event) -> {
-            if (constructTowers) {
-                Log.d("click","click");
-                IBuyerTower buyer = new BuyerTower(gameManager.getGame(), gameManager.getGameMap());
-                Tower tower = buyer.buy((int) event.getX()/drawMap.getWidthResize(), (int) event.getY()/drawMap.getHeightResize());
-                if(tower != null){
-                    progressBars.put(new ProgressBar(tower.getProgressBuild(),(int) event.getX(),(int) event.getY()),0);
-                    invalidate();
-                } //déléguer tout ça dans le GameManager
-                constructTowers = true;
-            }
+            Log.d("click", "click");
+            IBuyerTower buyer = new BuyerTower(gameManager.getGame(), gameManager.getGameMap());
+            Tower tower = buyer.buy((int) event.getX() / drawMap.getWidthResize(), (int) event.getY() / drawMap.getHeightResize());
+            if (tower != null) {
+                progressBars.put(new ProgressBar(tower.getProgressBuild(), (int) event.getX(), (int) event.getY()), 0);
+                invalidate();
+            } //déléguer tout ça dans le GameManager
             return true;
         });
     }
