@@ -8,6 +8,8 @@ import com.androidtowerdefense.model.characters.Character;
  * Définit un Monster à partir d'un Character
  */
 public abstract class Monster extends Character {
+    public static final int DEFAULT_BASIC_LIFE = 10;
+    public static final int DEFAULT_SPEED_LIFE = 3;
 
     /**
      * Variable qui définit si le Monstre est visible ou non

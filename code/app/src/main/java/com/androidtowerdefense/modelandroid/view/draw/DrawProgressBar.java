@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class DrawProgressBar {
     private static final int DEFAULT_WIDTH_DRAW = 80;
-    private static final int DEFAULT_HEIGHT_DRAW = 20;
+    private static final int DEFAULT_HEIGHT_DRAW = 10;
     private List<ProgressBar> progressBarToRemove = new ArrayList<>();
 
     private Paint paint;
@@ -66,7 +66,7 @@ public class DrawProgressBar {
                 canvas.drawRect(new Rect(progressBar.getxStart(),
                         progressBar.getyStart(),
                         progressBar.getxStart()+widthToDraw,
-                        progressBar.getyStart()+DEFAULT_HEIGHT_DRAW-10
+                        progressBar.getyStart()+DEFAULT_HEIGHT_DRAW
                 ),paint);
             }
         }

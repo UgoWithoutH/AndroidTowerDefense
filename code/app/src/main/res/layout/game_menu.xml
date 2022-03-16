@@ -15,7 +15,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/nickname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintVertical_bias="0.56" />
@@ -28,11 +28,11 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/ready"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/ready"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.41000003" />
 
     <TextView
         android:id="@+id/title"
@@ -49,17 +49,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.18" />
 
-    <TextView
-        android:id="@+id/nbScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nbScoreMenu"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.27"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -73,23 +62,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.88" />
 
-    <!-- Je pense c'est pas le bon composant c'était juste pour donner une idée
-de comment ca serait mis en place en mode portrait
--->
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:backgroundTint="@color/black"
-        android:text="@string/tuto"
         android:onClick="VueOption"
+        android:text="@string/tuto"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nickname"
-        app:layout_constraintVertical_bias="0.0"></Button>
+        app:layout_constraintVertical_bias="0.39"></Button>
 
     <Button
         android:id="@+id/button2"
@@ -108,27 +93,17 @@ de comment ca serait mis en place en mode portrait
         app:layout_constraintVertical_bias="0.88" />
 
     <EditText
-        android:id="@+id/numberScores"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/nbScore"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/nbScore"
-        app:layout_constraintTop_toTopOf="@+id/nbScore"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
         android:id="@+id/pseudonyme"
         android:layout_width="190dp"
         android:layout_height="50dp"
         android:ems="10"
+        android:inputType="text"
         android:maxLength="20"
-        app:layout_constraintBottom_toBottomOf="@+id/nickname"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toEndOf="@+id/nickname"
-        app:layout_constraintTop_toTopOf="@+id/nickname"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39999998" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

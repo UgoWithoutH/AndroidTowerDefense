@@ -6,7 +6,7 @@ import com.androidtowerdefense.model.gamelogic.GameState;
 
 public class VerifierGame implements IVerifier {
     private GameState gameState;
-    public static final int DEFAULT_RESULT_CODE = 0; //public bonne idée ? ou alors encapsuler ?
+    public static final int DEFAULT_RESULT_CODE = 0;
     public static final int VICTORY_RESULT_CODE = 1;
     public static final int GAMEOVER_RESULT_CODE = 2;
 

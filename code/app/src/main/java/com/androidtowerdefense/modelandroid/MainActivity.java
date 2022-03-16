@@ -24,12 +24,17 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
+    private MenuFragment menuFragment;
+    private RankingFragment rankingFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("truc","Create");
         setContentView(R.layout.menu_tab);
+
+        menuFragment = new MenuFragment();
+        rankingFragment = new RankingFragment();
 
         tabLayout = findViewById(R.id.menuTabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("Game"));
@@ -40,14 +45,22 @@ public class MainActivity extends AppCompatActivity {
                 int pos = tab.getPosition();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
+                if(menuFragment == null){
+                    menuFragment = new MenuFragment();
+                }
+
+                if(rankingFragment == null){
+                    rankingFragment = new RankingFragment();
+                }
+
                 if(pos == 0) {
                     fragmentTransaction
-                            .replace(R.id.fragmentContainerMenu, MenuFragment.class,null)
+                            .replace(R.id.fragmentContainerMenu, menuFragment,null)
                             .commit();
                 }
                 else if(pos == 1){
                     fragmentTransaction
-                            .replace(R.id.fragmentContainerMenu, RankingFragment.class, null)
+                            .replace(R.id.fragmentContainerMenu, rankingFragment, null)
                             .commit();
                 }
             }
@@ -64,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragmentContainerMenu, MenuFragment.class, null)
+                    .add(R.id.fragmentContainerMenu, menuFragment, null)
                     .commit();
         }
         else{
@@ -137,36 +150,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean inputScore(){
-        try{
-            EditText numberScores = findViewById(R.id.numberScores);
-            EditText pseudo =  findViewById(R.id.pseudonyme);
-//            rankingManager.setNumberScores(Integer.parseInt(numberScores.getText().toString()));
-//            rankingManager.setPseudo(pseudo.getText().toString());
-            return true;
-        }
-        catch(NumberFormatException ex){
-            return false;
-        }
-
-    }
-
     public void newGame(View view) {
         Log.d("truc", "Nouvelle Partie");
-        if (!inputScore())
-        {
-            Log.d("truc", "InputScore pas correct");
-            popUpWindow(view,1);
-        }
-        else if(!inputData()){
+        if(!inputData()){
             Log.d("truc", "InputData pas correct");
             popUpWindow(view,0);
         }
         else{
             EditText pseudo =  findViewById(R.id.pseudonyme);
             Intent intent = new Intent(this,GameActivity.class);
-            String test = pseudo.getText().toString()
-                    ;
+            String test = pseudo.getText().toString();
             intent.putExtra("pseudo", test);
             startActivity(intent);
         }
@@ -187,13 +180,9 @@ public class MainActivity extends AppCompatActivity {
     //Methode qui ajoute une popup pour l'user qui se ferme si on click a côté/dessus
     public void popUpWindow(View view, int file)
     {
-
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_window_data, null);
-        if(file==1){
-            popupView = inflater.inflate(R.layout.popup_window_score, null);
-        }
         //Creer la popupWindow
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -212,5 +201,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }

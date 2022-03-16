@@ -133,6 +133,9 @@ public class Map {
      * @return boolean Si disponible
      */
     public boolean nodeOpen(int xCord , int yCord){
+        if(xCord > map.length || yCord > map[0].length){
+            return false;
+        }
         return map[yCord][xCord] == 0;
     }
 }

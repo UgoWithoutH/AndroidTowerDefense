@@ -3,6 +3,7 @@ package com.androidtowerdefense.model.gamelogic.action.character;
 import android.util.Log;
 
 import com.androidtowerdefense.model.characters.monster.Basic;
+import com.androidtowerdefense.model.characters.monster.Monster;
 import com.androidtowerdefense.model.characters.monster.Speed;
 import com.androidtowerdefense.model.gamelogic.AdministratorLevel;
 import com.androidtowerdefense.model.gamelogic.GameState;
@@ -39,13 +40,13 @@ public class SpawnerCharacter implements ISpawner {
                 Log.d("spawn", spawn);
                 switch (spawn) {
                     case "Basic" :
-                         game.getCharactersAlive().add(new Basic(5));
+                         game.getCharactersAlive().add(new Basic(Monster.DEFAULT_BASIC_LIFE));
                          break;
                     case "Speed" :
-                        game.getCharactersAlive().add(new Speed(3));
+                        game.getCharactersAlive().add(new Speed(Monster.DEFAULT_SPEED_LIFE));
                         break;
                     default :
-                        game.getCharactersAlive().add(new Basic(3));
+                        game.getCharactersAlive().add(new Basic(Monster.DEFAULT_BASIC_LIFE));
                 }
             } else if (!scannerFile.hasNextLine()) {
                 level.nextLevel();

@@ -98,31 +98,12 @@ public class GameActivity extends AppCompatActivity{
     }
 
     public void returnHome(View view) {
-
-        //SharedPreferences preferences = getApplicationContext().getSharedPreferences("preferences",MODE_PRIVATE);
-        //SharedPreferences.Editor editor = preferences.edit();
-        //editor.putString("pseudo", gameManager.getGame().getPseudo());
-        //editor.putInt("level", gameManager.getGame().getLevel());
-        //editor.putInt("score", gameManager.getGame().getScore());
-        //editor.putInt("time", gameManager.getGame().getTimeSeconds());
-
-        //String json = obj.toString();
-        // { "pseudo": "Toto"}
-        //JSONArray array = new JSONArray();
-        //array.put(obj);
-        // [ { "pseudo": "Toto"}, { "pseudo": "Titi"}.. ]
-        //array.length();
-        //JSONObject score = array.getJSONObject(0);
-        //String pseudo = score.getString("pseudo");
-
-        //editor.commit();
-
         rankingManager.saveGameState(gameManager.getGame());
         finish();
+    }
 
-        //Intent intent = new Intent(this, MainActivity.class);
-        //intent.putExtra("gameState",gameManager.getGame());
-        //startActivity(intent);
+    public void giveUp(View view){
+        finish();
     }
 
     public void stopOrRestart(View view) {

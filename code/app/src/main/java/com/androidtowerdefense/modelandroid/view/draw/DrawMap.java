@@ -3,7 +3,9 @@ package com.androidtowerdefense.modelandroid.view.draw;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 import com.androidtowerdefense.model.gamelogic.map.Map;
 
@@ -52,6 +54,10 @@ public class DrawMap {
 
     public void draw(Canvas canvas){
         Bitmap tile = null;
+
+        paint.setColor(Color.BLACK);
+        canvas.drawRect(new Rect(0,0, canvas.getWidth(), canvas.getHeight()),paint);
+
         for(int x = 0; x < map.getTileLengthX(); x++){
             for(int y = 0; y < map.getTileLengthY(); y++ ){
                 switch (map.getMap()[y][x]) {
