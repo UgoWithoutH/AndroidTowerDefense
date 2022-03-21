@@ -11,10 +11,6 @@ public abstract class Monster extends Character {
     public static final int DEFAULT_BASIC_LIFE = 10;
     public static final int DEFAULT_SPEED_LIFE = 3;
 
-    /**
-     * Variable qui définit si le Monstre est visible ou non
-     */
-    private boolean visible;
 
     /**
      * Constructeur de Monstre
@@ -23,12 +19,7 @@ public abstract class Monster extends Character {
      */
     public Monster(int healthPoints, float movementSpeed) {
         super(healthPoints,movementSpeed);
-        visible = true;
     }
-
-
-    public boolean isVisible() {return visible;}
-    public void setVisible(boolean visible) {this.visible = visible;}
 
     /**
      *  Dommages reçus

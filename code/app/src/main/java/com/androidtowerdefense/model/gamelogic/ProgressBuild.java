@@ -32,8 +32,4 @@ public class ProgressBuild {
     public boolean isFinished(){
         return maxProgress == currentProgress;
     }
-
-    public int getPercentageBuilding(){
-        return currentProgress * 100 / maxProgress;
-    }
 }

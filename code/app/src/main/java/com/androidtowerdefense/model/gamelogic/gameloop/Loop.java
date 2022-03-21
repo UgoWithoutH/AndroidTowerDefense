@@ -1,15 +1,13 @@
-package com.androidtowerdefense.model;
+package com.androidtowerdefense.model.gamelogic.gameloop;
 
 import static java.lang.Thread.sleep;
 
 import android.util.Log;
 
-import com.androidtowerdefense.model.observer.Observable;
-
 /**
  * Boucle de jeu
  */
-public class Loop extends Observable implements Runnable {
+public class Loop extends ObservableLoop implements Runnable {
     public static final long DEFAULT_MILLIS = 16;
     private long millis = DEFAULT_MILLIS;
     private int timer = 0;
@@ -44,7 +42,6 @@ public class Loop extends Observable implements Runnable {
             try {
                 sleep(millis);
                 timer++;
-                Log.d("Totot","---");
                 beep(timer);
                 if(!running){
                     synchronized (this) {
@@ -58,6 +55,6 @@ public class Loop extends Observable implements Runnable {
     }
 
     private void beep(int timer) {
-        notify(timer);
+        notifyObserverLoop(timer);
     }
 }

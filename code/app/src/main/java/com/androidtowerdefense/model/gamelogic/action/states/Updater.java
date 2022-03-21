@@ -7,19 +7,19 @@ import com.androidtowerdefense.model.gamelogic.GameState;
 /**
  * Classe mettant à jour des informations de la partie
  */
-public class Updater {
+public abstract class Updater {
 
     /**
      * Met a Jour le score en fonction de la position des Characters
      * @param character Character
-     * @param game  GameState
+     * @param gameState  GameState
      */
-    public static void updateStates(Character character, GameState game) {
+    public static void updateStates(Character character, GameState gameState) {
         if (character.isPathFinished()) {
-            game.setLives((game.getLives()) - 1);
+            gameState.setLives((gameState.getLives()) - 1);
         } else {
-            game.setCoins((game.getCoins()) + character.getReward());
-            game.setScore(game.getScore() + (character.getReward() * (game.getLevel() + 1)));
+            gameState.setCoins((gameState.getCoins()) + character.getReward());
+            gameState.setScore(gameState.getScore() + (character.getReward() * (gameState.getLevel() + 1)));
         }
     }
 
@@ -27,14 +27,14 @@ public class Updater {
      * Met a jour le timer du jeu par rapport à un timer (boucle de jeu)
      * @param timer int
      * @param millis    long
-     * @param game  GameState
+     * @param gameState  GameState
      */
-    public static void updateTimerSeconds(int timer, long millis, GameState game){
+    public static void updateTimerSeconds(int timer, long millis, GameState gameState){
         long timeMillis = timer * millis;
         int timeSeconds = (int) (timeMillis / 1000);
 
-        if (timeSeconds != game.getTimeSeconds()) {
-            game.setTimeSeconds(game.getTimeSeconds() + 1);
+        if (timeSeconds != gameState.getTimeSeconds()) {
+            gameState.setTimeSeconds(gameState.getTimeSeconds() + 1);
         }
     }
 }

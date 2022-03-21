@@ -1,4 +1,4 @@
-package com.androidtowerdefense.model;
+package com.androidtowerdefense.model.characters;
 
 
 import java.io.Serializable;

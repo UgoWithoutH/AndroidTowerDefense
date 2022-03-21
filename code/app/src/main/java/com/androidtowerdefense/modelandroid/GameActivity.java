@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidtowerdefense.R;
-import com.androidtowerdefense.model.RankingManager;
+import com.androidtowerdefense.model.ranking.RankingManager;
 import com.androidtowerdefense.model.gamelogic.GameManager;
 import com.androidtowerdefense.modelandroid.view.GameView;
 import com.androidtowerdefense.modelandroid.view.draw.DrawMap;

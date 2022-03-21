@@ -1,9 +1,5 @@
 package com.androidtowerdefense.model.characters;
 
-import android.util.Log;
-
-import com.androidtowerdefense.model.Coordinate;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 

@@ -1,8 +1,6 @@
 package com.androidtowerdefense.model.gamelogic.map;
 
-import android.util.Log;
-
-import com.androidtowerdefense.model.Coordinate;
+import com.androidtowerdefense.model.characters.Coordinate;
 
 import java.util.ArrayList;
 

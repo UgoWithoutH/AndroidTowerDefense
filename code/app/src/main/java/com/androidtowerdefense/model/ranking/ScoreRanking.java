@@ -1,4 +1,4 @@
-package com.androidtowerdefense.model;
+package com.androidtowerdefense.model.ranking;
 
 import com.androidtowerdefense.model.gamelogic.GameState;
 
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Classe Score et Ranking permettant de classer le resultat en fonction du score obtenu
  */
-public class ScoreRanking implements Serializable {
+public class ScoreRanking {
     private String pseudo;
     private int level;
     private int score;

@@ -17,10 +17,10 @@ import java.util.List;
  */
 public class DisplacerCharacters implements IDisplacer {
 
-    private GameState game;
+    private GameState gameState;
     private IRemover remover;
 
-    public DisplacerCharacters(GameState game) {this.game = game;}
+    public DisplacerCharacters(GameState gameState) {this.gameState = gameState;}
 
     /**
      * Modifie la position de tous les Character dans Observable List -> GameState
@@ -29,7 +29,7 @@ public class DisplacerCharacters implements IDisplacer {
     @Override
     public boolean updateLocations() {
         ArrayList<Character> charactersEnd = new ArrayList<>();
-        List listCharacters = game.getCharactersAlive();
+        List listCharacters = gameState.getCharactersAlive();
         if (!listCharacters.isEmpty()) {
             Iterator<Character> characterIterator = listCharacters.iterator();
             Character character;
@@ -37,16 +37,16 @@ public class DisplacerCharacters implements IDisplacer {
                 character = characterIterator.next();
                 character.updateLocation();
                 if (character.isPathFinished()) {
-                    Updater.updateStates(character, game);
+                    Updater.updateStates(character, gameState);
                     charactersEnd.add(character);
-                    if (game.getLives() == 0) {
+                    if (gameState.getLives() == 0) {
                         return false;
                     }
                 }
             }
             for (Character characterDelete : charactersEnd) {
                 if(characterDelete instanceof Monster){
-                    remover = new RemoverMonster(game);
+                    remover = new RemoverMonster(gameState);
                 }
                 remover.remove(characterDelete);
             }

@@ -2,19 +2,19 @@ package com.androidtowerdefense.model.gamelogic;
 
 
 import com.androidtowerdefense.model.gamelogic.action.ILevel;
-import com.androidtowerdefense.model.Loop;
+import com.androidtowerdefense.model.gamelogic.gameloop.Loop;
 
 /**
  * Classe permettant de vérifier la victoire ou la partie perdu
  */
 public class AdministratorVictoryGameOver {
 
-    private GameState game;
+    private GameState gameState;
     private Loop loop;
     private ILevel enemyFile;
 
-    public AdministratorVictoryGameOver(GameState game, ILevel level, Loop boucle) {
-        this.game = game;
+    public AdministratorVictoryGameOver(GameState gameState, ILevel level, Loop boucle) {
+        this.gameState = gameState;
         this.loop = boucle;
         this.enemyFile=level;
     }
@@ -25,9 +25,9 @@ public class AdministratorVictoryGameOver {
     public void verifyVictory() {
         if(enemyFile instanceof AdministratorLevel) {
             AdministratorLevel administratorLevel = (AdministratorLevel) enemyFile;
-            if (!administratorLevel.getLevelFile().hasNextLine() && game.getCharactersAlive().isEmpty() && loop.isRunning()) {
+            if (!administratorLevel.getLevelFile().hasNextLine() && gameState.getCharactersAlive().isEmpty() && loop.isRunning()) {
                 loop.setRunning(false);
-                game.setVictory(true);
+                gameState.setVictory(true);
             }
         }
     }
@@ -38,9 +38,9 @@ public class AdministratorVictoryGameOver {
      */
     public void verifyGameOver(boolean value){
         if(!value) return;
-        game.setRemoveCharacter(true);
-        game.getCharactersAlive().clear();
+        gameState.setRemoveCharacter(true);
+        gameState.getCharactersAlive().clear();
         loop.setRunning(false);
-        game.setGameOver(true);
+        gameState.setGameOver(true);
     }
 }

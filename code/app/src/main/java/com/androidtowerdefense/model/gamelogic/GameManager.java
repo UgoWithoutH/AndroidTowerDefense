@@ -1,8 +1,6 @@
 package com.androidtowerdefense.model.gamelogic;
 
-import android.app.Dialog;
-
-import com.androidtowerdefense.model.Coordinate;
+import com.androidtowerdefense.model.characters.Coordinate;
 import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.gamelogic.action.IGenerator;
 import com.androidtowerdefense.model.gamelogic.action.IDisplacer;
@@ -15,15 +13,13 @@ import com.androidtowerdefense.model.gamelogic.action.tower.GeneratorProjectiles
 import com.androidtowerdefense.model.gamelogic.action.tower.DisplacerProjectiles;
 import com.androidtowerdefense.model.gamelogic.action.tower.WaitingTowers;
 import com.androidtowerdefense.model.gamelogic.map.Map;
-import com.androidtowerdefense.model.observer.IObserver;
-import com.androidtowerdefense.model.Loop;
-import com.androidtowerdefense.model.observer.Observable;
-import com.androidtowerdefense.modelandroid.view.alert_dialog.MyDialogFragment;
+import com.androidtowerdefense.model.gamelogic.gameloop.IObserverLoop;
+import com.androidtowerdefense.model.gamelogic.gameloop.Loop;
 
 /**
  * Classe qui gère la partie
  */
-public class GameManager extends Observable implements IObserver {
+public class GameManager extends ObservableGame implements IObserverLoop {
 
     private Map gameMap;
     private GameState game;
@@ -34,8 +30,6 @@ public class GameManager extends Observable implements IObserver {
     private ISpawner spawner;
     private IGenerator attacker;
     private ILevel levelNext;
-    private int tileWidth;
-    private int tileHeight;
 
     /**
      * Creation d'un gameManager et de tout ses éléments
@@ -63,12 +57,10 @@ public class GameManager extends Observable implements IObserver {
     public Map getGameMap() {return gameMap;}
 
     public void setTileWidth(int tileWidth) {
-        this.tileWidth = tileWidth;
         Coordinate.setTileWidth(tileWidth);
     }
 
     public void setTileHeight(int tileHeight) {
-        this.tileHeight = tileHeight;
         Coordinate.setTileHeight(tileHeight);
     }
 
@@ -107,7 +99,7 @@ public class GameManager extends Observable implements IObserver {
      * @param timer int Timer de la boucle de Jeu
      */
     @Override
-    public void update(int timer) {
+    public void updateLoop(int timer) {
         if (loop.isRunning()) {
             Updater.updateTimerSeconds(timer, loop.DEFAULT_MILLIS, game);
 
@@ -123,7 +115,7 @@ public class GameManager extends Observable implements IObserver {
 
             attacker.generate();
 
-            notify(0);
+            notifyObserverGame();
         }
     }
 }

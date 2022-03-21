@@ -18,21 +18,20 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.characters.tower.Tower;
 import com.androidtowerdefense.model.gamelogic.GameManager;
+import com.androidtowerdefense.model.gamelogic.IObserverGame;
 import com.androidtowerdefense.model.gamelogic.action.IBuyerTower;
 import com.androidtowerdefense.model.gamelogic.action.tower.BuyerTower;
 import com.androidtowerdefense.model.gamelogic.map.GenerationMap;
-import com.androidtowerdefense.model.observer.IObserver;
+import com.androidtowerdefense.model.gamelogic.gameloop.IObserverLoop;
 import com.androidtowerdefense.modelandroid.view.draw.DrawMap;
 import com.androidtowerdefense.modelandroid.view.draw.DrawCharacters;
 import com.androidtowerdefense.modelandroid.view.draw.DrawProgressBar;
 import com.androidtowerdefense.modelandroid.view.draw.DrawProjectiles;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class GameView extends View implements IObserver {
+public class GameView extends View implements IObserverGame {
     private Bitmap bitmap;
     private GameManager gameManager;
     private DrawMap drawMap;
@@ -42,7 +41,6 @@ public class GameView extends View implements IObserver {
     private UpdaterTextStates updaterTextStates;
     private IVerifier verifier;
     private ConstraintLayout endLayout;
-    private Activity gameActivity;
     private TextView textEndGame;
     private Paint paint;
     private Map<ProgressBar,Integer> progressBars = new HashMap<>();
@@ -67,7 +65,7 @@ public class GameView extends View implements IObserver {
 
     public void setGameManager(GameManager gameManager){
         this.gameManager = gameManager;
-        this.gameActivity = (Activity) getContext();
+        Activity gameActivity = (Activity) getContext();
 
         drawMonsters = new DrawCharacters(gameManager.getGame().getCharactersAlive());
         drawProjectiles = new DrawProjectiles(gameManager.getGame().getPlayerTowers());
@@ -85,6 +83,7 @@ public class GameView extends View implements IObserver {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        Activity gameActivity = (Activity) getContext();
         drawMap.draw(canvas);
         gameManager.setTileWidth(drawMap.getWidthResize());
         gameManager.setTileHeight(drawMap.getHeightResize());
@@ -115,7 +114,8 @@ public class GameView extends View implements IObserver {
     }
 
     @Override
-    public void update(int timer) {
+    public void updateGame() {
+        Activity gameActivity = (Activity) getContext();
         gameActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

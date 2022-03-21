@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Classe permettant de faire attendre la tour durant le temps de construction
  */
-public class WaitingTowers {
+public abstract class WaitingTowers {
 
     /**
      * Vérifie si la Tower est en construction et définit si elle est libre pour attaquer
@@ -27,11 +27,12 @@ public class WaitingTowers {
                 }
             } else {
                 if (!tower.isAttacker()) {
+                    WaitingAttacker waitingAttacker = tower.getWaitingAttacker();
                     if (tower.isAttackerFinished()) {
                         tower.setAttacker(true);
-                        tower.resetWaitingAttack();
+                        waitingAttacker.reset();
                     } else {
-                        tower.incrementedWaitingAttack();
+                        waitingAttacker.increment();;
                     }
                 }
             }

@@ -20,7 +20,6 @@ public class DrawProgressBar {
     private static final int DEFAULT_WIDTH_DRAW = 80;
     private static final int DEFAULT_HEIGHT_DRAW = 10;
     private List<ProgressBar> progressBarToRemove = new ArrayList<>();
-
     private Paint paint;
 
     public DrawProgressBar() {
@@ -62,7 +61,6 @@ public class DrawProgressBar {
                 int widthProgress = DEFAULT_WIDTH_DRAW / numberTotalBlock;
                 int numberBlock = progressBuild.getCurrentProgress()/progressBuild.getIncrementProgress();
                 int widthToDraw = widthProgress * numberBlock;
-                Log.d("dessin", String.valueOf(widthToDraw));
                 canvas.drawRect(new Rect(progressBar.getxStart(),
                         progressBar.getyStart(),
                         progressBar.getxStart()+widthToDraw,

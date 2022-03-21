@@ -35,7 +35,7 @@
     <string name="newGame">Nouvelle Partie</string>
     <string name="home">Retour</string>
     <string name="exit">Quitter</string>
-    <string name="giveUp">Abandonner</string>
+    <string name="giveUp">Abandon</string>
     <string name="stop">Stop</string>
     <string name="restart">Reprendre</string>
     <string name="x2">X2</string>

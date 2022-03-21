@@ -11,8 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
-import com.androidtowerdefense.model.ScoreRanking;
-import com.androidtowerdefense.model.gamelogic.GameState;
+import com.androidtowerdefense.model.ranking.ScoreRanking;
 import com.androidtowerdefense.modelandroid.view.fragments.RankindDetailFragment;
 
 import java.util.List;

@@ -1,33 +1,24 @@
 package com.androidtowerdefense.model.gamelogic;
 
-import android.util.Log;
-
 import com.androidtowerdefense.model.gamelogic.action.ILevel;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
-import java.nio.file.Paths;
-import java.util.Enumeration;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
  * Gère les niveaux de la partie
  */
 public class AdministratorLevel implements ILevel {
-    private GameState game;
+    private GameState gameState;
     private int level;
     private Scanner levelFile;
 
-    public AdministratorLevel(GameState game) {
-        this.game = game;
-        this.level = game.getLevel();
+    public AdministratorLevel(GameState gameState) {
+        this.gameState = gameState;
+        this.level = gameState.getLevel();
         setLevelFile(level);
     }
 
@@ -78,7 +69,7 @@ public class AdministratorLevel implements ILevel {
     public boolean nextLevel() {
         this.level++;
         if(setLevelFile(this.level)){
-            this.game.setLevel(this.level);
+            this.gameState.setLevel(this.level);
             return true;
         }
         return false;

@@ -1,4 +1,4 @@
-package com.androidtowerdefense.model;
+package com.androidtowerdefense.model.ranking;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,17 +17,10 @@ import java.util.List;
  */
 public class RankingManager {
     private Context context;
-    private int numberScores;
-    private String pseudo;
-
 
     public RankingManager(Context context){
         this.context = context;
-        numberScores = 10;
     }
-
-    public String getPseudo() {return pseudo;}
-    public void setPseudo(String pseudo) {this.pseudo = pseudo;}
 
     public List<ScoreRanking> getRankings() {
         SharedPreferences preferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
@@ -51,8 +44,6 @@ public class RankingManager {
         }
         return scoreRankingList;
     }
-
-    public void setNumberScores(int numberScores) {this.numberScores = numberScores;}
 
     public void saveGameState(GameState gameState){
         JSONObject jsonObject = new JSONObject();
@@ -88,33 +79,5 @@ public class RankingManager {
             editor.putString("ranking", jsonArray.toString());
         }
         editor.apply();
-    }
-
-    /**
-     * Met a jour le Classement une fois que la partie est terminée
-     * Prépare aussi la persistence
-     * @param gameState GameState
-     */
-    public void updateRanking(GameState gameState) {
-        //List<GameState> ranking = getRankings();
-
-//        if(numberScores == 0){
-//            ranking.clear();
-//            return;
-//        }
-//
-//        if (!ranking.isEmpty()) {
-//            if (ranking.size() >= numberScores) {
-//                Collections.sort(ranking);
-//                GameState lowerState = ranking.get(ranking.size() - 1);
-//                if (lowerState != gameState) {
-//                    ranking.remove(lowerState);
-//                }
-//            }
-//        }
-//        ranking.add(gameState);
-//        if(ranking.size() > 1){
-//            Collections.sort(ranking);
-//        }
     }
 }

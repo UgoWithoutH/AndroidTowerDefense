@@ -14,16 +14,16 @@ import java.util.Scanner;
 
 public class SpawnerCharacter implements ISpawner {
 
-    private GameState game;
+    private GameState gameState;
     private ILevel level;
 
     /**
      *Création du système de génération des ennemies en fonction des level recupérés
-     * @param game GameState
+     * @param gameState GameState
      * @param level Level pointant sur le fichier des Characters
      */
-    public SpawnerCharacter(GameState game, ILevel level) {
-        this.game = game;
+    public SpawnerCharacter(GameState gameState, ILevel level) {
+        this.gameState = gameState;
         this.level = level;
     }
 
@@ -40,13 +40,13 @@ public class SpawnerCharacter implements ISpawner {
                 Log.d("spawn", spawn);
                 switch (spawn) {
                     case "Basic" :
-                         game.getCharactersAlive().add(new Basic(Monster.DEFAULT_BASIC_LIFE));
+                         gameState.getCharactersAlive().add(new Basic(Monster.DEFAULT_BASIC_LIFE));
                          break;
                     case "Speed" :
-                        game.getCharactersAlive().add(new Speed(Monster.DEFAULT_SPEED_LIFE));
+                        gameState.getCharactersAlive().add(new Speed(Monster.DEFAULT_SPEED_LIFE));
                         break;
                     default :
-                        game.getCharactersAlive().add(new Basic(Monster.DEFAULT_BASIC_LIFE));
+                        gameState.getCharactersAlive().add(new Basic(Monster.DEFAULT_BASIC_LIFE));
                 }
             } else if (!scannerFile.hasNextLine()) {
                 level.nextLevel();

@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * States relatifs à la partie
  */
-public class GameState implements Comparable<GameState>, Serializable {
+public class GameState implements Comparable<GameState>{
 
     private final List<Tower> playerTowers;
     private final List<Character> charactersAlive;

@@ -1,20 +1,17 @@
 package com.androidtowerdefense.model.gamelogic.action.tower;
 
-import android.util.Log;
-
-import com.androidtowerdefense.model.Coordinate;
 import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.characters.Projectile;
 import com.androidtowerdefense.model.characters.tower.Tower;
 import com.androidtowerdefense.model.gamelogic.GameState;
+import com.androidtowerdefense.model.gamelogic.action.IAttacker;
 import com.androidtowerdefense.model.gamelogic.action.IDisplacer;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DisplacerProjectiles implements IDisplacer {
     private GameState gameState;
-    private AttackerTower attackerTower;
+    private IAttacker attackerTower;
 
     public DisplacerProjectiles(GameState gameState) {
         this.gameState = gameState;
