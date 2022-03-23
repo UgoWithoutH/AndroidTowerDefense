@@ -26,14 +26,6 @@ public class Loop extends ObservableLoop implements Runnable {
     }
 
     /**
-     * Démarrage de la boucle
-     */
-    public void start() {
-        running = true;
-        run();
-    }
-
-    /**
      * Procédure de la boucle avec sa fréquence
      */
     @Override

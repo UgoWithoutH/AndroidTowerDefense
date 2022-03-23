@@ -4,7 +4,6 @@ package com.androidtowerdefense.model.gamelogic.action.tower;
 import static java.lang.Thread.sleep;
 
 import com.androidtowerdefense.model.characters.tower.Tower;
-import com.androidtowerdefense.model.gamelogic.ProgressBuild;
 
 import java.util.List;
 

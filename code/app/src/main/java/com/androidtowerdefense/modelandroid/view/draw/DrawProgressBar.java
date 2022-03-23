@@ -4,11 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.util.Log;
 
-import com.androidtowerdefense.model.characters.Character;
-import com.androidtowerdefense.model.characters.tower.Tower;
-import com.androidtowerdefense.model.gamelogic.ProgressBuild;
+import com.androidtowerdefense.model.gamelogic.action.tower.ProgressBuild;
 import com.androidtowerdefense.modelandroid.view.ProgressBar;
 
 import java.util.ArrayList;

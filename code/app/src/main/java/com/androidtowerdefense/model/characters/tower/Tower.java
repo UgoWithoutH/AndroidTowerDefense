@@ -4,7 +4,7 @@ package com.androidtowerdefense.model.characters.tower;
 import com.androidtowerdefense.model.characters.Coordinate;
 import com.androidtowerdefense.model.characters.Character;
 import com.androidtowerdefense.model.characters.Projectile;
-import com.androidtowerdefense.model.gamelogic.ProgressBuild;
+import com.androidtowerdefense.model.gamelogic.action.tower.ProgressBuild;
 import com.androidtowerdefense.model.gamelogic.action.tower.WaitingAttacker;
 
 import java.util.ArrayList;

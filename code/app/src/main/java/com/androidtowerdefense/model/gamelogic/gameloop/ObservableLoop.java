@@ -23,7 +23,7 @@ public abstract class ObservableLoop {
     protected void notifyObserverLoop(int timer){
         //Log.d("Totot","---" + String.valueOf(observatory.size()));
         for(IObserverLoop observer : observatory){
-            observer.updateLoop(timer);
+            observer.update(timer);
         }
     }
 }

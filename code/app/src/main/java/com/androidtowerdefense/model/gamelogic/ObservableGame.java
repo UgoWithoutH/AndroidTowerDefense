@@ -18,7 +18,7 @@ public abstract class ObservableGame {
      */
     protected void notifyObserverGame(){
         for(IObserverGame observer : observatory){
-            observer.updateGame();
+            observer.update();
         }
     }
 }

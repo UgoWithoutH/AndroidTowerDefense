@@ -29,8 +29,8 @@ public class Map {
     public Map(int mapWidth , int mapHeight) {
         resolutionWidth = mapWidth;
         resolutionHeight = mapHeight;
-        tileLengthX = 20; //(int) Math.ceil(mapWidth / 64d);
-        tileLengthY = 13; //(int) Math.ceil(mapHeight / 64d);
+        tileLengthX = (int) Math.ceil(mapWidth / 64d);
+        tileLengthY = (int) Math.ceil(mapHeight / 64d);
 
         offsetX = tileLengthX * 64 - resolutionWidth;
         offsetY = tileLengthY * 64 - resolutionHeight;

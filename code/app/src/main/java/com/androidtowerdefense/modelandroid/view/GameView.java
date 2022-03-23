@@ -114,7 +114,7 @@ public class GameView extends View implements IObserverGame {
     }
 
     @Override
-    public void updateGame() {
+    public void update() {
         Activity gameActivity = (Activity) getContext();
         gameActivity.runOnUiThread(new Runnable() {
             @Override

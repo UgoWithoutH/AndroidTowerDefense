@@ -1,7 +1,6 @@
 package com.androidtowerdefense.modelandroid.view;
 
-import com.androidtowerdefense.model.characters.tower.Tower;
-import com.androidtowerdefense.model.gamelogic.ProgressBuild;
+import com.androidtowerdefense.model.gamelogic.action.tower.ProgressBuild;
 
 public class ProgressBar {
     private ProgressBuild progressBuild;

@@ -99,7 +99,7 @@ public class GameManager extends ObservableGame implements IObserverLoop {
      * @param timer int Timer de la boucle de Jeu
      */
     @Override
-    public void updateLoop(int timer) {
+    public void update(int timer) {
         if (loop.isRunning()) {
             Updater.updateTimerSeconds(timer, loop.DEFAULT_MILLIS, game);
 

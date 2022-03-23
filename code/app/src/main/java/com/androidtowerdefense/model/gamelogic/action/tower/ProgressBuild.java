@@ -1,4 +1,4 @@
-package com.androidtowerdefense.model.gamelogic;
+package com.androidtowerdefense.model.gamelogic.action.tower;
 
 public class ProgressBuild {
     int maxProgress;
