@@ -1,9 +1,10 @@
-package com.androidtowerdefense.model.ranking;
+package com.androidtowerdefense.modelandroid;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.androidtowerdefense.model.gamelogic.GameState;
+import com.androidtowerdefense.model.ranking.ScoreRanking;
 
 import org.json.JSONArray;
 import org.json.JSONException;
