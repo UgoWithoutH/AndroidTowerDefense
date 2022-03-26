@@ -88,59 +88,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        //RestoreInstanceState ne passe que après Start lorsque l'on tourne l'écran
-        Log.d("truc","Start");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("truc","Resume");
-    }
-
-    @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("pos", tabLayout.getSelectedTabPosition());
-        Log.d("truc","SaveInstanceState");
-    }
-
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Log.d("truc","RestoreInstanceState");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("truc","Restart");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("truc","Stop");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("truc","Pause");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("truc","Destroy");
     }
 
     private boolean inputData(){
         try{
             EditText pseudo=findViewById(R.id.pseudonyme);
-            if(pseudo.length()==0){
+            if(pseudo.getText().toString().trim().length()==0){
                 return false;
             }
             return true;
@@ -151,9 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void newGame(View view) {
-        Log.d("truc", "Nouvelle Partie");
         if(!inputData()){
-            Log.d("truc", "InputData pas correct");
             popUpWindow(view,0);
         }
         else{
@@ -171,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void quitterApplication(View view){
-        Log.d("truc", "Finish activity");
         finish();
         System.exit(0);
     }

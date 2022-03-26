@@ -42,10 +42,15 @@
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/score_ranking_cell.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/layout/test.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ugo VIGNON/Desktop/androidtowerdefense/code/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.196" />
+        <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.148" />
         <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/layout-land/game_end_view.xml" value="0.1" />
+        <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/layout-land/game_menu.xml" value="0.14858906525573193" />
         <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/layout-land/game_view.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/layout-port/game_menu.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/layout/game_menu.xml" value="0.1" />
         <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/layout/game_test.xml" value="0.11820652173913043" />
+        <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/layout/menu_tab.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/ugovi/OneDrive/Bureau/androidtowerdefense/code/app/src/main/res/layout/popup_window_data.xml" value="0.14130434782608695" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.37135416666666665" />
         <entry key="app/src/main/res/layout-land/game_end_view.xml" value="0.2390625" />

@@ -24,10 +24,8 @@ public class GameActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("truc","Create2");
 
         Bundle data = getIntent().getExtras();
-
         String pseudo = data.getString("pseudo");
         setContentView(R.layout.game_view);
         GameView gameView = findViewById(R.id.myView);
@@ -41,58 +39,6 @@ public class GameActivity extends AppCompatActivity{
         if(!gameManager.isRunning()){
             gameManager.start();
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        //RestoreInstanceState ne passe que après Start lorsque l'on tourne l'écran
-        Log.d("truc","Start2");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("truc","Resume2");
-
-
-    }
-
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.d("truc","SaveInstanceState2");
-    }
-
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        //RestoreInstanceState ne passe que après Start lorsque l'on tourne l'écran
-        Log.d("truc","RestoreInstanceState2");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("truc","Restart2");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("truc","Stop2");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("truc","Pause2");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("truc","Destroy2");
     }
 
     public void returnHome(View view) {

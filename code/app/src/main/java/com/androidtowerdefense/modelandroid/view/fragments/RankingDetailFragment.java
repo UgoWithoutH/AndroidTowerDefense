@@ -15,7 +15,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.androidtowerdefense.R;
 
-public class RankindDetailFragment extends DialogFragment {
+public class RankingDetailFragment extends DialogFragment {
 
     @NonNull
     @Override

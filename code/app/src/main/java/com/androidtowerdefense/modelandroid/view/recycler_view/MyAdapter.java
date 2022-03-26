@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidtowerdefense.R;
 import com.androidtowerdefense.model.ranking.ScoreRanking;
-import com.androidtowerdefense.modelandroid.view.fragments.RankindDetailFragment;
+import com.androidtowerdefense.modelandroid.view.fragments.RankingDetailFragment;
 
 import java.util.List;
 
@@ -64,9 +64,9 @@ public class MyAdapter extends RecyclerView.Adapter {
         b.putString("SCORE_KEY", score);
         b.putString("TIME_KEY", time);
 
-        RankindDetailFragment rankindDetailFragment = new RankindDetailFragment();
-        rankindDetailFragment.setArguments(b);
-        rankindDetailFragment.show(fragmentManager,"tag");
+        RankingDetailFragment rankingDetailFragment = new RankingDetailFragment();
+        rankingDetailFragment.setArguments(b);
+        rankingDetailFragment.show(fragmentManager,"tag");
     }
 
 }
