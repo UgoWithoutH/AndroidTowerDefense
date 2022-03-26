@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to TowerDefenseJavaFX 👋</h1>
+<h1 align="center">Welcome to AndroidTowerDefense 👋</h1>
 <p>
   <a href="a venir" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
