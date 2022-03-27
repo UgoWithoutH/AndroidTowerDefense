@@ -57,6 +57,7 @@ public class GameActivity extends AppCompatActivity{
                 .setPositiveButton("Reprendre", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         gameManager.restart();
+                        pauseRestartButton.setText(R.string.stop);
                         dialog.dismiss();
                     }
                 }).setNegativeButton("Abandonner", new DialogInterface.OnClickListener() {
