@@ -1,5 +1,7 @@
 package com.androidtowerdefense.modelandroid;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +41,38 @@ public class GameActivity extends AppCompatActivity{
         if(!gameManager.isRunning()){
             gameManager.start();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        gameManager.stop();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this)
+                .setTitle("Partie en pause")
+                .setPositiveButton("Reprendre", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        gameManager.restart();
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton("Abandonner", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                finish();
+                dialog.dismiss();
+            }
+        });
+        builder.setCancelable(false);
+        builder.show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        gameManager.stop();
     }
 
     public void returnHome(View view) {
