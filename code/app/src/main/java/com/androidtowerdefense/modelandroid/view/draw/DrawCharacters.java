@@ -32,7 +32,7 @@ public class DrawCharacters {
             paint.setColor(Color.GREEN);
         }
         else{
-            paint.setColor(Color.RED);
+            paint.setColor(Color.BLUE);
         }
         canvas.drawCircle(monster.getCoordinate().getX(), monster.getCoordinate().getY(), 10, paint);
     }

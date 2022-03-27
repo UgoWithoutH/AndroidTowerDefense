@@ -21,14 +21,14 @@
 
     <string name="tutoTitre">Comment Jouer</string>
     <string name="tutoParagraphe">TowerDefense est un jeu comme son nom l\'indique de type Tower Defense!</string>
-    <string name="tutoParagraphe2">Le but du jeu est très simple : Des monstres sous forme de boule vont apparaître au fil du temps sur le chemin</string>
-    <string name="tutoParagraphe3">Votre objectif : Leur empêcher d\'atteindre la fin du chemin. Vous pouvez appuyer sur n\'importe quel endroit afin de
-    placer une tour qui pourra tirer sur les monstres</string>
-    <string name="tutoParagraphe4">Vous pouvez observer divers bouton sur votre ecran : "abandon" pour abandonner une partie en cours
+    <string name="tutoParagraphe2">Des monstres sous forme de boule vont apparaître au fil du temps sur le chemin</string>
+    <string name="tutoParagraphe3">Vous avez deux vies, chaque monstre qui termine le chemin fait perdre une vie.</string>
+    <string name="tutoParagraphe4">Vous pouvez appuyer sur n\'importe quel endroit d\'herbes afin de placer une tour qui pourra tirer sur les monstres</string>
+    <string name="tutoParagraphe5">Vous pouvez observer divers bouton sur votre ecran : "abandon" pour abandonner une partie en cours
     "STOP" pour mettre une partie en pause et un bouton "X1 / X2" pour changer la vitesse de la partie en cours</string>
 
-    <string name="tutoParagraphe5">Dans le coin inférieur droit, vous observerez un indicateur de score, de temps, de niveau et d\'argent</string>
-    <string name="tutoParagraphe6">Une tour coûte 25 pièces, tuer un monstre vous en rapporte deux</string>
+    <string name="tutoParagraphe6">Dans le coin inférieur droit, vous observerez un indicateur de score, de temps, de niveau et d\'argent</string>
+    <string name="tutoParagraphe7">Une tour coûte 25 pièces, tuer un monstre vous en rapporte deux</string>
 
 
     <!-- String pour boutons-->
