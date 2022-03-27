@@ -14,8 +14,8 @@
         android:gravity="center_horizontal"
         android:text="@string/gameTitle"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="35dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
@@ -26,8 +26,8 @@
         android:gravity="center_horizontal"
         android:text="@string/tutoTitre"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="27dp" />
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -49,8 +49,8 @@
                 android:gravity="center_horizontal"
                 android:text="@string/tutoParagraphe"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -60,8 +60,8 @@
                 android:gravity="center_horizontal"
                 android:text="@string/tutoParagraphe2"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -71,8 +71,8 @@
                 android:gravity="center_horizontal"
                 android:text="@string/tutoParagraphe3"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -80,8 +80,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/tutoParagraphe4"
-                android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -91,8 +91,8 @@
                 android:gravity="center_horizontal"
                 android:text="@string/tutoParagraphe5"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -102,8 +102,8 @@
                 android:gravity="center_horizontal"
                 android:text="@string/tutoParagraphe6"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
         </LinearLayout>
     </ScrollView>
