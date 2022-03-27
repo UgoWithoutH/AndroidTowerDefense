@@ -115,6 +115,7 @@
         android:backgroundTint="@color/black"
         android:onClick="retourMenu"
         android:text="@string/home"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

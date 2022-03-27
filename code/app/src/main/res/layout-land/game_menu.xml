@@ -110,6 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
+        android:textColor="@color/white"
         android:onClick="VueOption"
         android:text="@string/tuto"
         app:layout_constraintBottom_toBottomOf="parent"

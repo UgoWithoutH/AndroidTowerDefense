@@ -47,6 +47,7 @@ public class GameActivity extends AppCompatActivity{
     }
 
     public void giveUp(View view){
+        gameManager.stop();
         finish();
     }
 

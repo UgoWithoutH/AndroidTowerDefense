@@ -6,7 +6,7 @@
     <string name="scoreBoard"> SCORES</string>
     <string name="popupScore">Nombre de scores incorrectes !</string>
     <string name="popupData">Pseudo invalide !</string>
-    <string name="onglet1">Partie</string>
+    <string name="onglet1">Menu</string>
     <string name="onglet2">Score</string>
 
     <string name="rankingTile">Tableau des scores</string>
